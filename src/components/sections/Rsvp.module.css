@@ -1,11 +1,5 @@
-.frame {
-  inset: 2.5% 3%;
-  width: 94%;
-  height: 95%;
-  object-fit: fill;
-  filter: brightness(3.4) saturate(0.25);
-  /* Quieter than the other green section: a form has to stay readable. */
-  opacity: calc(var(--tone-ornament) * 0.6);
+.rsvp {
+  gap: var(--sp-4);
 }
 
 .note {
@@ -20,20 +14,23 @@
 
 .deadline {
   font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--tone-accent);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--tone-body);
 }
 
 /* --- Form ---------------------------------------------------------------- */
+
+/* The fields sit on their own panel, as on a reply card. */
 .form {
   display: grid;
   gap: var(--sp-4);
   width: 100%;
-  max-width: 22rem;
+  max-width: 23rem;
   margin-inline: auto;
+  padding: var(--sp-5) var(--sp-4);
+  border: 1px solid var(--tone-rule);
+  background: rgba(251, 247, 240, 0.12);
 }
 
 .field {
@@ -47,16 +44,18 @@
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
+  text-align: center;
   color: var(--tone-body);
 }
 
 .input,
-.textarea {
+.textarea,
+.select {
   width: 100%;
-  padding: 0.7rem 0.875rem;
-  border: 1px solid rgba(251, 247, 240, 0.28);
+  padding: 0.8rem 0.875rem;
+  border: 1px solid rgba(251, 247, 240, 0.3);
   border-radius: var(--radius-sm);
-  background: rgba(251, 247, 240, 0.1);
+  background: rgba(251, 247, 240, 0.14);
   font-family: var(--font-display);
   font-size: var(--fs-md);
   color: var(--c-ivory);
@@ -67,14 +66,30 @@
 
 .input::placeholder,
 .textarea::placeholder {
-  color: rgba(251, 247, 240, 0.42);
+  color: rgba(251, 247, 240, 0.45);
 }
 
 .input:focus,
-.textarea:focus {
-  border-color: rgba(251, 247, 240, 0.7);
-  background: rgba(251, 247, 240, 0.18);
+.textarea:focus,
+.select:focus {
+  border-color: rgba(251, 247, 240, 0.75);
+  background: rgba(251, 247, 240, 0.22);
   outline: none;
+}
+
+.select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.1rem) 1.35rem,
+    calc(100% - 0.75rem) 1.35rem;
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+}
+
+.select option {
+  color: var(--c-green-deep);
 }
 
 .textarea {
@@ -82,7 +97,7 @@
   resize: vertical;
 }
 
-/* Attendance is a two-up segmented choice built from real radios. */
+/* Attendance is a two-up choice built from real radios. */
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -91,24 +106,10 @@
 
 .choice {
   position: relative;
-  display: grid;
-  place-items: center;
-  padding: 0.7rem;
-  border: 1px solid rgba(251, 247, 240, 0.28);
-  border-radius: var(--radius-sm);
-  background: rgba(251, 247, 240, 0.1);
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--tone-body);
-  cursor: pointer;
-  transition:
-    background var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out),
-    color var(--dur-fast) var(--ease-out);
+  min-height: 2.9rem;
+  padding: 0.7rem 0.5rem;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
 }
 
 .choice input {
@@ -131,34 +132,12 @@
 
 .submit {
   margin-top: var(--sp-1);
-  padding: 0.85rem 1.5rem;
-  border: 1px solid var(--c-ivory);
-  border-radius: var(--radius-pill);
-  background: var(--c-ivory);
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--c-green-deep);
-  cursor: pointer;
-  transition:
-    background var(--dur-fast) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out);
-}
-
-.submit:hover:not(:disabled) {
-  background: var(--c-paper);
-}
-
-.submit:disabled {
-  opacity: 0.55;
-  cursor: progress;
 }
 
 .error {
   font-family: var(--font-display);
   font-size: var(--fs-sm);
+  text-align: center;
   color: #f0b5a6;
 }
 
@@ -167,18 +146,13 @@
   display: grid;
   justify-items: center;
   gap: var(--sp-3);
-  max-width: 22rem;
+  width: 100%;
+  max-width: 23rem;
   margin-inline: auto;
-  padding: var(--sp-6) var(--sp-5);
-  border: 1px solid rgba(251, 247, 240, 0.32);
-  background: rgba(251, 247, 240, 0.1);
+  padding: var(--sp-7) var(--sp-5);
+  border: 1px solid var(--tone-rule);
+  background: rgba(251, 247, 240, 0.12);
   text-align: center;
-}
-
-.doneMark {
-  width: 2.5rem;
-  height: 2.5rem;
-  color: var(--c-ivory);
 }
 
 .doneTitle {

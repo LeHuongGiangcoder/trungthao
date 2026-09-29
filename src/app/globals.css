@@ -210,19 +210,19 @@ a {
    inside reads its colours from these four tokens.
    ========================================================================== */
 [data-tone='light'] {
+  --bg-ground: var(--c-paper);
   --tone-fg: var(--c-green-deep);
   --tone-body: var(--c-ink-soft);
   --tone-accent: var(--c-green);
   --tone-rule: rgba(43, 89, 65, 0.3);
-  --tone-ornament: 0.5;
 }
 
 [data-tone='dark'] {
+  --bg-ground: var(--c-green-deep);
   --tone-fg: var(--c-ivory);
   --tone-body: rgba(251, 247, 240, 0.74);
   --tone-accent: rgba(251, 247, 240, 0.66);
   --tone-rule: rgba(213, 226, 216, 0.4);
-  --tone-ornament: 0.34;
 }
 
 /* --- Type roles ----------------------------------------------------------- */
@@ -265,6 +265,36 @@ a {
   text-align: center;
 }
 
+/* The small gilt crest that opens every section. */
+.section-icon {
+  width: auto;
+  height: 2.75rem;
+}
+
+/* Hairline rule broken by a diamond, as on an engraved card. */
+.rule-diamond {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  width: min(13rem, 70%);
+  color: var(--tone-rule);
+}
+
+.rule-diamond::before,
+.rule-diamond::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+}
+
+.rule-diamond span {
+  width: 0.3rem;
+  height: 0.3rem;
+  rotate: 45deg;
+  background: currentColor;
+}
+
 .caps {
   font-family: var(--font-display);
   font-weight: 600;
@@ -299,15 +329,92 @@ a {
 /* A decorative PNG laid behind content. Never interactive, never announced.
    `height: auto` is load-bearing: next/image emits width/height attributes, so
    without it the intrinsic height overrides whatever width the layout sets.
-   The art stays crisp — it is held back with opacity, never blur. */
+   The art is never faded or blurred — it reads at full strength, like a real
+   object laid on the page. Placement does the work instead. */
 .ornament {
   position: absolute;
   z-index: -1;
   height: auto;
-  opacity: var(--tone-ornament);
   pointer-events: none;
   user-select: none;
   object-fit: contain;
+}
+
+/* Sits above the content, overlapping it — for the pieces that should look
+   laid on top of the card rather than behind the page. */
+.ornament-front {
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Buttons — one set, used everywhere
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-3);
+  width: 100%;
+  max-width: 22rem;
+  min-height: 3.25rem;
+  padding: 0.95rem 2rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: scale(0.985);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+/* Frosted, see-through — for buttons laid over photography. */
+.btn-glass {
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(0.625rem) saturate(1.25);
+  -webkit-backdrop-filter: blur(0.625rem) saturate(1.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: var(--c-green-deep);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.btn-solid {
+  border-color: var(--tone-fg);
+  background: var(--tone-fg);
+  color: var(--c-paper);
+}
+
+[data-tone='dark'] .btn-solid {
+  color: var(--c-green-deep);
+}
+
+.btn-outline {
+  border-color: var(--tone-rule);
+  background: transparent;
+  color: var(--tone-fg);
+}
+
+.btn-outline:hover {
+  border-color: var(--tone-fg);
 }
 
 /* ==========================================================================

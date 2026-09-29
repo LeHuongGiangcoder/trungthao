@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { rsvp } from '@/lib/wedding';
 import styles from './Rsvp.module.css';
 
 type Status = 'idle' | 'sending' | 'done';
@@ -23,8 +24,10 @@ export function RsvpForm() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           name: data.get('name'),
+          contact: data.get('contact'),
           attending: data.get('attending'),
-          guests: Number(data.get('guests') ?? 0),
+          guests: attending === 'yes' ? Number(data.get('guests') ?? 1) : 0,
+          dietary: data.get('dietary'),
           message: data.get('message'),
         }),
       });
@@ -44,8 +47,10 @@ export function RsvpForm() {
   if (status === 'done') {
     return (
       <div className={styles.done} role="status">
-        <CheckIcon className={styles.doneMark} />
         <p className={styles.doneTitle}>Cảm ơn quý khách</p>
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
         <p className={styles.doneNote}>
           Gia đình chúng tôi đã nhận được phản hồi và rất mong được gặp quý khách.
         </p>
@@ -54,7 +59,7 @@ export function RsvpForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate={false}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="rsvp-name">
           Họ và tên
@@ -68,14 +73,29 @@ export function RsvpForm() {
           minLength={2}
           maxLength={80}
           autoComplete="name"
-          placeholder="Nguyễn Văn A"
+          placeholder="Họ tên đầy đủ"
+        />
+      </div>
+
+      <div className={styles.field}>
+        <label className={styles.label} htmlFor="rsvp-contact">
+          Số điện thoại hoặc email
+        </label>
+        <input
+          className={styles.input}
+          id="rsvp-contact"
+          name="contact"
+          type="text"
+          maxLength={120}
+          autoComplete="tel"
+          placeholder="Để gia đình liên hệ"
         />
       </div>
 
       <fieldset className={styles.field}>
         <legend className={styles.label}>Quý khách có tham dự?</legend>
         <div className={styles.choices}>
-          <label className={styles.choice}>
+          <label className={`btn btn-outline ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -83,9 +103,9 @@ export function RsvpForm() {
               checked={attending === 'yes'}
               onChange={() => setAttending('yes')}
             />
-            Có, chắc chắn
+            Vui lòng nhận lời
           </label>
-          <label className={styles.choice}>
+          <label className={`btn btn-outline ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -93,27 +113,40 @@ export function RsvpForm() {
               checked={attending === 'no'}
               onChange={() => setAttending('no')}
             />
-            Rất tiếc, không
+            Rất tiếc xin vắng
           </label>
         </div>
       </fieldset>
 
       {attending === 'yes' && (
-        <div className={styles.field}>
-          <label className={styles.label} htmlFor="rsvp-guests">
-            Số người đi cùng
-          </label>
-          <input
-            className={styles.input}
-            id="rsvp-guests"
-            name="guests"
-            type="number"
-            inputMode="numeric"
-            min={0}
-            max={10}
-            defaultValue={0}
-          />
-        </div>
+        <>
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor="rsvp-guests">
+              Số người tham dự
+            </label>
+            <select className={styles.select} id="rsvp-guests" name="guests" defaultValue="1">
+              {Array.from({ length: rsvp.maxGuests }, (_, i) => i + 1).map((n) => (
+                <option key={n} value={n}>
+                  {n} người
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor="rsvp-dietary">
+              Yêu cầu về ẩm thực
+            </label>
+            <input
+              className={styles.input}
+              id="rsvp-dietary"
+              name="dietary"
+              type="text"
+              maxLength={300}
+              placeholder="Ăn chay, dị ứng…"
+            />
+          </div>
+        </>
       )}
 
       <div className={styles.field}>
@@ -135,24 +168,9 @@ export function RsvpForm() {
         </p>
       )}
 
-      <button className={styles.submit} type="submit" disabled={status === 'sending'}>
+      <button className={`btn btn-solid ${styles.submit}`} type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Đang gửi…' : 'Gửi phản hồi'}
       </button>
     </form>
-  );
-}
-
-function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.1" opacity="0.5" />
-      <path
-        d="m7.75 12.25 2.9 2.9 5.6-6.3"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
   );
 }

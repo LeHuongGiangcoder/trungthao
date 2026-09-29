@@ -7,6 +7,15 @@ const fs = require('fs');
 const TEXT_5 = { x0: 0.170, x1: 0.848, y0: 0.178, y1: 0.902 };
 const MARK_9 = { x0: 0.340, x1: 0.640, y0: 0.790, y1: 0.868 };
 
+// The frame's swallows and butterfly sit right where section copy goes. At the
+// full strength these elements are drawn at, they cut straight through the
+// text, so a border-only variant is emitted alongside the original.
+const BIRDS_9 = [
+  { x0: 0.415, x1: 0.545, y0: 0.095, y1: 0.185 },
+  { x0: 0.375, x1: 0.818, y0: 0.215, y1: 0.520 },
+  { x0: 0.155, x1: 0.585, y0: 0.435, y1: 0.700 },
+];
+
 async function blankPaper() {
   const src = sharp('art/element/5.png').trim({ threshold: 1 });
   const base = await src.png().toBuffer();
@@ -77,6 +86,23 @@ async function unmarkFrame() {
     .webp({ quality: 86, alphaQuality: 92 })
     .toFile('public/img/el-9.webp');
   console.log('el-9', (fs.statSync('public/img/el-9.webp').size / 1024).toFixed(0) + 'kb');
+
+  const borderOnly = Buffer.from(data);
+  for (const rect of BIRDS_9) {
+    const bx = Math.round(W * rect.x0);
+    const bw = Math.round(W * (rect.x1 - rect.x0));
+    const by = Math.round(H * rect.y0);
+    const bh = Math.round(H * (rect.y1 - rect.y0));
+    for (let y = by; y < by + bh; y++) {
+      for (let x = bx; x < bx + bw; x++) borderOnly[(y * W + x) * 4 + 3] = 0;
+    }
+  }
+
+  await sharp(borderOnly, { raw: { width: W, height: H, channels: 4 } })
+    .resize({ width: Math.min(W, 900) })
+    .webp({ quality: 86, alphaQuality: 92 })
+    .toFile('public/img/el-9-border.webp');
+  console.log('el-9-border', (fs.statSync('public/img/el-9-border.webp').size / 1024).toFixed(0) + 'kb');
 }
 
 Promise.all([blankPaper(), unmarkFrame()]).catch((e) => { console.error(e); process.exit(1); });

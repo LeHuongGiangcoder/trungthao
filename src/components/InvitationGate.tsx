@@ -68,9 +68,12 @@ export function InvitationGate({ children }: { children: ReactNode }) {
           </div>
 
           <div className={styles.actions}>
-            <button type="button" className={styles.button} onClick={openInvitation}>
-              <SealIcon />
-              Open invitation
+            <button
+              type="button"
+              className={`btn btn-glass ${styles.button}`}
+              onClick={openInvitation}
+            >
+              Mở thiệp · Open invitation
             </button>
           </div>
         </div>
@@ -80,18 +83,5 @@ export function InvitationGate({ children }: { children: ReactNode }) {
         {children}
       </div>
     </>
-  );
-}
-
-function SealIcon() {
-  return (
-    <svg className={styles.seal} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M2.75 6.75v10.5a1.5 1.5 0 0 0 1.5 1.5h15.5a1.5 1.5 0 0 0 1.5-1.5V6.75a1.5 1.5 0 0 0-1.5-1.5H4.25a1.5 1.5 0 0 0-1.5 1.5Z"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-      <path d="m3 7 9 6 9-6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-    </svg>
   );
 }

@@ -24,5 +24,7 @@ export const element = {
   gardenArch: '/img/el-8.webp',
   /** Botanical border with swallows, in green line work. */
   swallowFrame: '/img/el-9.webp',
+  /** The same border with the birds removed, for framing text. */
+  botanicalFrame: '/img/el-9-border.webp',
   toileFlorals: '/img/el-10.webp',
 } as const;

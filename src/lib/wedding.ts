@@ -44,8 +44,10 @@ export const dresscode = {
 } as const;
 
 export const rsvp = {
-  deadline: 'Trước ngày 10 . 10 . 2026',
+  eyebrow: 'Quý khách sẽ đến chứ?',
+  deadline: 'Vui lòng phản hồi trước ngày 10 . 10 . 2026',
   note: 'Sự hiện diện của quý khách là niềm vinh hạnh lớn của gia đình chúng tôi.',
+  maxGuests: 8,
 } as const;
 
 export const thanks = {
