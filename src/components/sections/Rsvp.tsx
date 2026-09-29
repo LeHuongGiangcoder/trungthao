@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
-import { backdrop } from '@/lib/assets';
+import { backdrop, element } from '@/lib/assets';
 import { rsvp } from '@/lib/wedding';
 import { RsvpForm } from './RsvpForm';
 import styles from './Rsvp.module.css';
@@ -14,6 +15,8 @@ export function Rsvp() {
       labelledBy="rsvp-title"
       className={styles.rsvp}
     >
+      <Image className={`ornament ${styles.candle}`} src={element.candlestick} alt="" width={240} height={1129} />
+
       <SectionHead eyebrow={rsvp.eyebrow} title="R.S.V.P" titleId="rsvp-title">
         <span className="rule-diamond" aria-hidden="true">
           <span />

@@ -103,6 +103,32 @@ async function unmarkFrame() {
     .webp({ quality: 86, alphaQuality: 92 })
     .toFile('public/img/el-9-border.webp');
   console.log('el-9-border', (fs.statSync('public/img/el-9-border.webp').size / 1024).toFixed(0) + 'kb');
+
+  // The inverse: just the birds, freed from the frame so they can fly on their
+  // own elsewhere on the page.
+  const birdsOnly = Buffer.alloc(data.length);
+  for (const rect of BIRDS_9) {
+    const bx = Math.round(W * rect.x0);
+    const bw = Math.round(W * (rect.x1 - rect.x0));
+    const by = Math.round(H * rect.y0);
+    const bh = Math.round(H * (rect.y1 - rect.y0));
+    for (let y = by; y < by + bh; y++) {
+      for (let x = bx; x < bx + bw; x++) {
+        const i = (y * W + x) * 4;
+        birdsOnly[i] = data[i];
+        birdsOnly[i + 1] = data[i + 1];
+        birdsOnly[i + 2] = data[i + 2];
+        birdsOnly[i + 3] = data[i + 3];
+      }
+    }
+  }
+
+  await sharp(birdsOnly, { raw: { width: W, height: H, channels: 4 } })
+    .trim({ threshold: 1 })
+    .resize({ width: 700, withoutEnlargement: true })
+    .webp({ quality: 88, alphaQuality: 95 })
+    .toFile('public/img/el-9-birds.webp');
+  console.log('el-9-birds', (fs.statSync('public/img/el-9-birds.webp').size / 1024).toFixed(0) + 'kb');
 }
 
 Promise.all([blankPaper(), unmarkFrame()]).catch((e) => { console.error(e); process.exit(1); });

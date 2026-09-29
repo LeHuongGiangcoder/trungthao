@@ -17,13 +17,6 @@ export function Hero() {
         <PaperCard />
 
         <Image
-          className={`ornament ornament-front ${styles.candle}`}
-          src={element.candlestick}
-          alt=""
-          width={240}
-          height={1129}
-        />
-        <Image
           className={`ornament ornament-front ${styles.bouquet}`}
           src={element.roseSpray}
           alt=""

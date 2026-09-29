@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { Reveal } from '@/components/Reveal';
+import { gilt } from '@/lib/assets';
 
 export type Tone = 'light' | 'dark';
 
@@ -39,7 +40,7 @@ export function Section({ id, tone, backdrop, labelledBy, className, children }:
   );
 }
 
-/** Eyebrow + calligraphic title, the opening of every section. */
+/** Crest, eyebrow and calligraphic title — the opening of every section. */
 export function SectionHead({
   eyebrow,
   title,
@@ -53,6 +54,7 @@ export function SectionHead({
 }) {
   return (
     <Reveal className="section-head">
+      <Image className="section-icon" src={gilt.crest} alt="" width={560} height={635} />
       <p className="eyebrow">{eyebrow}</p>
       <h2 id={titleId} className="section-title">
         {title}

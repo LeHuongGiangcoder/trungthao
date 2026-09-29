@@ -1,11 +1,16 @@
-.frame {
-  inset: 2% 2.5%;
-  width: 95%;
-  height: 96%;
-  object-fit: fill;
+.agenda {
+  gap: var(--sp-5);
 }
 
-/* Green line work on a green ground needs lifting to read as engraving. */
+/* The engraved border keeps its own proportions — it is a drawn object, not a
+   stretchable box, so it is sized by width and centred. */
+.frame {
+  top: 50%;
+  left: 50%;
+  width: 104%;
+  translate: -50% -50%;
+}
+
 [data-tone='dark'] .frame {
   filter: brightness(3.4) saturate(0.25);
 }
@@ -13,73 +18,78 @@
 .list {
   display: grid;
   width: 100%;
-  max-width: 22rem;
+  max-width: 20rem;
   margin-inline: auto;
   list-style: none;
 }
 
+/* Mark, spine, then the stop itself. */
 .item {
   display: grid;
-  grid-template-columns: 4.25rem 1px 1fr;
-  gap: var(--sp-4);
-  /* Stretch so each row's hairline meets the next and the spine reads as one
-     continuous line; the spacing lives in the row's padding, not a grid gap. */
+  grid-template-columns: 2.75rem 1.5rem 1fr;
+  gap: var(--sp-3);
   align-items: stretch;
 }
 
-.time {
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-weight: 400;
-  font-variant-numeric: lining-nums tabular-nums;
-  line-height: 1.25;
-  text-align: right;
+.icon {
+  width: 2.75rem;
+  height: 2.75rem;
   color: var(--tone-fg);
+  opacity: 0.85;
 }
 
-/* The spine: a hairline with a node at each stop. */
 .spine {
   position: relative;
+  display: grid;
+  justify-items: center;
+}
+
+.spineLine {
   width: 1px;
+  height: 100%;
   background: var(--tone-rule);
 }
 
-.item:first-child .spine {
-  background: linear-gradient(to bottom, transparent 0.5rem, var(--tone-rule) 0.5rem);
+.item:first-child .spineLine {
+  background: linear-gradient(to bottom, transparent 1rem, var(--tone-rule) 1rem);
 }
 
-.item:last-child .spine {
-  background: linear-gradient(to bottom, var(--tone-rule) 0.75rem, transparent 0.75rem);
+.item:last-child .spineLine {
+  background: linear-gradient(to bottom, var(--tone-rule) 1.5rem, transparent 1.5rem);
 }
 
- /* A cut diamond, as on an engraved card — not a bullet. */
-.node {
+.bow {
   position: absolute;
-  top: 0.45rem;
-  left: 50%;
-  width: 0.35rem;
-  height: 0.35rem;
-  translate: -50% 0;
-  rotate: 45deg;
-  background: var(--tone-fg);
-  outline: 0.25rem solid var(--bg-ground);
+  top: 0.75rem;
+  width: 1.5rem;
+  height: 1rem;
+  color: var(--tone-fg);
+  background: var(--bg-ground);
 }
 
-/* The row spacing lives here, inside the grid row, so the spine stretches
-   through it and reads as one continuous line. */
 .detail {
   display: grid;
-  gap: var(--sp-1);
-  padding-bottom: var(--sp-5);
+  gap: 0.125rem;
+  padding-bottom: var(--sp-6);
 }
 
 .item:last-child .detail {
   padding-bottom: 0;
 }
 
+.time {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--tone-fg);
+}
+
 .itemTitle {
   font-family: var(--font-display);
-  font-size: var(--fs-base);
+  font-size: var(--fs-md);
   font-weight: 500;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
@@ -87,8 +97,9 @@
 }
 
 .note {
+  margin-top: 0.125rem;
   font-family: var(--font-display);
   font-size: var(--fs-sm);
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--tone-body);
 }

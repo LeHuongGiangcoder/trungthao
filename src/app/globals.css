@@ -276,7 +276,8 @@ a {
 /* The small gilt crest that opens every section. */
 .section-icon {
   width: auto;
-  height: 2.75rem;
+  height: 2rem;
+  margin-bottom: 0;
 }
 
 /* Hairline rule broken by a diamond, as on an engraved card. */

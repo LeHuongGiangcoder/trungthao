@@ -11,20 +11,13 @@ const { blankRegion, blurRegion, copyRegion } = require('./lib/patch.cjs');
 // this height — a toned fill is the only option, and our own names cover it.
 const UPPER_NAMES = { x0: 0.292, x1: 0.686, y0: 0.358, y1: 0.482 };
 
-// "Open the invitation", on the lower flap. A toned fill or a blur both leave a
-// smooth rectangle against the stock's emboss, which is the one thing that
-// shows, so clean textured flap is copied across instead. Every same-height
-// region has a diagonal seam sweeping through it, so the copy carries a faint
-// second fold — far less visible than a flat patch, and plausible on paper.
-const LOWER_PANEL = {
-  from: { x0: 0.600, x1: 0.872, y0: 0.608, y1: 0.678 },
-  to: { x0: 0.318, x1: 0.632, y0: 0.608 },
-};
+const LOWER_PANEL_RECT = { x0: 0.318, x1: 0.632, y0: 0.608, y1: 0.678 };
 
-// A second card pokes out from under the envelope's bottom edge. The shadow
-// band beside it is the same structure, so it stands in cleanly.
+// A second card pokes out from under the envelope's bottom edge. By copying
+// a clean band of silk from directly below it, we cover it without stretching,
+// which avoids creating a blurry rectangular patch.
 const PEEKING_CARD = {
-  from: { x0: 0.630, x1: 0.668, y0: 0.672, y1: 0.708 },
+  from: { x0: 0.310, x1: 0.628, y0: 0.740, y1: 0.776 },
   to: { x0: 0.310, x1: 0.628, y0: 0.672 },
 };
 
@@ -36,7 +29,7 @@ const SEAL_MONOGRAM = { x0: 0.432, x1: 0.572, y0: 0.550, y1: 0.600 };
   let buf = await sharp('art/hero.png').png().toBuffer();
 
   buf = await blankRegion(buf, UPPER_NAMES, 0.78, 0.14);
-  buf = await copyRegion(buf, LOWER_PANEL.from, LOWER_PANEL.to, 0.08);
+  buf = await blankRegion(buf, LOWER_PANEL_RECT, 0.8, 0.25);
   buf = await copyRegion(buf, PEEKING_CARD.from, PEEKING_CARD.to, 0.1);
   buf = await blurRegion(buf, SEAL_MONOGRAM, 26, 0.3);
 

@@ -1,39 +1,54 @@
-.hydrangea {
-  top: 4%;
-  left: -18%;
-  width: 42%;
+.dresscode {
+  gap: var(--sp-4);
 }
 
-.blossom {
-  right: -16%;
-  bottom: 2%;
-  width: 34%;
-  scale: -1 1;
+/* The gloved hand holds the card; the dress code is set on the card itself. */
+.hand {
+  container-type: inline-size;
+  position: relative;
+  width: min(100%, calc((100svh - 17.5rem) * 900 / 1557));
+  margin-inline: auto;
+}
+
+.handArt {
+  width: 100%;
+  height: auto;
+}
+
+/* Inset to the blank face of the held card. */
+.onCard {
+  position: absolute;
+  inset: 6% 8% 56.5%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2.6cqw;
+  text-align: center;
+  color: var(--c-green-deep);
 }
 
 .headline {
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
+  font-size: 3.4cqw;
   font-weight: 600;
-  letter-spacing: var(--ls-wide);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--tone-accent);
+  color: var(--c-green);
 }
 
 .note {
-  max-width: 24rem;
+  max-width: 30ch;
   font-family: var(--font-display);
-  font-size: var(--fs-md);
-  line-height: 1.6;
-  text-align: center;
+  font-size: 3cqw;
+  line-height: 1.45;
   text-wrap: balance;
-  color: var(--tone-body);
+  color: var(--c-ink-soft);
 }
 
 .swatches {
   display: flex;
   justify-content: center;
-  gap: var(--sp-2);
+  gap: 2.4cqw;
   list-style: none;
 }
 
@@ -41,36 +56,44 @@
   display: grid;
   justify-items: center;
   align-content: start;
-  gap: var(--sp-2);
-  flex: 0 1 3.9rem;
+  gap: 1.4cqw;
 }
 
 .chip {
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid var(--tone-rule);
+  width: 8cqw;
+  height: 8cqw;
+  border: 1px solid rgba(74, 63, 49, 0.2);
   border-radius: 50%;
   background: var(--chip);
-  box-shadow: var(--shadow-lift);
+  box-shadow: 0 0.25rem 0.5rem -0.25rem rgba(60, 46, 28, 0.35);
 }
 
 .chipName {
   font-family: var(--font-display);
-  font-size: 0.563rem;
+  font-size: 2.1cqw;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   white-space: nowrap;
-  line-height: 1.3;
-  text-align: center;
-  color: var(--tone-body);
+  color: var(--c-ink-soft);
 }
 
 .avoid {
-  padding-top: var(--sp-4);
-  border-top: 1px dotted var(--tone-rule);
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
+  font-size: 2.6cqw;
   font-style: italic;
-  text-align: center;
-  color: var(--tone-body);
+  color: var(--c-ink-faint);
+}
+
+/* --- Around the hand ------------------------------------------------------ */
+.hydrangea {
+  top: 2%;
+  left: -20%;
+  width: 40%;
+}
+
+.butterfly {
+  top: 46%;
+  right: 4%;
+  width: 16%;
+  rotate: -14deg;
 }

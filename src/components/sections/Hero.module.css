@@ -23,16 +23,11 @@
 }
 
 /* --- Pieces laid over the card's corners ---------------------------------- */
-.candle {
-  top: -11%;
-  right: -19%;
-  width: 30%;
-}
-
 .bouquet {
-  bottom: -17%;
-  left: -28%;
-  width: 56%;
+  right: -26%;
+  bottom: -16%;
+  width: 54%;
+  scale: -1 1;
 }
 
 .sprig {

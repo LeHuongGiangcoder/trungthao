@@ -12,6 +12,16 @@ export const backdrop = {
   damaskGreen: '/img/bg-damask-green.webp',
 } as const;
 
+/** Gilt pieces, supplied ready for the web. */
+export const gilt = {
+  /** The small crest that opens every section. */
+  crest: '/crest.webp',
+  butterfly: '/butterfly.webp',
+  flower: '/flower.webp',
+  /** A gloved hand holding a blank card — the dress code is set on it. */
+  dressHand: '/dress-hand.webp',
+} as const;
+
 export const element = {
   roseSpray: '/img/el-1.webp',
   candlestick: '/img/el-2.webp',
@@ -26,5 +36,7 @@ export const element = {
   swallowFrame: '/img/el-9.webp',
   /** The same border with the birds removed, for framing text. */
   botanicalFrame: '/img/el-9-border.webp',
+  /** Just the swallows, lifted out of that border. */
+  birds: '/img/el-9-birds.webp',
   toileFlorals: '/img/el-10.webp',
 } as const;
