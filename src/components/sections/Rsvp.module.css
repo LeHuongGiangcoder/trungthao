@@ -1,14 +1,14 @@
 .candle {
-  right: -8%;
+  right: -3%;
   bottom: 0;
-  width: 24%;
+  width: 15%;
 }
 
 .rsvp {
   /* The reply card is the tallest block on the site; it is compacted here so
      this section still stands exactly one screen tall like the others. */
   gap: var(--sp-3);
-  padding-block: var(--sp-5);
+  padding-block: var(--sp-4);
 }
 
 .deadline {
@@ -23,7 +23,7 @@
 /* The fields sit on their own panel, as on a reply card. */
 .form {
   display: grid;
-  gap: var(--sp-3);
+  gap: 0.625rem;
   width: 100%;
   max-width: 26rem;
   margin-inline: auto;
@@ -51,7 +51,7 @@
 .textarea,
 .select {
   width: 100%;
-  padding: 0.6rem 0.875rem;
+  padding: 0.55rem 0.875rem;
   border: 1px solid var(--field-border);
   border-radius: var(--radius-sm);
   background: var(--field-bg);
@@ -81,8 +81,8 @@
   background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
     linear-gradient(135deg, currentColor 50%, transparent 50%);
   background-position:
-    calc(100% - 1.1rem) 1.15rem,
-    calc(100% - 0.75rem) 1.15rem;
+    calc(100% - 1.1rem) 1.1rem,
+    calc(100% - 0.75rem) 1.1rem;
   background-size: 0.35rem 0.35rem;
   background-repeat: no-repeat;
 }
@@ -92,7 +92,7 @@
 }
 
 .textarea {
-  min-height: 3.25rem;
+  min-height: 2.75rem;
   resize: vertical;
 }
 

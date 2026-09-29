@@ -1,46 +1,52 @@
-/* The oval sits behind the closing words; the bridge and the swallows sit
-   below it, so the section closes the way the hero opened. */
-.oval {
-  top: 42%;
-  left: 50%;
-  width: 82%;
-  translate: -50% -50%;
+.thanks {
+  gap: var(--sp-6);
 }
 
-.bridge {
-  bottom: 9%;
-  left: 50%;
-  width: 72%;
-  translate: -50% 0;
-}
-
+/* Swallows cross the open ground above the oval, clear of the frame. */
 .birds {
-  top: 12%;
-  right: 4%;
+  top: 5%;
+  right: 2%;
   width: 34%;
 }
 
-[data-tone='dark'] .oval,
-[data-tone='dark'] .bridge,
-[data-tone='dark'] .birds {
-  filter: brightness(2.6) saturate(0.3);
+/* --- The oval, with the names set inside it ------------------------------- */
+.plaque {
+  container-type: inline-size;
+  position: relative;
+  width: min(84%, calc((100svh - 20rem) * 900 / 1235));
+  margin-inline: auto;
 }
 
-.inner {
+.oval {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+/* Inset to the beaded panel at the centre of the frame. */
+.plaqueInner {
+  position: absolute;
+  inset: 24% 22%;
+  z-index: 1;
   display: grid;
+  align-content: center;
   justify-items: center;
-  gap: var(--sp-3);
-  max-width: 16rem;
+  gap: 2cqw;
   text-align: center;
+}
+
+.plaqueInner :global(.section-icon) {
+  height: 9cqw;
 }
 
 .eyebrow {
   font-family: var(--font-display);
-  font-size: var(--fs-xs);
+  font-size: 3.4cqw;
   font-weight: 500;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--tone-accent);
+  color: var(--c-green);
 }
 
 .names {
@@ -48,38 +54,42 @@
   gap: 0.02em;
   font-family: var(--font-script);
   font-weight: 400;
-  font-size: clamp(1.625rem, 8.6vw, 2.25rem);
+  font-size: 15cqw;
   line-height: 1;
-  color: var(--tone-fg);
+  color: var(--c-green-deep);
 }
 
 .and {
   font-family: var(--font-display);
-  font-size: 0.4em;
+  font-size: 0.32em;
   font-style: italic;
   color: var(--c-green-mid);
+}
+
+/* --- The closing words, below the oval ------------------------------------ */
+.closing {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-3);
+  max-width: 20rem;
+  text-align: center;
 }
 
 .lines {
   display: grid;
   gap: var(--sp-1);
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  line-height: 1.5;
+  font-size: var(--fs-base);
+  line-height: 1.55;
   text-wrap: balance;
   color: var(--tone-body);
 }
 
 .sign {
   font-family: var(--font-display);
-  font-size: var(--fs-md);
+  font-size: var(--fs-lg);
   font-style: italic;
   color: var(--tone-fg);
-}
-
-.rule {
-  width: 2.5rem;
-  border-top: 1px solid var(--tone-rule);
 }
 
 .date {

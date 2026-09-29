@@ -13,11 +13,11 @@ const UPPER_NAMES = { x0: 0.292, x1: 0.686, y0: 0.358, y1: 0.482 };
 
 const LOWER_PANEL_RECT = { x0: 0.318, x1: 0.632, y0: 0.608, y1: 0.678 };
 
-// A second card pokes out from under the envelope's bottom edge. By copying
-// a clean band of silk from directly below it, we cover it without stretching,
-// which avoids creating a blurry rectangular patch.
+// Cover the peeking card with a patch of clean silk from directly below it.
+// This matches the exact width so there is no horizontal stretching,
+// eliminating the "pasted rectangle" artifact.
 const PEEKING_CARD = {
-  from: { x0: 0.310, x1: 0.628, y0: 0.740, y1: 0.776 },
+  from: { x0: 0.310, x1: 0.628, y0: 0.730, y1: 0.766 },
   to: { x0: 0.310, x1: 0.628, y0: 0.672 },
 };
 

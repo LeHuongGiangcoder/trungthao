@@ -17,14 +17,20 @@ export function Dresscode() {
     >
       <Image className={`ornament ${styles.hydrangea}`} src={element.hydrangea} alt="" width={640} height={522} />
 
-      <SectionHead eyebrow="Trang phục" title="Dress Code" titleId="dresscode-title" />
+      <SectionHead eyebrow="Trang phục" title="Dress Code" titleId="dresscode-title">
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
+        <p className={styles.note}>
+          {dresscode.note} {dresscode.avoid}
+        </p>
+      </SectionHead>
 
       <Reveal className={styles.hand} delay={100}>
         <Image className={styles.handArt} src={gilt.dressHand} alt="" width={900} height={1557} />
 
         <div className={styles.onCard}>
           <p className={styles.headline}>{dresscode.headline}</p>
-          <p className={styles.note}>{dresscode.note}</p>
 
           <ul className={styles.swatches}>
             {dresscode.swatches.map((swatch) => (
@@ -34,8 +40,6 @@ export function Dresscode() {
               </li>
             ))}
           </ul>
-
-          <p className={styles.avoid}>{dresscode.avoid}</p>
         </div>
 
         <Image
