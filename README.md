@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bảo Trung & Thu Thảo — thiệp cưới online
 
-## Getting Started
+Mobile-first wedding invitation. Next.js App Router, plain CSS (custom properties +
+CSS Modules), no UI framework.
 
-First, run the development server:
+## Chạy
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Cấu trúc
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Đường dẫn | Vai trò |
+| --- | --- |
+| `src/lib/wedding.ts` | Toàn bộ nội dung (tên, giờ, địa điểm, chương trình, dress code). Sửa ở đây, không sửa trong component. |
+| `src/lib/assets.ts` | Bản đồ ảnh đã tối ưu trong `public/img`. |
+| `src/app/globals.css` | Design system: bảng màu, thang chữ, khoảng cách, chuyển động. |
+| `src/components/InvitationGate.tsx` | Màn intro (phong bì) và hiệu ứng mờ dần sang phần hero. |
+| `src/components/PaperCard.tsx` | Thiệp chính đặt trong khung giấy xé viền. |
+| `src/components/Section.tsx` | Vỏ chung của mọi section: cao đúng một màn hình, nền full-bleed, tone sáng/tối. |
+| `src/components/sections/` | Hero, thông tin, chương trình, dress code, RSVP, cảm ơn. |
+| `art/` | Ảnh gốc (~160MB). **Không** nằm trong `public/` để khỏi deploy kèm. |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Bố cục & màu nền
 
-## Learn More
+Mọi section cao đúng `100svh` (`--section-h`), nội dung canh giữa.
 
-To learn more about Next.js, take a look at the following resources:
+Nền xen kẽ từ dưới hero xuống: `bg-damask` (kem) → `bg-damask-green` (xanh) →
+kem → xanh → kem. Hero và màn intro dùng `bg-drape` / `hero`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Màu chữ không hardcode theo section. Mỗi section khai báo `tone="light"` hoặc
+`tone="dark"`, và mọi thứ bên trong đọc bốn token `--tone-fg`, `--tone-body`,
+`--tone-accent`, `--tone-rule` (định nghĩa trong `globals.css`). Đổi nền chỉ cần
+đổi `tone`, không phải sửa từng màu.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hoạ tiết trang trí (`.ornament`) luôn sắc nét — chỉ giảm bằng `opacity`
+(`--tone-ornament`), không bao giờ dùng `blur`.
 
-## Deploy on Vercel
+## Ảnh
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ảnh gốc trong `art/` là PNG 3375×6000, 10–22MB mỗi tấm. Pipeline chuyển chúng
+thành webp ~60–280KB trong `public/img`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run assets
+```
+
+Chạy lại khi thay ảnh gốc. Pipeline gồm ba bước, theo đúng thứ tự:
+
+1. `optimize-assets.cjs` — resize, cắt viền trong suốt, xuất webp.
+2. `clean-elements.cjs` — xoá chữ mẫu in sẵn trên khung giấy (`el-5`) và
+   watermark trên khung hoa văn (`el-9`).
+3. `clean-hero.cjs` — xoá tên cặp đôi mẫu, chữ lồng trên dấu sáp, và tấm thiệp
+   thừa thò ra dưới mép phong bì.
+
+Tên cô dâu chú rể được đặt **lên chính phong bì** bằng HTML (không nung vào
+ảnh), neo theo phần trăm trong `.photo` — một khối mô phỏng `object-fit: cover`
+để toạ độ bám theo bức ảnh thay vì theo viewport.
+
+## RSVP
+
+`POST /api/rsvp` nhận phản hồi. Nếu có biến môi trường `RSVP_WEBHOOK_URL`
+(Google Apps Script, n8n, Zapier…), route sẽ chuyển tiếp JSON tới đó; nếu không,
+phản hồi chỉ được ghi ra log server.
+
+```bash
+# .env.local
+RSVP_WEBHOOK_URL=https://...
+```
+
+## Lưu ý kỹ thuật (Next 16)
+
+- `next/image` cần `images.qualities` khai báo trong `next.config.ts`; giá trị
+  `quality` ngoài danh sách sẽ bị ép về giá trị gần nhất.
+- `priority` đã deprecated — dùng `preload`.
+- Ảnh trang trí phải có `height: auto` (đã đặt trong `.ornament`), nếu không
+  thuộc tính `height` do `next/image` sinh ra sẽ đè lên chiều cao trong CSS.
+- Font hiển thị phải nạp cả `style: ["normal", "italic"]`. Italic tổng hợp
+  (synthetic oblique) làm sai dấu tiếng Việt — "và" hiện thành "vả".
+- Cormorant Garamond mặc định dùng chữ số old-style; `globals.css` đặt
+  `font-variant-numeric: lining-nums` cho toàn trang.

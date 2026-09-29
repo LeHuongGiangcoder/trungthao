@@ -1,40 +1,155 @@
+/* ==========================================================================
+   Bảo Trung & Thu Thảo — global design system
+   Mobile-first. Every section is authored against a ~390px stage and scales
+   up to a centred column on larger screens.
+   ========================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Palette: warm beige paper, deep green accent ---------------------- */
+  --c-ivory: #fbf7f0;
+  --c-paper: #f4ebdd;
+  --c-cream: #ede0cd;
+  --c-sand: #e0cfb4;
+  --c-taupe: #c2ad8e;
+  --c-clay: #9d8a6c;
+
+  --c-ink: #4a3f31;
+  --c-ink-soft: #6d6051;
+  --c-ink-faint: #97897a;
+
+  --c-green-deep: #133c2b;
+  --c-green: #2b5941;
+  --c-green-mid: #4a7358;
+  --c-green-soft: #8aa392;
+
+  /* --- Semantic ---------------------------------------------------------- */
+  --bg-page: var(--c-green-deep);
+  --bg-stage: var(--c-paper);
+  --fg: var(--c-ink);
+  --fg-muted: var(--c-ink-soft);
+  --accent: var(--c-green);
+  --rule: rgba(74, 63, 49, 0.22);
+
+  /* Defaults; each section overrides these via [data-tone]. */
+  --tone-fg: var(--c-green-deep);
+  --tone-body: var(--c-ink-soft);
+  --tone-accent: var(--c-green);
+  --tone-rule: rgba(43, 89, 65, 0.3);
+  --tone-ornament: 0.5;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-script: var(--font-pinyon), "Apple Chancery", cursive;
+  --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-sans), system-ui, -apple-system, sans-serif;
+
+  --fs-xs: 0.688rem; /* 11px — eyebrow / label */
+  --fs-sm: 0.781rem; /* 12.5px */
+  --fs-base: 0.938rem; /* 15px */
+  --fs-md: 1.063rem; /* 17px */
+  --fs-lg: 1.375rem; /* 22px */
+  --fs-xl: 1.875rem; /* 30px */
+  --fs-2xl: 2.5rem; /* 40px */
+  --fs-3xl: 3.375rem; /* 54px */
+
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-base: 1.65;
+
+  --ls-wide: 0.14em;
+  --ls-wider: 0.24em;
+
+  /* --- Space (4px base) --------------------------------------------------- */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 2.75rem;
+  --sp-8: 3.5rem;
+  --sp-9: 5rem;
+
+  /* --- Layout ------------------------------------------------------------- */
+  --stage-w: 30rem; /* 480px — the mobile column, centred on desktop */
+  --gutter: 1.5rem;
+  --section-y: 3.5rem;
+  /* Every section is exactly one screen tall, so the invitation reads as a
+     deck of equal cards rather than a ragged scroll. */
+  --section-h: 100svh;
+
+  /* --- Form ---------------------------------------------------------------- */
+  --radius-sm: 2px;
+  --radius-pill: 999px;
+  --shadow-stage: 0 0 4rem rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 1.25rem 3rem -1.5rem rgba(60, 46, 28, 0.45);
+  --shadow-lift: 0 0.5rem 1.5rem -0.5rem rgba(60, 46, 28, 0.3);
+
+  /* --- Motion --------------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 240ms;
+  --dur-base: 520ms;
+  --dur-slow: 1100ms;
+  --dur-curtain: 1600ms;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* The invitation is a fixed, printed object — it has one appearance only. */
+:root {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  height: 100%;
+  -webkit-text-size-adjust: 100%;
 }
 
-html,
 body {
-  max-width: 100vw;
+  min-height: 100svh;
+  /* Cormorant defaults to old-style figures; dates and times need lining. */
+  font-variant-numeric: lining-nums;
+  background: var(--bg-page);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Locked while the intro envelope is still closed. */
+body[data-locked="true"] {
+  overflow: hidden;
 }
 
-* {
-  box-sizing: border-box;
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Fieldsets are used purely for grouping; the UA border is never wanted. */
+fieldset {
+  border: 0;
+}
+
+legend {
   padding: 0;
-  margin: 0;
 }
 
 a {
@@ -42,8 +157,208 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+::selection {
+  background: var(--c-green);
+  color: var(--c-ivory);
+}
+
+/* ==========================================================================
+   Shared primitives
+   ========================================================================== */
+
+/* The centred mobile column. Everything sits inside this. */
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: var(--stage-w);
+  margin-inline: auto;
+  background: var(--bg-stage);
+  overflow: clip;
+}
+
+@media (min-width: 40rem) {
+  .stage {
+    box-shadow: var(--shadow-stage);
   }
+}
+
+.section {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--sp-5);
+  min-height: var(--section-h);
+  padding: var(--section-y) var(--gutter);
+  overflow: clip;
+  isolation: isolate;
+  color: var(--tone-fg);
+}
+
+/* Full-bleed section backdrop (the damask weave, the drape). */
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   Tone — sections alternate between cream and green grounds, and everything
+   inside reads its colours from these four tokens.
+   ========================================================================== */
+[data-tone='light'] {
+  --tone-fg: var(--c-green-deep);
+  --tone-body: var(--c-ink-soft);
+  --tone-accent: var(--c-green);
+  --tone-rule: rgba(43, 89, 65, 0.3);
+  --tone-ornament: 0.5;
+}
+
+[data-tone='dark'] {
+  --tone-fg: var(--c-ivory);
+  --tone-body: rgba(251, 247, 240, 0.74);
+  --tone-accent: rgba(251, 247, 240, 0.66);
+  --tone-rule: rgba(213, 226, 216, 0.4);
+  --tone-ornament: 0.34;
+}
+
+/* --- Type roles ----------------------------------------------------------- */
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: var(--lh-snug);
+}
+
+/* Small letterspaced caps — the workhorse label of the printed invitation. */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--tone-accent);
+}
+
+/* The calligraphic section title. */
+.section-title {
+  font-family: var(--font-script);
+  font-size: var(--fs-2xl);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--tone-fg);
+}
+
+.section-head {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-3);
+  text-align: center;
+}
+
+.caps {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+.prose {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  color: var(--fg-muted);
+  line-height: var(--lh-base);
+}
+
+/* --- Ornaments ------------------------------------------------------------ */
+
+/* Dotted rule, as used between blocks on the printed card. */
+.rule-dotted {
+  width: min(14rem, 70%);
+  height: 0;
+  margin-inline: auto;
+  border-top: 1px dotted var(--rule);
+}
+
+.rule-fine {
+  width: 2.5rem;
+  height: 0;
+  margin-inline: auto;
+  border-top: 1px solid var(--tone-rule);
+}
+
+/* A decorative PNG laid behind content. Never interactive, never announced.
+   `height: auto` is load-bearing: next/image emits width/height attributes, so
+   without it the intrinsic height overrides whatever width the layout sets.
+   The art stays crisp — it is held back with opacity, never blur. */
+.ornament {
+  position: absolute;
+  z-index: -1;
+  height: auto;
+  opacity: var(--tone-ornament);
+  pointer-events: none;
+  user-select: none;
+  object-fit: contain;
+}
+
+/* ==========================================================================
+   Scroll reveal — opt-in, and a no-op when motion is reduced
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-green);
+  outline-offset: 3px;
 }

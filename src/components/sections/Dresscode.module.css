@@ -1,0 +1,76 @@
+.hydrangea {
+  top: 4%;
+  left: -18%;
+  width: 42%;
+}
+
+.blossom {
+  right: -16%;
+  bottom: 2%;
+  width: 34%;
+  scale: -1 1;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--tone-accent);
+}
+
+.note {
+  max-width: 24rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--tone-body);
+}
+
+.swatches {
+  display: flex;
+  justify-content: center;
+  gap: var(--sp-2);
+  list-style: none;
+}
+
+.swatch {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: var(--sp-2);
+  flex: 0 1 3.9rem;
+}
+
+.chip {
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--tone-rule);
+  border-radius: 50%;
+  background: var(--chip);
+  box-shadow: var(--shadow-lift);
+}
+
+.chipName {
+  font-family: var(--font-display);
+  font-size: 0.563rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1.3;
+  text-align: center;
+  color: var(--tone-body);
+}
+
+.avoid {
+  padding-top: var(--sp-4);
+  border-top: 1px dotted var(--tone-rule);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  text-align: center;
+  color: var(--tone-body);
+}

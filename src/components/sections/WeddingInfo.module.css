@@ -1,0 +1,47 @@
+.toileTop {
+  top: 1%;
+  right: -22%;
+  width: 54%;
+}
+
+.toileBottom {
+  bottom: -2%;
+  left: -26%;
+  width: 56%;
+  scale: -1 1;
+}
+
+/* Cap the card so the heading, the card and the button all fit one screen. */
+.card {
+  width: min(100%, calc((100svh - 17rem) * 2968 / 4520));
+  margin-inline: auto;
+}
+
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.7rem 1.6rem;
+  border: 1px solid var(--tone-rule);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--tone-fg);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.mapLink:hover {
+  background: var(--c-green);
+  color: var(--c-ivory);
+}
+
+.mapIcon {
+  width: 1rem;
+  height: 1rem;
+}

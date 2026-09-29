@@ -1,0 +1,159 @@
+/* Warms the silk toward the palette; no green cast, just a cream lift so the
+   type has something quiet to sit on. */
+.wash {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(
+    115% 62% at 50% 44%,
+    rgba(251, 247, 240, 0.7) 0%,
+    rgba(251, 247, 240, 0.12) 62%,
+    rgba(251, 247, 240, 0) 100%
+  );
+}
+
+.arch {
+  top: 8%;
+  left: 50%;
+  width: 58%;
+  translate: -50% 0;
+}
+
+.stemLeft {
+  bottom: 3%;
+  left: -16%;
+  width: 40%;
+  rotate: 8deg;
+}
+
+.stemRight {
+  right: -18%;
+  bottom: 1%;
+  width: 44%;
+  rotate: -12deg;
+  scale: -1 1;
+}
+
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-4);
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-green-mid);
+}
+
+.names {
+  display: grid;
+  gap: 0.02em;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 9.6vw, 2.5rem);
+  line-height: 1;
+  color: var(--c-green);
+}
+
+.conjunction {
+  font-family: var(--font-display);
+  font-size: 0.4em;
+  font-style: italic;
+  color: var(--c-green-mid);
+}
+
+.meta {
+  display: grid;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+.date {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--c-green);
+}
+
+.weekday,
+.venue {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+}
+
+.countdown {
+  display: flex;
+  gap: var(--sp-5);
+  margin-top: var(--sp-4);
+  padding: var(--sp-3) var(--sp-5);
+  border-block: 1px solid rgba(43, 89, 65, 0.18);
+}
+
+.unit {
+  display: grid;
+  gap: 0.125rem;
+  min-width: 2.5rem;
+  text-align: center;
+}
+
+.unitValue {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1;
+  color: var(--c-green);
+}
+
+.unitLabel {
+  font-family: var(--font-display);
+  font-size: 0.563rem;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  left: 50%;
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-display);
+  font-size: 0.563rem;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+}
+
+.scrollLine {
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(to bottom, rgba(43, 89, 65, 0.45), transparent);
+  animation: drop 2.4s var(--ease-in-out) infinite;
+  transform-origin: top;
+}
+
+@keyframes drop {
+  0%,
+  100% {
+    scale: 1 0.4;
+    opacity: 0.4;
+  }
+  50% {
+    scale: 1 1;
+    opacity: 1;
+  }
+}

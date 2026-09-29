@@ -1,0 +1,234 @@
+/* The closed envelope, and the blur-through into the invitation behind it. */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: stretch center;
+  overflow: hidden;
+  background: var(--c-paper);
+  transform-origin: 50% 46%;
+  transition:
+    opacity var(--dur-curtain) var(--ease-in-out),
+    filter var(--dur-curtain) var(--ease-in-out),
+    transform var(--dur-curtain) var(--ease-in-out),
+    visibility 0s linear var(--dur-curtain);
+}
+
+/* Opened: the envelope blurs, swells and dissolves into the drape beneath. */
+.gate[data-open='true'] {
+  opacity: 0;
+  visibility: hidden;
+  filter: blur(2.25rem);
+  transform: scale(1.18);
+  pointer-events: none;
+}
+
+.gate[data-settled='true'] {
+  display: none;
+}
+
+/* Matches the invitation's column so the reveal lands on the same footprint. */
+.frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: var(--stage-w);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Mirrors `object-fit: cover` as a real box, so the lettering below can be
+   anchored to places on the photograph — the envelope's face — rather than to
+   the viewport, which crops differently at every size. */
+.photo {
+  position: relative;
+  height: 100%;
+  min-width: 100%;
+  aspect-ratio: 1200 / 2133;
+}
+
+.envelope {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Lettering printed on the envelope ---------------------------------- */
+
+/* The clear panel above the lace, where the stock art carried its own names.
+   The lace closes in as it descends, so the block stays small and tight. */
+.onEnvelope {
+  position: absolute;
+  top: 38.2%;
+  left: 22%;
+  right: 22%;
+  display: grid;
+  justify-items: center;
+  gap: 0.3em;
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(0.438rem, 1.15vh, 0.563rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-green);
+  opacity: 0.75;
+}
+
+.names {
+  display: grid;
+  gap: 0.02em;
+  font-family: var(--font-script);
+  font-size: clamp(1.0625rem, 4.3vh, 1.4375rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--c-green-deep);
+}
+
+.amp {
+  font-family: var(--font-display);
+  font-size: 0.42em;
+  font-style: italic;
+  color: var(--c-green-mid);
+}
+
+/* The lower panel of the envelope, below the lace and the seal. */
+.date {
+  position: absolute;
+  top: 62.4%;
+  left: 0;
+  right: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.625rem, 1.6vh, 0.813rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-align: center;
+  color: var(--c-green);
+}
+
+/* --- The glass button --------------------------------------------------- */
+.actions {
+  position: absolute;
+  bottom: calc(var(--sp-7) + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  display: grid;
+  justify-items: center;
+}
+
+.button {
+  --glass: rgba(255, 255, 255, 0.3);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.9rem 2rem;
+  border: 1px solid rgba(43, 89, 65, 0.4);
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  /* Truly see-through: the silk behind stays readable through the pill. */
+  backdrop-filter: blur(0.5rem) saturate(1.2);
+  -webkit-backdrop-filter: blur(0.5rem) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0.75rem 2rem -1rem rgba(60, 46, 28, 0.5);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-green-deep);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
+}
+
+.button:hover {
+  --glass: rgba(255, 255, 255, 0.5);
+  border-color: var(--c-green);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.seal {
+  width: 1.125rem;
+  height: 1.125rem;
+  opacity: 0.8;
+}
+
+/* A slow breathing halo so the button reads as the one thing to touch. */
+.button::after {
+  content: '';
+  position: absolute;
+  inset: -0.35rem;
+  border: 1px solid rgba(43, 89, 65, 0.3);
+  border-radius: inherit;
+  animation: halo 3.2s var(--ease-in-out) infinite;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+/* --- The invitation underneath ------------------------------------------- */
+.content {
+  filter: blur(1.5rem);
+  transform: scale(1.06);
+  transform-origin: 50% 20%;
+  transition:
+    filter var(--dur-curtain) var(--ease-in-out),
+    transform var(--dur-curtain) var(--ease-in-out);
+  will-change: filter, transform;
+}
+
+.content[data-open='true'] {
+  filter: none;
+  transform: none;
+}
+
+/* Once settled, drop the filter entirely — a lingering `filter` on a tall
+   scroller creates a containing block and wrecks scroll performance. */
+.content[data-settled='true'] {
+  filter: none;
+  transform: none;
+  transition: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gate,
+  .content {
+    transition: opacity var(--dur-base) linear;
+  }
+
+  .gate[data-open='true'] {
+    filter: none;
+    transform: none;
+  }
+
+  .content {
+    filter: none;
+    transform: none;
+  }
+}
