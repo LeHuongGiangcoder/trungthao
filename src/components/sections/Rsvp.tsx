@@ -9,8 +9,8 @@ export function Rsvp() {
   return (
     <Section
       id="rsvp"
-      tone="dark"
-      backdrop={backdrop.damaskGreen}
+      tone="light"
+      backdrop={backdrop.damask}
       labelledBy="rsvp-title"
       className={styles.rsvp}
     >
@@ -18,7 +18,6 @@ export function Rsvp() {
         <span className="rule-diamond" aria-hidden="true">
           <span />
         </span>
-        <p className={styles.note}>{rsvp.note}</p>
         <p className={styles.deadline}>{rsvp.deadline}</p>
       </SectionHead>
 

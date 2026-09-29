@@ -211,6 +211,10 @@ a {
    ========================================================================== */
 [data-tone='light'] {
   --bg-ground: var(--c-paper);
+  --panel-bg: rgba(255, 255, 255, 0.4);
+  --field-bg: rgba(255, 255, 255, 0.62);
+  --field-border: rgba(43, 89, 65, 0.28);
+  --field-placeholder: var(--c-ink-faint);
   --tone-fg: var(--c-green-deep);
   --tone-body: var(--c-ink-soft);
   --tone-accent: var(--c-green);
@@ -219,6 +223,10 @@ a {
 
 [data-tone='dark'] {
   --bg-ground: var(--c-green-deep);
+  --panel-bg: rgba(251, 247, 240, 0.12);
+  --field-bg: rgba(251, 247, 240, 0.14);
+  --field-border: rgba(251, 247, 240, 0.3);
+  --field-placeholder: rgba(251, 247, 240, 0.45);
   --tone-fg: var(--c-ivory);
   --tone-body: rgba(251, 247, 240, 0.74);
   --tone-accent: rgba(251, 247, 240, 0.66);
@@ -356,8 +364,8 @@ a {
   gap: var(--sp-3);
   width: 100%;
   max-width: 22rem;
-  min-height: 3.25rem;
-  padding: 0.95rem 2rem;
+  min-height: 3rem;
+  padding: 0.85rem 2rem;
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
   font-family: var(--font-display);
