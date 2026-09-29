@@ -31,7 +31,7 @@ export const agenda = [
 ] as const;
 
 export const dresscode = {
-  headline: 'Thanh lịch — tông be & xanh rêu',
+  headline: 'Thanh lịch',
   note:
     'Để khung hình ngày cưới thật hoà hợp, kính mời quý khách lựa chọn trang phục theo bảng màu dưới đây.',
   swatches: [

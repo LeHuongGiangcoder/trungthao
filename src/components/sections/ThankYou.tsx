@@ -18,9 +18,9 @@ export function ThankYou() {
           <Image className="section-icon" src={gilt.crest} alt="" width={560} height={635} />
           <p className={styles.eyebrow}>Thank you</p>
           <h2 id="thanks-title" className={styles.names}>
-            <span>{couple.groom.name}</span>
-            <span className={styles.and}>và</span>
-            <span>{couple.bride.name}</span>
+            <span>Trung</span>
+            <span className={styles.and}>&</span>
+            <span>Thảo</span>
           </h2>
         </div>
       </Reveal>

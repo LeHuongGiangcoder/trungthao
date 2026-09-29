@@ -11,15 +11,20 @@ const { blankRegion, blurRegion, copyRegion } = require('./lib/patch.cjs');
 // this height — a toned fill is the only option, and our own names cover it.
 const UPPER_NAMES = { x0: 0.292, x1: 0.686, y0: 0.358, y1: 0.482 };
 
-const LOWER_PANEL_RECT = { x0: 0.318, x1: 0.632, y0: 0.608, y1: 0.678 };
-
-// Cover the peeking card with a patch of clean silk from directly below it.
-// This matches the exact width so there is no horizontal stretching,
-// eliminating the "pasted rectangle" artifact.
-const PEEKING_CARD = {
-  from: { x0: 0.310, x1: 0.628, y0: 0.730, y1: 0.766 },
-  to: { x0: 0.310, x1: 0.628, y0: 0.672 },
+// "Open the invitation", on the lower flap. A toned fill leaves a smooth
+// rectangle against the stock's emboss — that patch is the single most visible
+// thing on the whole image — so clean textured flap is copied across instead.
+// It stops at y 0.671, just above the envelope's bottom edge.
+const LOWER_PANEL = {
+  from: { x0: 0.600, x1: 0.872, y0: 0.608, y1: 0.671 },
+  to: { x0: 0.318, x1: 0.632, y0: 0.608 },
 };
+
+// NOTHING is painted below the envelope's bottom edge. The original photograph
+// is uniform there — measured across the full width, 188-205 of 255 with no
+// step. Every "peeking card" reported so far has been a patch put there by this
+// script: a slab of silk lifted up over the contact shadow reads as a pale card
+// sticking out, which is the very thing it was meant to remove.
 
 // The monogram sits on lit, curved wax — softening keeps the shading a flat
 // fill would flatten.
@@ -29,8 +34,7 @@ const SEAL_MONOGRAM = { x0: 0.432, x1: 0.572, y0: 0.550, y1: 0.600 };
   let buf = await sharp('art/hero.png').png().toBuffer();
 
   buf = await blankRegion(buf, UPPER_NAMES, 0.78, 0.14);
-  buf = await blankRegion(buf, LOWER_PANEL_RECT, 0.8, 0.25);
-  buf = await copyRegion(buf, PEEKING_CARD.from, PEEKING_CARD.to, 0.1);
+  buf = await copyRegion(buf, LOWER_PANEL.from, LOWER_PANEL.to, 0.08);
   buf = await blurRegion(buf, SEAL_MONOGRAM, 26, 0.3);
 
   await sharp(buf).resize({ width: 1200 }).webp({ quality: 78 }).toFile('public/img/hero.webp');

@@ -1,5 +1,8 @@
 .dresscode {
   gap: var(--sp-4);
+  padding-bottom: 0;
+  align-content: space-between;
+  padding-top: max(var(--section-y), 10svh);
 }
 
 /* Reads before the card, the way the printed version does. */

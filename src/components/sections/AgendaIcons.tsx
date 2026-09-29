@@ -10,7 +10,7 @@ const createAgendaIcon = (filename: string) => {
           src={`/agenda/${filename}`} 
           alt="" 
           fill 
-          style={{ objectFit: 'contain' }}
+          style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
         />
       </div>
     );

@@ -23,7 +23,7 @@
 /* The fields sit on their own panel, as on a reply card. */
 .form {
   display: grid;
-  gap: 0.625rem;
+  gap: 0.5rem;
   width: 100%;
   max-width: 26rem;
   margin-inline: auto;
