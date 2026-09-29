@@ -8,7 +8,7 @@ import styles from './Dresscode.module.css';
 
 export function Dresscode() {
   return (
-    <Section id="dresscode" tone="dark" backdrop={backdrop.damaskGreen} labelledBy="dresscode-title">
+    <Section id="dresscode" tone="light" backdrop={backdrop.damask} labelledBy="dresscode-title">
       <Image className={`ornament ${styles.hydrangea}`} src={element.hydrangea} alt="" width={640} height={522} />
       <Image className={`ornament ${styles.blossom}`} src={element.blossomStem} alt="" width={480} height={936} />
 

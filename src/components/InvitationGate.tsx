@@ -55,6 +55,8 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               preload
             />
 
+            <p className={styles.greeting}>Dear quý khách,</p>
+
             <div className={styles.onEnvelope}>
               <p className={styles.eyebrow}>Save the date</p>
               <h1 className={styles.names}>
@@ -73,7 +75,7 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               className={`btn btn-glass ${styles.button}`}
               onClick={openInvitation}
             >
-              Mở thiệp · Open invitation
+              Mở thiệp
             </button>
           </div>
         </div>

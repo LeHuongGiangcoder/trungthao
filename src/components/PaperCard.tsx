@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { element } from '@/lib/assets';
-import { ceremony, couple, families, thanks } from '@/lib/wedding';
+import { ceremony, couple, thanks } from '@/lib/wedding';
 import styles from './PaperCard.module.css';
 
 /** The main invitation, set inside the engraved deckled card. */
@@ -41,16 +41,6 @@ export function PaperCard() {
           <p className={styles.whereHall}>Tại {ceremony.hall}</p>
           <p className={styles.whereVenue}>{ceremony.venue}</p>
           <p className={styles.whereAddress}>{ceremony.address}</p>
-        </div>
-
-        <div className={styles.families}>
-          {families.map((family) => (
-            <div key={family.side}>
-              <p className={styles.familySide}>{family.side}</p>
-              <p>{family.father}</p>
-              <p>{family.mother}</p>
-            </div>
-          ))}
         </div>
 
         <p className={styles.closing}>{thanks.sign}</p>

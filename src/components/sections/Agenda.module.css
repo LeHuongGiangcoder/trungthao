@@ -5,6 +5,11 @@
   object-fit: fill;
 }
 
+/* Green line work on a green ground needs lifting to read as engraving. */
+[data-tone='dark'] .frame {
+  filter: brightness(3.4) saturate(0.25);
+}
+
 .list {
   display: grid;
   width: 100%;

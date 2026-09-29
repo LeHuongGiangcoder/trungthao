@@ -7,7 +7,7 @@ import styles from './ThankYou.module.css';
 
 export function ThankYou() {
   return (
-    <Section tone="dark" backdrop={backdrop.damaskGreen} labelledBy="thanks-title">
+    <Section tone="light" backdrop={backdrop.damask} labelledBy="thanks-title">
       <Image className={`ornament ${styles.roseLeft}`} src={element.roseSpray} alt="" width={640} height={782} />
       <Image className={`ornament ${styles.roseRight}`} src={element.hydrangea} alt="" width={640} height={522} />
 

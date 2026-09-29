@@ -9,8 +9,8 @@ export function Rsvp() {
   return (
     <Section
       id="rsvp"
-      tone="light"
-      backdrop={backdrop.damask}
+      tone="dark"
+      backdrop={backdrop.damaskGreen}
       labelledBy="rsvp-title"
       className={styles.rsvp}
     >

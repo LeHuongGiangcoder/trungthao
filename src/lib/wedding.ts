@@ -17,6 +17,7 @@ export const ceremony = {
   mapUrl: 'https://maps.google.com/?q=Lotte+Hotel+Hanoi,+54+Lieu+Giai,+Ba+Dinh,+Ha+Noi',
 } as const;
 
+/** Not shown on the card at the moment; kept so it can be put back. */
 export const families = [
   { side: 'Nhà trai', father: 'Ông Trịnh Đình Hồng Phúc', mother: 'Bà Mai Mộc Lan' },
   { side: 'Nhà gái', father: 'Ông Nguyễn Đức Vinh', mother: 'Bà Nguyễn Thị Đôi' },

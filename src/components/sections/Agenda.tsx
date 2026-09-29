@@ -7,7 +7,7 @@ import styles from './Agenda.module.css';
 
 export function Agenda() {
   return (
-    <Section id="chuong-trinh" tone="light" backdrop={backdrop.damask} labelledBy="agenda-title">
+    <Section id="chuong-trinh" tone="dark" backdrop={backdrop.damaskGreen} labelledBy="agenda-title">
       <Image className={`ornament ${styles.frame}`} src={element.botanicalFrame} alt="" width={900} height={1274} />
 
       <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title" />
