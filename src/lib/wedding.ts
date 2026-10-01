@@ -1,3 +1,5 @@
+import { couplePhoto } from '@/lib/assets';
+
 /* Single source of truth for every piece of copy on the invitation. */
 
 export const couple = {
@@ -20,8 +22,8 @@ export const ceremony = {
 /** Photographs for the hero collage's two frames. Each frame falls back to
  *  lettering while null. */
 export const photos: { portrait: string | null; candid: string | null } = {
-  portrait: '/cp7.jpg',
-  candid: '/cp1.jpg',
+  portrait: couplePhoto.portrait.src,
+  candid: couplePhoto.garden.src,
 };
 
 /** Not shown on the card at the moment; kept so it can be put back. */

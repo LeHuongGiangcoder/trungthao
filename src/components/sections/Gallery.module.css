@@ -7,7 +7,7 @@
 .scene {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1.15;
+  aspect-ratio: 1 / 1.05;
 }
 
 .scene img {
@@ -15,42 +15,53 @@
 }
 
 /* --- The pair of beaded frames on their thread ---------------------------- */
+/* Deliberately no z-index: a stacking context here would trap the multiply on
+   .frames inside this box, where there is nothing to blend with. Without one
+   the blend reaches the section's own backdrop, which is the point. Paint
+   order still works out — the polaroid follows in the DOM. */
 .hanging {
   position: absolute;
-  top: 0;
-  left: -7%;
-  z-index: 1;
-  width: 56%;
+  top: -8%;
+  left: -8%;
+  width: 58%;
 }
 
+/* This piece is a photograph of the frames on a white ground, not a cut-out —
+   99% of its pixels are opaque white, the window openings included. Multiply
+   drops that white into the cream behind it and keeps only the beading and its
+   shadows, which is what makes it read as an object on the page. */
 .frames {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 100%;
-  filter: drop-shadow(0 0.6rem 1.25rem rgba(60, 46, 28, 0.22));
+  mix-blend-mode: multiply;
 }
 
-/* Each photograph is clipped to its frame's opening and sits underneath it,
-   so the beading laps over the edges and hides the join. */
+/* The photographs therefore sit ON TOP, clipped to each opening, rather than
+   showing through from beneath. */
 .window {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
+  box-shadow: 0 0.25rem 0.6rem -0.2rem rgba(60, 46, 28, 0.35);
 }
 
+/* The openings are square in the art, so each height is its width scaled by
+   the piece's own ratio (806/1479). Both sit a little inside the beading, so a
+   degree of rotation mismatch never shows as an overlap. */
 .windowTop {
-  top: 34.5%;
-  left: 53.8%;
-  width: 27%;
-  height: 15.7%;
-  rotate: -7deg;
+  top: 35%;
+  left: 58%;
+  width: 22%;
+  height: 13%;
+  rotate: -6deg;
 }
 
 .windowBottom {
-  top: 63.8%;
-  left: 18.5%;
-  width: 39.2%;
-  height: 22%;
+  top: 64.5%;
+  left: 21%;
+  width: 31.5%;
+  height: 21%;
   rotate: -4deg;
 }
 
@@ -61,10 +72,10 @@
 /* --- The larger polaroid, laid over them ---------------------------------- */
 .polaroid {
   position: absolute;
-  right: -5%;
-  bottom: 3%;
+  right: -6%;
+  bottom: 0;
   z-index: 3;
-  width: 60%;
+  width: 62%;
   rotate: 4deg;
   filter: drop-shadow(0 0.75rem 1.5rem rgba(60, 46, 28, 0.26));
 }
@@ -74,6 +85,8 @@
   z-index: 2;
   width: 100%;
 }
+
+
 
 .polaroidWindow {
   position: absolute;
