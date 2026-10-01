@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
-import { backdrop, element } from '@/lib/assets';
+import { backdrop, piece } from '@/lib/assets';
 import { rsvp } from '@/lib/wedding';
 import { RsvpForm } from './RsvpForm';
 import styles from './Rsvp.module.css';
@@ -15,7 +15,20 @@ export function Rsvp() {
       labelledBy="rsvp-title"
       className={styles.rsvp}
     >
-      <Image className={`ornament ${styles.candle}`} src={element.candlestick} alt="" width={240} height={1129} />
+      <Image
+        className={`ornament ${styles.bouquet}`}
+        src={piece.bouquetTall.src}
+        alt=""
+        width={piece.bouquetTall.w}
+        height={piece.bouquetTall.h}
+      />
+      <Image
+        className={`ornament ${styles.roses}`}
+        src={piece.roseCluster.src}
+        alt=""
+        width={piece.roseCluster.w}
+        height={piece.roseCluster.h}
+      />
 
       <SectionHead eyebrow={rsvp.eyebrow} title="R.S.V.P" titleId="rsvp-title">
         <span className="rule-diamond" aria-hidden="true">

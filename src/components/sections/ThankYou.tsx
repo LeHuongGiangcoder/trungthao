@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop, element, gilt } from '@/lib/assets';
+import { backdrop, element, gilt, piece } from '@/lib/assets';
 import { ceremony, couple, thanks } from '@/lib/wedding';
 import styles from './ThankYou.module.css';
 
@@ -12,7 +12,37 @@ export function ThankYou() {
 
       {/* The names sit inside the oval; everything else reads below it. */}
       <Reveal className={styles.plaque}>
-        <Image className={styles.oval} src={element.ovalFrame} alt="" width={900} height={1235} />
+        <Image
+          className={styles.frame}
+          src={piece.ovalFrameGreen.src}
+          alt=""
+          width={piece.ovalFrameGreen.w}
+          height={piece.ovalFrameGreen.h}
+          sizes="(min-width: 40rem) 24rem, 80vw"
+        />
+
+        {/* Two lilies on the oval's right shoulder, the nearer one in front. */}
+        <Image
+          className={styles.lilyBack}
+          src={piece.lilyBack.src}
+          alt=""
+          width={piece.lilyBack.w}
+          height={piece.lilyBack.h}
+        />
+        <Image
+          className={styles.lily}
+          src={piece.lily.src}
+          alt=""
+          width={piece.lily.w}
+          height={piece.lily.h}
+        />
+        <Image
+          className={styles.butterfly}
+          src={piece.butterflyPale.src}
+          alt=""
+          width={piece.butterflyPale.w}
+          height={piece.butterflyPale.h}
+        />
 
         <div className={styles.plaqueInner}>
           <Image className="section-icon" src={gilt.crest} alt="" width={560} height={635} />

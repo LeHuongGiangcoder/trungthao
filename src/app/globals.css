@@ -42,14 +42,14 @@
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-body: var(--font-sans), system-ui, -apple-system, sans-serif;
 
-  --fs-xs: 0.688rem; /* 11px — eyebrow / label */
-  --fs-sm: 0.781rem; /* 12.5px */
-  --fs-base: 0.938rem; /* 15px */
-  --fs-md: 1.063rem; /* 17px */
-  --fs-lg: 1.375rem; /* 22px */
-  --fs-xl: 1.875rem; /* 30px */
-  --fs-2xl: 2.5rem; /* 40px */
-  --fs-3xl: 3.375rem; /* 54px */
+  --fs-xs: 0.813rem; /* 13px — eyebrow / label */
+  --fs-sm: 0.938rem; /* 15px */
+  --fs-base: 1.125rem; /* 18px */
+  --fs-md: 1.25rem; /* 20px */
+  --fs-lg: 1.625rem; /* 26px */
+  --fs-xl: 2.125rem; /* 34px */
+  --fs-2xl: 2.875rem; /* 46px */
+  --fs-3xl: 3.875rem; /* 62px */
 
   --lh-tight: 1.15;
   --lh-snug: 1.35;
@@ -72,10 +72,12 @@
   /* --- Layout ------------------------------------------------------------- */
   --stage-w: 30rem; /* 480px — the mobile column, centred on desktop */
   --gutter: 1.5rem;
-  --section-y: 3.5rem;
-  /* Every section is exactly one screen tall, so the invitation reads as a
-     deck of equal cards rather than a ragged scroll. */
-  --section-h: 100svh;
+  /* The one fixed thing about a section's box. Height comes from the content,
+     so a short section is short and a long one is long, but the bands of space
+     above and below are identical everywhere. The top band is the deeper of
+     the two, so each section reads as opening rather than merely starting. */
+  --section-top: 5.5rem;
+  --section-bottom: 4.25rem;
 
   /* --- Form ---------------------------------------------------------------- */
   --radius-sm: 2px;
@@ -188,8 +190,7 @@ a {
   align-content: center;
   justify-items: center;
   gap: var(--sp-5);
-  min-height: var(--section-h);
-  padding: var(--section-y) var(--gutter);
+  padding: var(--section-top) var(--gutter) var(--section-bottom);
   overflow: clip;
   isolation: isolate;
   color: var(--tone-fg);
@@ -276,7 +277,7 @@ a {
 /* The small gilt crest that opens every section. */
 .section-icon {
   width: auto;
-  height: 2.75rem;
+  height: 3.25rem;
   margin-bottom: 0;
 }
 
@@ -392,7 +393,7 @@ a {
   cursor: progress;
 }
 
-/* Frosted, see-through — for buttons laid over photography. */
+/* Frosted, see-through — laid over photography and over the green grounds. */
 .btn-glass {
   border-color: rgba(255, 255, 255, 0.55);
   background: rgba(255, 255, 255, 0.22);
@@ -404,6 +405,35 @@ a {
 
 .btn-glass:hover {
   background: rgba(255, 255, 255, 0.42);
+}
+
+/* On the dark grounds the same glass has to carry light type, so the fill
+   stays low and the ink flips to ivory. */
+[data-tone='dark'] .btn-glass {
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  color: var(--c-ivory);
+}
+
+[data-tone='dark'] .btn-glass:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* The chosen option / primary action: the same glass, pressed brighter. */
+.btn-glass-strong {
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(0.75rem) saturate(1.3);
+  -webkit-backdrop-filter: blur(0.75rem) saturate(1.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 0.5rem 1.25rem -0.5rem rgba(0, 0, 0, 0.35);
+  color: var(--c-green-deep);
+}
+
+.btn-glass-strong:hover {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 .btn-solid {

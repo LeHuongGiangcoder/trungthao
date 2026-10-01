@@ -17,6 +17,13 @@ export const ceremony = {
   mapUrl: 'https://maps.google.com/?q=Lotte+Hotel+Hanoi,+54+Lieu+Giai,+Ba+Dinh,+Ha+Noi',
 } as const;
 
+/** Photographs for the hero collage's two empty frames. Drop a file in
+ *  public/ and name it here; each frame falls back to lettering while null. */
+export const photos: { portrait: string | null; candid: string | null } = {
+  portrait: null,
+  candid: null,
+};
+
 /** Not shown on the card at the moment; kept so it can be put back. */
 export const families = [
   { side: 'Nhà trai', father: 'Ông Trịnh Đình Hồng Phúc', mother: 'Bà Mai Mộc Lan' },
@@ -31,7 +38,10 @@ export const agenda = [
 ] as const;
 
 export const dresscode = {
-  headline: 'Thanh lịch',
+  /** Set under the title, the way "Elegant & Formal attire" is on the card. */
+  headline: 'Thanh lịch & Trang trọng',
+  /** The heading engraved on the held card, above the swatches. */
+  paletteTitle: 'Bảng màu',
   note:
     'Để khung hình ngày cưới thật hoà hợp, kính mời quý khách lựa chọn trang phục theo bảng màu dưới đây.',
   swatches: [

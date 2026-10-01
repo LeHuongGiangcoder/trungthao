@@ -5,26 +5,52 @@
 .list {
   display: grid;
   width: 100%;
-  max-width: 21rem;
+  max-width: 22rem;
   margin-inline: auto;
   list-style: none;
 }
 
-/* Mark, spine, then the stop itself. */
+/* Hour, spine, then the stop itself. */
 .item {
   display: grid;
-  grid-template-columns: 3.5rem 2rem 1fr;
-  gap: var(--sp-3);
+  grid-template-columns: 4.75rem 1rem 1fr;
+  gap: var(--sp-2);
   align-items: stretch;
+  /* Dimmed until scrolled to. The lift is deliberately small — these rows are
+     already on screen, they only brighten. */
+  opacity: 0.3;
+  translate: 0 0.5rem;
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    translate var(--dur-slow) var(--ease-out);
 }
 
-.icon {
-  width: 3.5rem;
-  height: 3.5rem;
-  color: var(--tone-fg);
-  opacity: 0.9;
+.item[data-shown='true'] {
+  opacity: 1;
+  translate: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
+
+.time {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 400;
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-align: right;
+  /* Gilt against the green, matching the crest above. */
+  color: var(--c-sand);
+}
+
+/* --- The spine ------------------------------------------------------------ */
 .spine {
   position: relative;
   display: grid;
@@ -38,26 +64,26 @@
 }
 
 .item:first-child .spineLine {
-  background: linear-gradient(to bottom, transparent 1rem, var(--tone-rule) 1rem);
+  background: linear-gradient(to bottom, transparent 0.6rem, var(--tone-rule) 0.6rem);
 }
 
 .item:last-child .spineLine {
   background: linear-gradient(to bottom, var(--tone-rule) 1.5rem, transparent 1.5rem);
 }
 
-/* Sits on the spine with no plate behind it — the hairline simply runs on
-   through the knot, which is how a real ribbon tie reads. */
-.bow {
+.diamond {
   position: absolute;
-  top: 1rem;
-  width: 2rem;
-  height: 1.375rem;
-  color: var(--tone-fg);
+  top: 0.4rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  rotate: 45deg;
+  background: var(--c-sand);
 }
 
+/* --- The stop ------------------------------------------------------------- */
 .detail {
   display: grid;
-  gap: 0.125rem;
+  gap: 0.25rem;
   padding-bottom: var(--sp-6);
 }
 
@@ -65,29 +91,20 @@
   padding-bottom: 0;
 }
 
-.time {
-  font-family: var(--font-display);
-  font-size: var(--fs-xl);
-  font-weight: 400;
-  font-variant-numeric: lining-nums tabular-nums;
-  line-height: 1;
-  letter-spacing: 0.06em;
-  color: var(--tone-fg);
-}
-
 .itemTitle {
   font-family: var(--font-display);
   font-size: var(--fs-md);
   font-weight: 500;
   letter-spacing: var(--ls-wide);
+  line-height: 1.15;
   text-transform: uppercase;
   color: var(--tone-fg);
 }
 
 .note {
-  margin-top: 0.125rem;
   font-family: var(--font-display);
   font-size: var(--fs-sm);
+  font-style: italic;
   line-height: 1.45;
   color: var(--tone-body);
 }

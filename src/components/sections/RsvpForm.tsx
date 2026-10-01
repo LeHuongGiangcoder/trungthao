@@ -95,7 +95,7 @@ export function RsvpForm() {
       <fieldset className={styles.field}>
         <legend className={styles.label}>Quý khách có tham dự?</legend>
         <div className={styles.choices}>
-          <label className={`btn btn-outline ${styles.choice}`}>
+          <label className={`btn btn-glass ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -105,7 +105,7 @@ export function RsvpForm() {
             />
             Vui lòng nhận lời
           </label>
-          <label className={`btn btn-outline ${styles.choice}`}>
+          <label className={`btn btn-glass ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -168,7 +168,7 @@ export function RsvpForm() {
         </p>
       )}
 
-      <button className={`btn btn-solid ${styles.submit}`} type="submit" disabled={status === 'sending'}>
+      <button className={`btn btn-glass-strong ${styles.submit}`} type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Đang gửi…' : 'Gửi phản hồi'}
       </button>
     </form>

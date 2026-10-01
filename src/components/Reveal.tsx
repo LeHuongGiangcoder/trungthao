@@ -9,6 +9,12 @@ type RevealProps = {
   className?: string;
   /** Stagger, in ms, applied via the --reveal-delay custom property. */
   delay?: number;
+  /**
+   * Set false to skip the shared fade-and-lift. The element then styles its
+   * own before and after states off `data-shown` — the agenda uses this to sit
+   * dimmed and brighten as it is scrolled to, rather than being invisible.
+   */
+  fade?: boolean;
 };
 
 /**
@@ -16,7 +22,7 @@ type RevealProps = {
  * The visual work lives in the global `.reveal` class, which is inert under
  * `prefers-reduced-motion`, so this stays a no-op for those users.
  */
-export function Reveal({ children, as: Tag = 'div', className, delay = 0 }: RevealProps) {
+export function Reveal({ children, as: Tag = 'div', className, delay = 0, fade = true }: RevealProps) {
   const ref = useRef<HTMLElement>(null);
   const [shown, setShown] = useState(false);
 
@@ -65,7 +71,7 @@ export function Reveal({ children, as: Tag = 'div', className, delay = 0 }: Reve
   return (
     <Tag
       ref={ref}
-      className={className ? `reveal ${className}` : 'reveal'}
+      className={[fade && 'reveal', className].filter(Boolean).join(' ') || undefined}
       data-shown={shown || undefined}
       style={delay ? ({ '--reveal-delay': `${delay}ms` } as React.CSSProperties) : undefined}
     >
