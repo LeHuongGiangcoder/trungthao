@@ -40,6 +40,9 @@ export function Dresscode() {
         <h2 id="dresscode-title" className="section-title">
           Dress Code
         </h2>
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
         <p className={styles.headline}>{dresscode.headline}</p>
         <p className={styles.note}>{dresscode.avoid}</p>
       </Reveal>
