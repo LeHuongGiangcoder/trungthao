@@ -26,6 +26,7 @@
   position: relative;
   width: 100%;
   margin-inline: auto;
+  margin-top: -10%;
 }
 
 .handArt {
@@ -37,7 +38,7 @@
    rather than floating in the middle. */
 .onCard {
   position: absolute;
-  inset: 12% 8% 51%;
+  inset: 18% 8% 45%;
   display: grid;
   align-content: start;
   justify-items: center;

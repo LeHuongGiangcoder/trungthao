@@ -19,7 +19,7 @@ export const gilt = {
   butterfly: '/butterfly.webp',
   flower: '/flower.webp',
   /** A gloved hand holding a blank card — the dress code is set on it. */
-  dressHand: '/dress-hand.webp',
+  dressHand: '/dress-hand.png',
 } as const;
 
 export const element = {
