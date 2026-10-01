@@ -16,9 +16,9 @@
 
 /* The three pieces that carry lettering are wrapped, so their art fills the
    wrapper and the type is positioned against it. */
-.oval > img,
-.snap > img,
-.heart > img {
+.oval>img,
+.snap>img,
+.heart>img {
   width: 100%;
 }
 
@@ -136,9 +136,9 @@
 
 .spray {
   position: absolute;
-  top: 24%;
+  top: 22%;
   left: 78%;
   z-index: 7;
-  width: 28%;
+  width: 42%;
   pointer-events: none;
 }
