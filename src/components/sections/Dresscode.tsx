@@ -62,14 +62,6 @@ export function Dresscode() {
           </ul>
         </div>
 
-        {/* Stamped on the card's lower corner, where the butterfly used to be. */}
-        <Image
-          className={styles.seal}
-          src={piece.waxSeal.src}
-          alt=""
-          width={piece.waxSeal.w}
-          height={piece.waxSeal.h}
-        />
       </Reveal>
     </Section>
   );

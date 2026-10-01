@@ -1,5 +1,6 @@
 .dresscode {
   gap: var(--sp-4);
+  padding-bottom: 0 !important;
 }
 
 /* --- Head ----------------------------------------------------------------- */
@@ -36,12 +37,11 @@
    rather than floating in the middle. */
 .onCard {
   position: absolute;
-  inset: 6% 8% 57%;
+  inset: 12% 8% 51%;
   display: grid;
   align-content: start;
   justify-items: center;
-  gap: 4cqw;
-  padding-top: 2cqw;
+  gap: 7cqw;
   text-align: center;
 }
 
