@@ -2,33 +2,69 @@
   gap: var(--sp-6);
 }
 
-/* Swallows cross the open ground above the oval, clear of the frame. */
+/* Swallows cross the open ground above the oval, clear of the lilies. */
 .birds {
-  top: 5%;
-  right: 2%;
-  width: 34%;
+  top: 1%;
+  right: 4%;
+  width: 27%;
 }
 
 /* --- The oval, with the names set inside it ------------------------------- */
+/* The box is the frame's own trimmed bounds; the lilies and the butterfly are
+   placed in percentages of it, and lap over its edges the way they do on the
+   printed piece. */
 .plaque {
   container-type: inline-size;
   position: relative;
-  width: min(84%, calc((100svh - 20rem) * 900 / 1235));
+  /* Short of the full column so the lilies and butterfly can lap over. */
+  width: 80%;
+  aspect-ratio: 2765 / 3369;
   margin-inline: auto;
 }
 
-.oval {
-  position: relative;
-  z-index: 0;
-  width: 100%;
+.plaque img {
   height: auto;
 }
 
-/* Inset to the beaded panel at the centre of the frame. */
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+/* The second lily, set behind and further right. */
+.lilyBack {
+  position: absolute;
+  top: 9%;
+  left: 71%;
+  z-index: 2;
+  width: 34%;
+}
+
+/* The nearer lily, overlapping it from the left. Both sit on the frame's
+   shoulder rather than over the opening, so the names stay clear. */
+.lily {
+  position: absolute;
+  top: -4%;
+  left: 52%;
+  z-index: 3;
+  width: 40%;
+}
+
+.butterfly {
+  position: absolute;
+  top: 76%;
+  left: 3%;
+  z-index: 4;
+  width: 25%;
+}
+
+/* Inset to the flat oval opening at the centre of the frame. */
 .plaqueInner {
   position: absolute;
-  inset: 24% 22%;
-  z-index: 1;
+  inset: 20% 21%;
+  z-index: 5;
   display: grid;
   align-content: center;
   justify-items: center;

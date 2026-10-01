@@ -1,11 +1,13 @@
 import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { Section, SectionHead } from '@/components/Section';
-import { backdrop, element, gilt } from '@/lib/assets';
+import { Section } from '@/components/Section';
+import { backdrop, gilt, piece } from '@/lib/assets';
 import { dresscode } from '@/lib/wedding';
 import styles from './Dresscode.module.css';
 
+/** The palette, engraved on the card the gloved hand holds up. The hand is the
+ *  last thing in the section, so its cuff lands on the bottom padding line. */
 export function Dresscode() {
   return (
     <Section
@@ -15,24 +17,42 @@ export function Dresscode() {
       labelledBy="dresscode-title"
       className={styles.dresscode}
     >
-      <Image className={`ornament ${styles.hydrangea}`} src={element.hydrangea} alt="" width={640} height={522} />
+      <Image
+        className={`ornament ${styles.spray}`}
+        src={piece.spraySide.src}
+        alt=""
+        width={piece.spraySide.w}
+        height={piece.spraySide.h}
+      />
+      <Image
+        className={`ornament ${styles.roses}`}
+        src={piece.roseCluster.src}
+        alt=""
+        width={piece.roseCluster.w}
+        height={piece.roseCluster.h}
+      />
 
-      <SectionHead eyebrow="Trang phục" title="Dress Code" titleId="dresscode-title">
-        <span className="rule-diamond" aria-hidden="true">
-          <span />
-        </span>
-        <p className={styles.note}>
-          {dresscode.note} {dresscode.avoid}
-        </p>
-      </SectionHead>
+      {/* The gilt butterfly opens this section the way the crest opens the
+          others, so every section is headed by the same gold mark. */}
+      <Reveal className={styles.head}>
+        <Image className="section-icon" src={gilt.butterfly} alt="" width={640} height={466} />
+        <p className="eyebrow">Trang phục</p>
+        <h2 id="dresscode-title" className="section-title">
+          Dress Code
+        </h2>
+        <p className={styles.headline}>{dresscode.headline}</p>
+        <p className={styles.note}>{dresscode.avoid}</p>
+      </Reveal>
 
       <Reveal className={styles.hand} delay={100}>
         <Image className={styles.handArt} src={gilt.dressHand} alt="" width={900} height={1557} />
 
         <div className={styles.onCard}>
-          <p className={styles.headline}>{dresscode.headline}</p>
+          <p className={styles.paletteTitle}>{dresscode.paletteTitle}</p>
 
-          <ul className={styles.swatches}>
+          {/* Equal columns keep the names apart; the chips are drawn wider
+              than their column so they overlap each other. */}
+          <ul className={styles.palette}>
             {dresscode.swatches.map((swatch) => (
               <li key={swatch.hex} className={styles.swatch}>
                 <span className={styles.chip} style={{ '--chip': swatch.hex } as CSSProperties} aria-hidden="true" />
@@ -42,12 +62,13 @@ export function Dresscode() {
           </ul>
         </div>
 
+        {/* Stamped on the card's lower corner, where the butterfly used to be. */}
         <Image
-          className={`ornament ornament-front ${styles.butterfly}`}
-          src={gilt.butterfly}
+          className={styles.seal}
+          src={piece.waxSeal.src}
           alt=""
-          width={640}
-          height={466}
+          width={piece.waxSeal.w}
+          height={piece.waxSeal.h}
         />
       </Reveal>
     </Section>

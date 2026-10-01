@@ -1,59 +1,88 @@
+ /* The opening view, and the only section pinned to the viewport: it carries
+    the scroll hint, so it has to be the whole first screen. */
 .hero {
-  gap: var(--sp-5);
+  gap: var(--sp-4);
+  min-height: 100svh;
+  align-content: center;
 }
 
-/* Warms the silk toward the palette so the card sits on something quiet. */
+/* Warms the silk toward the palette so the collage sits on something quiet. */
 .wash {
   position: absolute;
   inset: 0;
   z-index: -2;
   background: radial-gradient(
-    115% 62% at 50% 46%,
+    115% 62% at 50% 42%,
     rgba(251, 247, 240, 0.72) 0%,
     rgba(251, 247, 240, 0.14) 62%,
     rgba(251, 247, 240, 0) 100%
   );
 }
 
-/* The card, capped so it and the button always fit one screen. */
 .cardWrap {
   position: relative;
-  width: min(100%, calc((100svh - 11rem) * 2968 / 4520));
+  width: 100%;
   margin-inline: auto;
 }
 
-/* --- Pieces laid over the card's corners ---------------------------------- */
-.bouquet {
-  right: -26%;
-  bottom: -16%;
-  width: 54%;
-  scale: -1 1;
+/* --- Announced under the envelope, as on the printed card ----------------- */
+.announce {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-2);
+  text-align: center;
 }
 
-.sprig {
-  top: -11%;
-  left: -22%;
-  width: 36%;
-  rotate: -12deg;
-}
-
-.mapLink {
-  max-width: 17rem;
-  min-height: 2.75rem;
-  padding: 0.7rem 1.5rem;
+.eyebrow {
+  font-family: var(--font-display);
   font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-green);
+}
+
+/* Stacked, with the ampersand on its own line: the two Vietnamese names are
+   too long to set side by side at this size on a phone. */
+.names {
+  display: grid;
+  justify-items: center;
+  gap: 0.04em;
+  font-family: var(--font-script);
+  font-size: var(--fs-2xl);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--c-green-deep);
+}
+
+.and {
+  font-family: var(--font-display);
+  font-size: 0.32em;
+  letter-spacing: 0.1em;
+  font-style: italic;
+  color: var(--c-green-mid);
+}
+
+.lead {
+  max-width: 24rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--c-ink-soft);
 }
 
 .scrollHint {
   position: absolute;
-  bottom: calc(var(--sp-4) + env(safe-area-inset-bottom));
+  bottom: calc(var(--sp-3) + env(safe-area-inset-bottom));
   left: 50%;
   translate: -50% 0;
   display: grid;
   justify-items: center;
   gap: var(--sp-2);
   font-family: var(--font-display);
-  font-size: 0.563rem;
+  font-size: 0.625rem;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: var(--c-ink-faint);
@@ -61,7 +90,7 @@
 
 .scrollLine {
   width: 1px;
-  height: 1.75rem;
+  height: 1.5rem;
   background: linear-gradient(to bottom, rgba(43, 89, 65, 0.45), transparent);
   animation: drop 2.4s var(--ease-in-out) infinite;
   transform-origin: top;
