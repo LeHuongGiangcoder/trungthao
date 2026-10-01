@@ -22,13 +22,21 @@ async function run() {
     .sort((a, b) => a - b);
 
   for (const n of nums) {
-    const buf = await sharp(`art/piece/${n}.png`).trim({ threshold: 1 }).png().toBuffer();
-    const meta = await sharp(buf).metadata();
+    /* Resize before trimming, not after. Several of these renders carry a very
+       faint halo over the whole canvas; trimming at full size keeps it (it is
+       inside the crop) and the downscale then amplifies it until the piece is
+       a near-opaque block — piece-4 came out at alpha 176 that way. Resizing
+       first lets the trim cut the halo off, which is both the correct cutout
+       and the reason the outputs are a little smaller than the cap. */
+    const buf = await sharp(`art/piece/${n}.png`)
+      .resize({ width: WIDTH[n] ?? 900, withoutEnlargement: true })
+      .png()
+      .toBuffer();
+
     const out = path.join(OUT, `piece-${n}.webp`);
-    await sharp(buf)
-      .resize({ width: Math.min(meta.width, WIDTH[n] ?? 900), withoutEnlargement: true })
-      .webp({ quality: 86, alphaQuality: 92 })
-      .toFile(out);
+    await sharp(buf).trim({ threshold: 1 }).webp({ quality: 86, alphaQuality: 92 }).toFile(out);
+
+    const meta = await sharp(out).metadata();
     console.log(`piece-${n}`, `${meta.width}x${meta.height}`, (fs.statSync(out).size / 1024).toFixed(0) + 'kb');
   }
 }

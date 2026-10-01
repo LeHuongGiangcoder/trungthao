@@ -17,11 +17,11 @@ export const ceremony = {
   mapUrl: 'https://maps.google.com/?q=Lotte+Hotel+Hanoi,+54+Lieu+Giai,+Ba+Dinh,+Ha+Noi',
 } as const;
 
-/** Photographs for the hero collage's two empty frames. Drop a file in
- *  public/ and name it here; each frame falls back to lettering while null. */
+/** Photographs for the hero collage's two frames. Each frame falls back to
+ *  lettering while null. */
 export const photos: { portrait: string | null; candid: string | null } = {
-  portrait: null,
-  candid: null,
+  portrait: '/cp7.jpg',
+  candid: '/cp1.jpg',
 };
 
 /** Not shown on the card at the moment; kept so it can be put back. */

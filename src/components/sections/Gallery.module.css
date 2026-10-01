@@ -1,0 +1,83 @@
+.gallery {
+  gap: var(--sp-5);
+}
+
+/* The box the two groups are placed against, so the arrangement holds at any
+   width. The frames hang left, the polaroid is laid over them to the right. */
+.scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+}
+
+.scene img {
+  height: auto;
+}
+
+/* --- The pair of beaded frames on their thread ---------------------------- */
+.hanging {
+  position: absolute;
+  top: 0;
+  left: -7%;
+  z-index: 1;
+  width: 56%;
+}
+
+.frames {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  filter: drop-shadow(0 0.6rem 1.25rem rgba(60, 46, 28, 0.22));
+}
+
+/* Each photograph is clipped to its frame's opening and sits underneath it,
+   so the beading laps over the edges and hides the join. */
+.window {
+  position: absolute;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.windowTop {
+  top: 34.5%;
+  left: 53.8%;
+  width: 27%;
+  height: 15.7%;
+  rotate: -7deg;
+}
+
+.windowBottom {
+  top: 63.8%;
+  left: 18.5%;
+  width: 39.2%;
+  height: 22%;
+  rotate: -4deg;
+}
+
+.photo {
+  object-fit: cover;
+}
+
+/* --- The larger polaroid, laid over them ---------------------------------- */
+.polaroid {
+  position: absolute;
+  right: -5%;
+  bottom: 3%;
+  z-index: 3;
+  width: 60%;
+  rotate: 4deg;
+  filter: drop-shadow(0 0.75rem 1.5rem rgba(60, 46, 28, 0.26));
+}
+
+.polaroidArt {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.polaroidWindow {
+  position: absolute;
+  inset: 10% 9% 12%;
+  z-index: 1;
+  overflow: hidden;
+}

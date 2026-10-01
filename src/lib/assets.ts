@@ -45,39 +45,54 @@ export const element = {
  *  Sources live in art/piece; regenerate with `node scripts/optimize-pieces.cjs`. */
 export const piece = {
   /** Roses and green hydrangea — a low, wide cluster. */
-  roseCluster: { src: '/img/piece-1.webp', w: 3011, h: 2718 },
+  roseCluster: { src: '/img/piece-1.webp', w: 803, h: 725 },
   /** Tall white bouquet with trailing amaranthus. */
-  bouquetTall: { src: '/img/piece-2.webp', w: 2794, h: 5228 },
+  bouquetTall: { src: '/img/piece-2.webp', w: 745, h: 1394 },
   /** Anthurium, orchids and trailing amaranthus — the spray beside the envelope. */
-  spraySide: { src: '/img/piece-3.webp', w: 3022, h: 4838 },
+  spraySide: { src: '/img/piece-3.webp', w: 806, h: 1292 },
   /** Two beaded squares hanging on a thread. */
-  beadFrames: { src: '/img/piece-4.webp', w: 3013, h: 5541 },
+  beadFrames: { src: '/img/piece-4.webp', w: 806, h: 1479 },
   /** Scalloped plaque with a pair of swans and a blank face. */
-  swanPlaque: { src: '/img/piece-5.webp', w: 3014, h: 4133 },
+  swanPlaque: { src: '/img/piece-5.webp', w: 982, h: 1346 },
   /** The envelope front, flap folded — the floor of the collage. */
-  envelope: { src: '/img/piece-6.webp', w: 3107, h: 2005 },
+  envelope: { src: '/img/piece-6.webp', w: 1290, h: 832 },
   /** Beaded oval frame with a blank window. */
-  ovalFrame: { src: '/img/piece-7.webp', w: 3131, h: 3654 },
+  ovalFrame: { src: '/img/piece-7.webp', w: 1022, h: 1191 },
   /** Embossed "Save the Date" card. */
-  saveTheDate: { src: '/img/piece-8.webp', w: 3124, h: 2938 },
+  saveTheDate: { src: '/img/piece-8.webp', w: 926, h: 871 },
   /** Small square photo frame. */
-  photoFrame: { src: '/img/piece-9.webp', w: 2856, h: 2652 },
+  photoFrame: { src: '/img/piece-9.webp', w: 762, h: 708 },
   /** Lace heart doily — the date is set on it. */
-  heartDoily: { src: '/img/piece-10.webp', w: 3104, h: 2560 },
+  heartDoily: { src: '/img/piece-10.webp', w: 828, h: 683 },
   /** Oval wax seal with a flower. */
-  waxSeal: { src: '/img/piece-11.webp', w: 2172, h: 2776 },
-  peony: { src: '/img/piece-12.webp', w: 2699, h: 2888 },
+  waxSeal: { src: '/img/piece-11.webp', w: 580, h: 741 },
+  peony: { src: '/img/piece-12.webp', w: 722, h: 771 },
   /** Carved oval frame in white. */
-  ovalFrameCarved: { src: '/img/piece-13.webp', w: 2700, h: 3215 },
-  laceBow: { src: '/img/piece-14.webp', w: 3117, h: 3971 },
+  ovalFrameCarved: { src: '/img/piece-13.webp', w: 800, h: 953 },
+  laceBow: { src: '/img/piece-14.webp', w: 831, h: 1059 },
 
   /* The thank-you oval and the pieces laid around it. */
   /** Carved oval frame in sage green — the thank-you plaque. */
-  ovalFrameGreen: { src: '/img/piece-16.webp', w: 2765, h: 3369 },
+  ovalFrameGreen: { src: '/img/piece-16.webp', w: 901, h: 1098 },
   /** The nearer of the two lilies that sit on the oval's shoulder. */
-  lily: { src: '/img/piece-17.webp', w: 2788, h: 2933 },
+  lily: { src: '/img/piece-17.webp', w: 746, h: 784 },
   /** The second lily, set behind and to the right of it. */
-  lilyBack: { src: '/img/piece-18.webp', w: 2701, h: 2526 },
+  lilyBack: { src: '/img/piece-18.webp', w: 722, h: 676 },
   /** Pale green butterfly, resting on the oval's lower edge. */
-  butterflyPale: { src: '/img/piece-19.webp', w: 2413, h: 2790 },
+  butterflyPale: { src: '/img/piece-19.webp', w: 646, h: 746 },
+} as const;
+
+/** The couple's pre-wedding photographs, all shot portrait at 1707x2560. */
+export const couplePhoto = {
+  /** Walking in the garden — soft, atmospheric. */
+  garden: { src: '/cp1.jpg', w: 1707, h: 2560 },
+  /** Studio, full length. */
+  studioFull: { src: '/cp2.jpg', w: 1707, h: 2560 },
+  /** Studio, closer, with the bouquet. */
+  studioPair: { src: '/cp3.jpg', w: 1707, h: 2560 },
+  /** The embrace, caught in motion. */
+  embrace: { src: '/cp4.jpg', w: 1707, h: 2560 },
+  studioVeil: { src: '/cp6.jpg', w: 1707, h: 2560 },
+  /** Studio portrait that reads at small sizes — the one for the oval. */
+  portrait: { src: '/cp7.jpg', w: 1707, h: 2560 },
 } as const;
