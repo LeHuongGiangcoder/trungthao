@@ -1,5 +1,6 @@
 .agenda {
   gap: var(--sp-5);
+  padding-bottom: 8rem !important;
 }
 
 .list {
@@ -7,6 +8,7 @@
   width: 100%;
   max-width: 22rem;
   margin-inline: auto;
+  margin-top: 2.5rem;
   list-style: none;
 }
 

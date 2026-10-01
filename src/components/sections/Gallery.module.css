@@ -26,17 +26,6 @@
   rotate: -4deg;
 }
 
-/* The pearl card fills the bottom-left, tucked under the print's lower edge so
-   it reads as another thing on the pile rather than a spare ornament. */
-.card {
-  position: absolute;
-  bottom: -4%;
-  left: 30%;
-  z-index: 2;
-  width: 36%;
-  rotate: 14deg;
-}
-
 /* A lily behind the pile, bridging the tray and the upper polaroid. */
 .lilyBack {
   position: absolute;
@@ -156,7 +145,7 @@
 .polaroidTop {
   top: 33%;
   right: -7%;
-  z-index: 5;
+  z-index: 6;
   width: 43%;
   rotate: 6deg;
 }
@@ -164,7 +153,7 @@
 .polaroidLow {
   bottom: 3%;
   right: 7%;
-  z-index: 6;
+  z-index: 7;
   width: 37%;
   rotate: -7deg;
 }
@@ -176,27 +165,68 @@
   position: absolute;
   top: 46%;
   left: 52%;
-  z-index: 7;
+  z-index: 8;
   width: 26%;
   rotate: -16deg;
 }
 
-/* Threaded across the front, over the join between the two polaroids. */
+/* Draped across the left corner. Mirrored so the strand falls top-left to
+   bottom-right: the upper end runs off the section's edge and the lower end
+   finishes under the name card, so neither end is left showing. It crosses
+   only the lower corner of the print, clear of the couple. */
 .pearls {
   position: absolute;
-  bottom: 16%;
-  right: -6%;
-  z-index: 7;
-  width: 38%;
-  rotate: -8deg;
+  top: 40%;
+  left: -20%;
+  z-index: 5;
+  width: 56%;
+  scale: -1 1;
   pointer-events: none;
+}
+
+/* The signature tag: small, at the front of the pile, carrying the names on
+   the blank left side of its face — the garland takes up the right. */
+.card {
+  container-type: inline-size;
+  position: absolute;
+  bottom: 7%;
+  left: 7%;
+  z-index: 10;
+  width: 27%;
+  rotate: -10deg;
+  filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.4));
+}
+
+.cardArt {
+  width: 100%;
+}
+
+.cardName {
+  position: absolute;
+  inset: 26% 32% 26% 20%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1cqw;
+  font-family: var(--font-script);
+  font-size: 16cqw;
+  line-height: 1;
+  text-align: center;
+  color: var(--c-green-deep);
+}
+
+.cardAmp {
+  font-family: var(--font-display);
+  font-size: 0.42em;
+  font-style: italic;
+  color: var(--c-green-mid);
 }
 
 .roses {
   position: absolute;
   bottom: -5%;
   left: -14%;
-  z-index: 8;
+  z-index: 9;
   width: 42%;
   pointer-events: none;
 }

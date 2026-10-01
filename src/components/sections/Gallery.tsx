@@ -30,14 +30,6 @@ export function Gallery() {
         />
 
         <Image
-          className={styles.card}
-          src={piece.pearlCard.src}
-          alt=""
-          width={piece.pearlCard.w}
-          height={piece.pearlCard.h}
-        />
-
-        <Image
           className={styles.lilyBack}
           src={piece.lilyBack.src}
           alt=""
@@ -128,6 +120,22 @@ export function Gallery() {
           width={piece.pearls.w}
           height={piece.pearls.h}
         />
+
+        {/* The signature tag, resting on the pile at the front. */}
+        <div className={styles.card}>
+          <Image
+            className={styles.cardArt}
+            src={piece.pearlCard.src}
+            alt=""
+            width={piece.pearlCard.w}
+            height={piece.pearlCard.h}
+          />
+          <p className={styles.cardName}>
+            <span>Trung</span>
+            <span className={styles.cardAmp}>&amp;</span>
+            <span>Thảo</span>
+          </p>
+        </div>
 
         <Image
           className={styles.roses}
