@@ -17,7 +17,12 @@ export function Gallery() {
       labelledBy="gallery-title"
       className={styles.gallery}
     >
-      <SectionHead eyebrow="Khoảnh khắc" title="Gallery" titleId="gallery-title" />
+      <SectionHead eyebrow="Khoảnh khắc" title="Gallery" titleId="gallery-title">
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
+        <p className={styles.subtitle}>Kỷ niệm của chúng mình</p>
+      </SectionHead>
 
       <Reveal className={styles.scene}>
         {/* The tray: set in behind, so the main print lands on top of it. */}

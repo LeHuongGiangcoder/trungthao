@@ -16,7 +16,12 @@ export function Agenda() {
       labelledBy="agenda-title"
       className={styles.agenda}
     >
-      <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title" />
+      <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title">
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
+        <p className={styles.subtitle}>Thời gian dự kiến</p>
+      </SectionHead>
 
       <ol className={styles.list}>
         {agenda.map((stop) => (

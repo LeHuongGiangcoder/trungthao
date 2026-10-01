@@ -3,6 +3,14 @@
   padding-bottom: 8rem !important;
 }
 
+.subtitle {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  letter-spacing: var(--ls-wide);
+  color: var(--tone-body);
+}
+
 .list {
   display: grid;
   width: 100%;

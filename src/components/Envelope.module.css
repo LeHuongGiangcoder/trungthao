@@ -46,10 +46,10 @@
 
 .oval {
   position: absolute;
-  top: 10%;
-  left: 2%;
+  top: 9%;
+  left: 0%;
   z-index: 3;
-  width: 37%;
+  width: 43%;
   rotate: -3deg;
   filter: drop-shadow(0 0.75rem 1.25rem rgba(60, 46, 28, 0.22));
 }
@@ -57,10 +57,10 @@
 /* Set off to the right, clear of the heart, so the window stays whole. */
 .snap {
   position: absolute;
-  top: 31%;
-  left: 58%;
+  top: 33%;
+  left: 57%;
   z-index: 4;
-  width: 26%;
+  width: 31%;
   rotate: 4deg;
   filter: drop-shadow(0 0.5rem 1rem rgba(60, 46, 28, 0.2));
 }
