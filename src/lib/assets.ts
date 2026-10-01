@@ -80,6 +80,16 @@ export const piece = {
   lilyBack: { src: '/img/piece-18.webp', w: 722, h: 676 },
   /** Pale green butterfly, resting on the oval's lower edge. */
   butterflyPale: { src: '/img/piece-19.webp', w: 646, h: 746 },
+
+  /** Scalloped cream card with a strand of pearls laid across it. */
+  pearlCard: { src: '/img/piece-20.webp', w: 730, h: 1034 },
+  /** A loose strand of pearls, for threading between the other pieces. */
+  pearls: { src: '/img/piece-21.webp', w: 722, h: 629 },
+
+  /** One strip of the lace sheet, cut out by scripts/crop-lace.cjs. */
+  laceStrip: { src: '/img/lace-strip.webp', w: 114, h: 1400 },
+  /** The same strip on its side, for a frame's top and bottom edges. */
+  laceStripH: { src: '/img/lace-strip-h.webp', w: 1400, h: 114 },
 } as const;
 
 /** The couple's pre-wedding photographs, all shot portrait at 1707x2560. */

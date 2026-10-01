@@ -12,10 +12,10 @@ export default function Page() {
     <InvitationGate>
       <main className="stage">
         <Hero />
+        <Gallery />
         <WeddingInfo />
         <Agenda />
         <Dresscode />
-        <Gallery />
         <Rsvp />
         <ThankYou />
       </main>

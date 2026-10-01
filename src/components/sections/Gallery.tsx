@@ -4,62 +4,78 @@ import { Section, SectionHead } from '@/components/Section';
 import { backdrop, couplePhoto, piece } from '@/lib/assets';
 import styles from './Gallery.module.css';
 
-/** Two beaded frames hanging on their thread, set off to the left, with a
- *  larger polaroid laid over them to the right. Each photograph sits in a
- *  clipped window beneath its frame, so the beading laps over its edges. */
+/** A collage laid up in layers. The carved oval is the tray at the back, the
+ *  couple's main print sits squarely on it with a lace trim down one edge, and
+ *  the lilies thread between the polaroids so the pieces read as one pile
+ *  rather than separate cut-outs. */
 export function Gallery() {
   return (
     <Section
       id="gallery"
-      tone="light"
-      backdrop={backdrop.damask}
+      tone="dark"
+      backdrop={backdrop.damaskGreen}
       labelledBy="gallery-title"
       className={styles.gallery}
     >
       <SectionHead eyebrow="Khoảnh khắc" title="Gallery" titleId="gallery-title" />
 
       <Reveal className={styles.scene}>
-        <div className={styles.hanging}>
-          <div className={`${styles.window} ${styles.windowTop}`}>
+        {/* The tray: set in behind, so the main print lands on top of it. */}
+        <Image
+          className={styles.tray}
+          src={piece.ovalFrameCarved.src}
+          alt=""
+          width={piece.ovalFrameCarved.w}
+          height={piece.ovalFrameCarved.h}
+        />
+
+        <Image
+          className={styles.card}
+          src={piece.pearlCard.src}
+          alt=""
+          width={piece.pearlCard.w}
+          height={piece.pearlCard.h}
+        />
+
+        <Image
+          className={styles.lilyBack}
+          src={piece.lilyBack.src}
+          alt=""
+          width={piece.lilyBack.w}
+          height={piece.lilyBack.h}
+        />
+
+        <Image
+          className={styles.spray}
+          src={piece.spraySide.src}
+          alt=""
+          width={piece.spraySide.w}
+          height={piece.spraySide.h}
+        />
+
+        {/* The main print. The lace runs round all four edges and is the only
+            border it has — no paper mount underneath. */}
+        <div className={styles.main}>
+          <div className={styles.mainWindow}>
             <Image
               className={styles.photo}
-              src={couplePhoto.studioPair.src}
+              src={couplePhoto.studioVeil.src}
               alt="Bảo Trung và Thu Thảo"
               fill
-              sizes="(min-width: 40rem) 9rem, 30vw"
+              sizes="(min-width: 40rem) 17rem, 60vw"
             />
           </div>
 
-          <div className={`${styles.window} ${styles.windowBottom}`}>
-            <Image
-              className={styles.photo}
-              src={couplePhoto.studioFull.src}
-              alt="Bảo Trung và Thu Thảo"
-              fill
-              sizes="(min-width: 40rem) 12rem, 40vw"
-            />
-          </div>
-
-          <Image
-            className={styles.frames}
-            src={piece.beadFrames.src}
-            alt=""
-            width={piece.beadFrames.w}
-            height={piece.beadFrames.h}
-          />
+          <Image className={styles.laceL} src={piece.laceStrip.src} alt="" width={piece.laceStrip.w} height={piece.laceStrip.h} />
+          <Image className={styles.laceR} src={piece.laceStrip.src} alt="" width={piece.laceStrip.w} height={piece.laceStrip.h} />
+          <Image className={styles.laceT} src={piece.laceStripH.src} alt="" width={piece.laceStripH.w} height={piece.laceStripH.h} />
+          <Image className={styles.laceB} src={piece.laceStripH.src} alt="" width={piece.laceStripH.w} height={piece.laceStripH.h} />
         </div>
 
-        <div className={styles.polaroid}>
-          <div className={styles.polaroidWindow}>
-            <Image
-              className={styles.photo}
-              src={couplePhoto.embrace.src}
-              alt="Bảo Trung và Thu Thảo"
-              fill
-              sizes="(min-width: 40rem) 17rem, 58vw"
-            />
-          </div>
-
+        {/* Both polaroids put the photograph above the frame art: the art's own
+            window carries a half-opaque grey film that would otherwise wash the
+            picture out. object-position keeps the groom in frame. */}
+        <div className={`${styles.polaroid} ${styles.polaroidTop}`}>
           <Image
             className={styles.polaroidArt}
             src={piece.photoFrame.src}
@@ -67,7 +83,59 @@ export function Gallery() {
             width={piece.photoFrame.w}
             height={piece.photoFrame.h}
           />
+          <div className={styles.polaroidWindow}>
+            <Image
+              className={styles.photo}
+              src={couplePhoto.studioPair.src}
+              alt="Bảo Trung và Thu Thảo"
+              fill
+              sizes="(min-width: 40rem) 11rem, 38vw"
+            />
+          </div>
         </div>
+
+        <div className={`${styles.polaroid} ${styles.polaroidLow}`}>
+          <Image
+            className={styles.polaroidArt}
+            src={piece.photoFrame.src}
+            alt=""
+            width={piece.photoFrame.w}
+            height={piece.photoFrame.h}
+          />
+          <div className={styles.polaroidWindow}>
+            <Image
+              className={styles.photo}
+              src={couplePhoto.studioFull.src}
+              alt="Bảo Trung và Thu Thảo"
+              fill
+              sizes="(min-width: 40rem) 10rem, 34vw"
+            />
+          </div>
+        </div>
+
+        <Image
+          className={styles.lilyFront}
+          src={piece.lily.src}
+          alt=""
+          width={piece.lily.w}
+          height={piece.lily.h}
+        />
+
+        <Image
+          className={styles.pearls}
+          src={piece.pearls.src}
+          alt=""
+          width={piece.pearls.w}
+          height={piece.pearls.h}
+        />
+
+        <Image
+          className={styles.roses}
+          src={piece.roseCluster.src}
+          alt=""
+          width={piece.roseCluster.w}
+          height={piece.roseCluster.h}
+        />
       </Reveal>
     </Section>
   );

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop, element, gilt, piece } from '@/lib/assets';
-import { ceremony, couple, thanks } from '@/lib/wedding';
+import { backdrop, couplePhoto, element, piece } from '@/lib/assets';
+import { ceremony, thanks } from '@/lib/wedding';
 import styles from './ThankYou.module.css';
 
 export function ThankYou() {
@@ -10,8 +10,19 @@ export function ThankYou() {
     <Section tone="light" backdrop={backdrop.damask} labelledBy="thanks-title" className={styles.thanks}>
       <Image className={`ornament ${styles.birds}`} src={element.birds} alt="" width={700} height={560} />
 
-      {/* The names sit inside the oval; everything else reads below it. */}
+      {/* A photograph fills the oval. The frame's opening is genuinely cut out,
+          so the picture sits behind it and the moulding masks it to the oval. */}
       <Reveal className={styles.plaque}>
+        <div className={styles.portrait}>
+          <Image
+            className={styles.portraitPhoto}
+            src={couplePhoto.embrace.src}
+            alt="Bảo Trung và Thu Thảo"
+            fill
+            sizes="(min-width: 40rem) 19rem, 64vw"
+          />
+        </div>
+
         <Image
           className={styles.frame}
           src={piece.ovalFrameGreen.src}
@@ -44,15 +55,11 @@ export function ThankYou() {
           height={piece.butterflyPale.h}
         />
 
-        <div className={styles.plaqueInner}>
-          <Image className="section-icon" src={gilt.crest} alt="" width={560} height={635} />
-          <p className={styles.eyebrow}>Thank you</p>
-          <h2 id="thanks-title" className={styles.names}>
-            <span>Trung</span>
-            <span className={styles.and}>&</span>
-            <span>Thảo</span>
-          </h2>
-        </div>
+        {/* The lettering has come off the oval, but the section still needs the
+            heading it is labelled by. */}
+        <h2 id="thanks-title" className="sr-only">
+          Trung &amp; Thảo
+        </h2>
       </Reveal>
 
       <Reveal className={styles.closing} delay={140}>
