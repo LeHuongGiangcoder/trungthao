@@ -137,16 +137,17 @@
 
 /* Above the art, not beneath it — the window in the frame art is a half-opaque
    grey film and washes out anything behind it.
-   The opening is not square to the artwork: scanning it shows the top edge
-   dropping 4.5% of the height across the frame, about 4.8 degrees. An
-   axis-aligned box therefore sits crooked in it, which is what made the white
-   border look uneven, so the window is turned to match. */
+   The opening is not square to the artwork. Tracing its film region gives a
+   clean 581x481 rectangle centred at 50.4%/46.6% and turned 5.4 degrees, so an
+   axis-aligned box sits crooked in it — that is what left the white border
+   looking thicker on one side. These values are that rectangle, grown 1% a
+   side (which keeps the centre) to keep the border slim. */
 .polaroidWindow {
   position: absolute;
-  inset: 12.5% 12% 19%;
+  inset: 11.65% 10.5% 18.45% 11.3%;
+  rotate: 5.4deg;
   z-index: 2;
   overflow: hidden;
-  rotate: 4.8deg;
 }
 
 /* Both photographs are full-length, so the crop is pulled to the top of the

@@ -80,8 +80,11 @@
   border-radius: 50%;
 }
 
+/* Same frame art as the gallery's polaroids, and the same tilted opening: the
+   window is a rectangle turned 5.4 degrees, not square to the picture. */
 .snapWindow {
-  inset: 10% 9% 12%;
+  inset: 11.65% 10.5% 18.45% 11.3%;
+  rotate: 5.4deg;
 }
 
 .photo {
