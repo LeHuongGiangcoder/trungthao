@@ -28,6 +28,7 @@
 .logoWrap {
   display: grid;
   justify-items: center;
+  margin-bottom: 1.5rem;
 }
 
 /* --- Announced under the envelope, as on the printed card ----------------- */
@@ -36,6 +37,7 @@
   justify-items: center;
   gap: var(--sp-2);
   text-align: center;
+  margin-top: 1.5rem;
 }
 
 /* The couple's mark, opening the announcement under the envelope. */
