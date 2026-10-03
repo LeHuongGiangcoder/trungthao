@@ -15,19 +15,23 @@ export function Rsvp() {
       labelledBy="rsvp-title"
       className={styles.rsvp}
     >
+      {/* Callas to either side of the reply card. They sit behind it, not over
+          it: at this column width a group drawn in front covers the fields and
+          the attendance buttons, so they fan out around the card's edges
+          instead. */}
       <Image
-        className={`ornament ${styles.bouquet}`}
-        src={piece.bouquetTall.src}
+        className={`ornament ${styles.callaLeft}`}
+        src={piece.callaCluster.src}
         alt=""
-        width={piece.bouquetTall.w}
-        height={piece.bouquetTall.h}
+        width={piece.callaCluster.w}
+        height={piece.callaCluster.h}
       />
       <Image
-        className={`ornament ${styles.roses}`}
-        src={piece.roseCluster.src}
+        className={`ornament ${styles.callaRight}`}
+        src={piece.callaTall.src}
         alt=""
-        width={piece.roseCluster.w}
-        height={piece.roseCluster.h}
+        width={piece.callaTall.w}
+        height={piece.callaTall.h}
       />
 
       <SectionHead eyebrow={rsvp.eyebrow} title="R.S.V.P" titleId="rsvp-title">

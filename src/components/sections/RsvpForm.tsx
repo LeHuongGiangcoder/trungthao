@@ -46,7 +46,7 @@ export function RsvpForm() {
 
   if (status === 'done') {
     return (
-      <div className={styles.done} role="status">
+      <div className={`paper-card ${styles.done}`} data-tone="light" role="status">
         <p className={styles.doneTitle}>Cảm ơn quý khách</p>
         <span className="rule-diamond" aria-hidden="true">
           <span />
@@ -59,7 +59,7 @@ export function RsvpForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={`paper-card ${styles.form}`} data-tone="light" onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="rsvp-name">
           Họ và tên
@@ -95,7 +95,7 @@ export function RsvpForm() {
       <fieldset className={styles.field}>
         <legend className={styles.label}>Quý khách có tham dự?</legend>
         <div className={styles.choices}>
-          <label className={`btn btn-glass ${styles.choice}`}>
+          <label className={`btn ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -105,7 +105,7 @@ export function RsvpForm() {
             />
             Vui lòng nhận lời
           </label>
-          <label className={`btn btn-glass ${styles.choice}`}>
+          <label className={`btn ${styles.choice}`}>
             <input
               type="radio"
               name="attending"
@@ -168,7 +168,7 @@ export function RsvpForm() {
         </p>
       )}
 
-      <button className={`btn btn-glass-strong ${styles.submit}`} type="submit" disabled={status === 'sending'}>
+      <button className={`btn ${styles.submit}`} type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Đang gửi…' : 'Gửi phản hồi'}
       </button>
     </form>

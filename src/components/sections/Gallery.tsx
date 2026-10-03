@@ -42,16 +42,9 @@ export function Gallery() {
           height={piece.lilyBack.h}
         />
 
-        <Image
-          className={styles.spray}
-          src={piece.spraySide.src}
-          alt=""
-          width={piece.spraySide.w}
-          height={piece.spraySide.h}
-        />
-
-        {/* The main print. The lace runs round all four edges and is the only
-            border it has — no paper mount underneath. */}
+        {/* The main print, in the ruled frame: the box takes the frame art's
+            own proportions and the photograph fills the opening behind it, so
+            the rule laps over the picture's edge. */}
         <div className={styles.main}>
           <div className={styles.mainWindow}>
             <Image
@@ -59,14 +52,17 @@ export function Gallery() {
               src={couplePhoto.studioVeil.src}
               alt="Bảo Trung và Thu Thảo"
               fill
-              sizes="(min-width: 40rem) 17rem, 60vw"
+              sizes="(min-width: 40rem) 15rem, 50vw"
             />
           </div>
 
-          <Image className={styles.laceL} src={piece.laceStrip.src} alt="" width={piece.laceStrip.w} height={piece.laceStrip.h} />
-          <Image className={styles.laceR} src={piece.laceStrip.src} alt="" width={piece.laceStrip.w} height={piece.laceStrip.h} />
-          <Image className={styles.laceT} src={piece.laceStripH.src} alt="" width={piece.laceStripH.w} height={piece.laceStripH.h} />
-          <Image className={styles.laceB} src={piece.laceStripH.src} alt="" width={piece.laceStripH.w} height={piece.laceStripH.h} />
+          <Image
+            className={styles.mainFrame}
+            src={piece.galleryFrame.src}
+            alt=""
+            width={piece.galleryFrame.w}
+            height={piece.galleryFrame.h}
+          />
         </div>
 
         {/* Both polaroids put the photograph above the frame art: the art's own
@@ -141,14 +137,6 @@ export function Gallery() {
             <span>Thảo</span>
           </p>
         </div>
-
-        <Image
-          className={styles.roses}
-          src={piece.roseCluster.src}
-          alt=""
-          width={piece.roseCluster.w}
-          height={piece.roseCluster.h}
-        />
       </Reveal>
     </Section>
   );

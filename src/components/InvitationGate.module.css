@@ -64,6 +64,18 @@
 
 /* --- Lettering on the photograph ----------------------------------------- */
 
+/* The couple's mark, on the clear silk above the greeting. */
+.monogram {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 1;
+  width: auto;
+  height: clamp(2.25rem, 6vh, 3.25rem);
+  opacity: 0.85;
+}
+
 /* On the silk above the envelope. */
 .greeting {
   position: absolute;
@@ -71,7 +83,7 @@
   left: 0;
   right: 0;
   font-family: var(--font-display);
-  font-size: clamp(1rem, 2.8vh, 1.375rem);
+  font-size: clamp(1.4rem, 3.8vh, 2rem);
   font-weight: 600;
   font-style: italic;
   letter-spacing: 0.04em;

@@ -26,14 +26,17 @@ export function Envelope() {
 
       <Image
         className={styles.saveTheDate}
-        src={piece.saveTheDate.src}
+        src={piece.saveTheDateCard.src}
         alt=""
-        width={piece.saveTheDate.w}
-        height={piece.saveTheDate.h}
+        width={piece.saveTheDateCard.w}
+        height={piece.saveTheDateCard.h}
       />
 
+      {/* The mat has no window cut in it, so the portrait is laid on top of
+          the art rather than behind it, clipped to an oval that leaves the
+          scalloped rim and its four sprigs showing. */}
       <div className={styles.oval}>
-        <Image src={piece.ovalFrame.src} alt="" width={piece.ovalFrame.w} height={piece.ovalFrame.h} />
+        <Image src={piece.ovalDoily.src} alt="" width={piece.ovalDoily.w} height={piece.ovalDoily.h} />
         <div className={styles.ovalWindow}>
           {photos.portrait ? (
             <Image className={styles.photo} src={photos.portrait} alt="" fill sizes="50vw" />
@@ -55,7 +58,7 @@ export function Envelope() {
       </div>
 
       <div className={styles.heart}>
-        <Image src={piece.heartDoily.src} alt="" width={piece.heartDoily.w} height={piece.heartDoily.h} />
+        <Image src={piece.heartMat.src} alt="" width={piece.heartMat.w} height={piece.heartMat.h} />
         <p className={styles.heartDate}>{ceremony.dateLine}</p>
       </div>
 

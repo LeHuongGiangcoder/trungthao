@@ -1,6 +1,8 @@
 .dresscode {
   gap: var(--sp-4);
   padding-bottom: 0 !important;
+  overflow: visible !important;
+  z-index: 2;
 }
 
 /* --- Head ----------------------------------------------------------------- */
@@ -124,9 +126,12 @@
   scale: -1 1;
 }
 
+/* Drawn large and sunk well past the corner, so the section clips it through
+   its stems rather than through the blooms: at the old size the clip cut
+   straight across open flowers and read as a cropped edge. */
 .roses {
-  bottom: -2%;
-  right: -22%;
-  width: 42%;
+  bottom: -14%;
+  right: -18%;
+  width: 58%;
 }
 

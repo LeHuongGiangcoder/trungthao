@@ -25,12 +25,24 @@
   margin-inline: auto;
 }
 
+.logoWrap {
+  display: grid;
+  justify-items: center;
+}
+
 /* --- Announced under the envelope, as on the printed card ----------------- */
 .announce {
   display: grid;
   justify-items: center;
   gap: var(--sp-2);
   text-align: center;
+}
+
+/* The couple's mark, opening the announcement under the envelope. */
+.monogram {
+  width: auto;
+  height: 2.6rem;
+  opacity: 0.9;
 }
 
 .eyebrow {

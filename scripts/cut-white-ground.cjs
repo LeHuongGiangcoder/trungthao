@@ -1,4 +1,4 @@
-/* Asset pipeline, final step: turn the pieces that were photographed on a white
+/* Asset pipeline, final step: turn the pieces that were supplied on a white
    ground into real cut-outs.
 
    piece-4 (the hanging beaded frames) is not a cut-out at all — 99% of its
@@ -15,15 +15,25 @@
 const sharp = require('sharp');
 const fs = require('fs');
 
-const PIECES = [4];
+/* Every piece that arrived on a white ground, with the two thresholds it is
+   cut at: pixels within TOLERANCE of white are ground, and the ramp up to
+   FEATHER is the art's own anti-aliased edge.
 
-/** Pure white is 255; the ground sits within this of it on every channel. */
-const TOLERANCE = 10;
-/** Pixels this far from white keep partial alpha, so the lace edge stays soft. */
-const FEATHER = 34;
+   The art/piece2 batch keys more tightly than piece-4 does. Measuring the
+   distance-from-white across those five shows the ground sitting under 5 and
+   the art starting above 25, with well under 1% of pixels in between, so a
+   narrower window cuts cleanly and keeps more of the pale cream paper —
+   piece-4's wider window would start eating into it. */
+const PIECES = [
+  { file: 'public/img/piece-4.webp', tolerance: 10, feather: 34 },
+  { file: 'public/img/hero-oval-doily.webp', tolerance: 6, feather: 24 },
+  { file: 'public/img/hero-save-the-date.webp', tolerance: 6, feather: 24 },
+  { file: 'public/img/hero-heart-doily.webp', tolerance: 6, feather: 24 },
+  { file: 'public/img/calla-tall.webp', tolerance: 6, feather: 24 },
+  { file: 'public/img/calla-cluster.webp', tolerance: 6, feather: 24 },
+];
 
-async function cut(n) {
-  const file = `public/img/piece-${n}.webp`;
+async function cut({ file, tolerance: TOLERANCE, feather: FEATHER }) {
   const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
   const { width: W, height: H } = info;
 
@@ -67,7 +77,8 @@ async function cut(n) {
     .toFile(file);
 
   const pct = ((cleared / (W * H)) * 100).toFixed(1);
-  console.log(`piece-${n}`, `${W}x${H}`, `ground removed: ${pct}%`, (fs.statSync(file).size / 1024).toFixed(0) + 'kb');
+  const name = file.split('/').pop();
+  console.log(name, `${W}x${H}`, `ground removed: ${pct}%`, (fs.statSync(file).size / 1024).toFixed(0) + 'kb');
 }
 
 Promise.all(PIECES.map(cut)).catch((e) => {

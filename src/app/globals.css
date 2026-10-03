@@ -341,6 +341,20 @@ a {
    without it the intrinsic height overrides whatever width the layout sets.
    The art is never faded or blurred — it reads at full strength, like a real
    object laid on the page. Placement does the work instead. */
+/* ==========================================================================
+   Paper card — a real sheet laid on one of the green grounds: the reply card
+   and the order of the evening. Pair it with `data-tone="light"` on the same
+   element, so the type, rules and fields inside read the cream-ground colours
+   rather than the section's.
+   ========================================================================== */
+.paper-card {
+  border-radius: 0.25rem;
+  background: var(--c-paper);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 1.25rem 3rem -1rem rgba(0, 0, 0, 0.5);
+}
+
 .ornament {
   position: absolute;
   z-index: -1;

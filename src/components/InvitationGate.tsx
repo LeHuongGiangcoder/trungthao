@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
-import { backdrop } from '@/lib/assets';
+import { backdrop, monogram } from '@/lib/assets';
 import { ceremony, couple } from '@/lib/wedding';
 import styles from './InvitationGate.module.css';
 
@@ -53,6 +53,14 @@ export function InvitationGate({ children }: { children: ReactNode }) {
               fill
               sizes="(min-width: 40rem) 30rem, 100vw"
               preload
+            />
+
+            <Image
+              className={styles.monogram}
+              src={monogram.green.src}
+              alt=""
+              width={monogram.green.w}
+              height={monogram.green.h}
             />
 
             <p className={styles.greeting}>Dear quý khách,</p>

@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
-import { backdrop } from '@/lib/assets';
+import { backdrop, piece } from '@/lib/assets';
 import { agenda } from '@/lib/wedding';
 import styles from './Agenda.module.css';
 
@@ -16,6 +17,14 @@ export function Agenda() {
       labelledBy="agenda-title"
       className={styles.agenda}
     >
+      <Image
+        className={`ornament ${styles.callas}`}
+        src={piece.spraySide.src}
+        alt=""
+        width={piece.spraySide.w}
+        height={piece.spraySide.h}
+      />
+
       <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title">
         <span className="rule-diamond" aria-hidden="true">
           <span />

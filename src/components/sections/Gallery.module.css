@@ -37,86 +37,55 @@
 /* A lily behind the pile, bridging the tray and the upper polaroid. */
 .lilyBack {
   position: absolute;
-  top: 24%;
+  top: 15%;
   right: 8%;
   z-index: 2;
   width: 34%;
   rotate: 12deg;
 }
 
-/* The spray drapes down past the polaroids rather than sitting apart from
-   them, and is the same floral the rest of the invitation uses. */
-.spray {
-  position: absolute;
-  top: -4%;
-  right: -12%;
-  z-index: 3;
-  width: 34%;
-  rotate: 8deg;
-}
-
 /* --- The main print ------------------------------------------------------- */
-/* The lace is the whole border, so the print carries no paper mount. */
+/* The box takes the frame art's own proportions, so the rule lands exactly on
+   the picture's edge at any width. */
 .main {
   position: absolute;
-  top: 16%;
-  left: 9%;
+  top: 13%;
+  left: 7%;
   z-index: 4;
   width: 58%;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1111 / 1500;
   rotate: -3deg;
-  box-shadow: 0 0.9rem 1.75rem -0.5rem rgba(0, 0, 0, 0.45);
+  /* The rule is a double one, and the picture stops at the inner line. The
+     card is what shows in the margin between the two lines and around the
+     outer one, so the border reads as printed rather than as a hole onto the
+     section behind. */
+  background: var(--c-ivory);
+  filter: drop-shadow(0 0.9rem 1.75rem rgba(0, 0, 0, 0.45));
 }
 
+/* The photograph sits behind the frame art and is inset to the inner rule, so
+   the rule laps over its edge rather than meeting it.
+   Tracing the art away from its corner sprigs puts the double rule at 2.3-3.0%
+   and 4.2-4.6% of the width on each side, and at 1.0-1.2% and 2.0-2.2% of the
+   height: these insets land under the middle of the inner rule, which closes
+   the join without letting the picture show in the gap between the rules. */
 .mainWindow {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 2% 4.3%;
   overflow: hidden;
 }
 
-/* Lace round all four edges, lapping over the photograph. Each strip is far
-   longer than it is wide, so it is sized along its length and the other axis
-   follows — two classes, to outrank the `.scene img` height rule. */
-.main .laceL,
-.main .laceR,
-.main .laceT,
-.main .laceB {
-  position: absolute;
-  z-index: 3;
-  filter: drop-shadow(0 0.15rem 0.35rem rgba(0, 0, 0, 0.35));
+/* Full length and much taller than it is wide in this frame, so the crop is
+   pulled up to keep both faces well inside it. */
+.mainWindow .photo {
+  object-position: 50% 28%;
 }
 
-.main .laceL,
-.main .laceR {
-  top: -3%;
-  width: auto;
-  height: 106%;
-}
-
-.main .laceL {
-  left: -5%;
-}
-
-.main .laceR {
-  right: -5%;
-  scale: -1 1;
-}
-
-.main .laceT,
-.main .laceB {
-  left: -4%;
-  width: 108%;
-  height: auto;
-}
-
-.main .laceT {
-  top: -4%;
-}
-
-.main .laceB {
-  bottom: -4%;
-  scale: 1 -1;
+.main .mainFrame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .photo {
@@ -234,13 +203,4 @@
   font-size: 0.42em;
   font-style: italic;
   color: var(--c-green-mid);
-}
-
-.roses {
-  position: absolute;
-  bottom: -5%;
-  left: -14%;
-  z-index: 9;
-  width: 42%;
-  pointer-events: none;
 }

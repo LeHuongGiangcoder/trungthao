@@ -11,19 +11,28 @@
   color: var(--tone-body);
 }
 
+/* A corner spray, matching the callas on the reply card. */
+.callas {
+  top: 6%;
+  right: -16%;
+  width: 40%;
+}
+
+/* The ground and the shadow come from `.paper-card` in globals. */
 .list {
   display: grid;
   width: 100%;
   max-width: 22rem;
   margin-inline: auto;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
+  padding: var(--sp-5) var(--sp-5) var(--sp-5) var(--sp-4);
   list-style: none;
 }
 
 /* Hour, spine, then the stop itself. */
 .item {
   display: grid;
-  grid-template-columns: 4.75rem 1rem 1fr;
+  grid-template-columns: 4.25rem 1rem 1fr;
   gap: var(--sp-2);
   align-items: stretch;
   /* Dimmed until scrolled to. The lift is deliberately small — these rows are
@@ -56,8 +65,9 @@
   line-height: 1.05;
   letter-spacing: 0.04em;
   text-align: right;
-  /* Gilt against the green, matching the crest above. */
-  color: var(--c-sand);
+  /* Gilt, as on the green ground — but the deeper clay, which is the shade of
+     it that holds against cream paper. */
+  color: var(--c-clay);
 }
 
 /* --- The spine ------------------------------------------------------------ */
@@ -87,7 +97,7 @@
   width: 0.45rem;
   height: 0.45rem;
   rotate: 45deg;
-  background: var(--c-sand);
+  background: var(--c-clay);
 }
 
 /* --- The stop ------------------------------------------------------------- */

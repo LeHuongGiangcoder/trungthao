@@ -1,7 +1,8 @@
+import Image from 'next/image';
 import { Envelope } from '@/components/Envelope';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop } from '@/lib/assets';
+import { backdrop, monogram } from '@/lib/assets';
 import { couple } from '@/lib/wedding';
 import styles from './Hero.module.css';
 
@@ -12,11 +13,21 @@ export function Hero() {
     <Section id="thiep" tone="light" backdrop={backdrop.drape} labelledBy="hero-names" className={styles.hero}>
       <div className={styles.wash} />
 
-      <Reveal className={styles.cardWrap}>
+      <Reveal className={styles.logoWrap}>
+        <Image
+          className={styles.monogram}
+          src={monogram.green.src}
+          alt=""
+          width={monogram.green.w}
+          height={monogram.green.h}
+        />
+      </Reveal>
+
+      <Reveal className={styles.cardWrap} delay={160}>
         <Envelope />
       </Reveal>
 
-      <Reveal className={styles.announce} delay={160}>
+      <Reveal className={styles.announce} delay={320}>
         <p className={styles.eyebrow}>Trân trọng kính mời</p>
         <h1 id="hero-names" className={styles.names}>
           <span>{couple.groom.name}</span>

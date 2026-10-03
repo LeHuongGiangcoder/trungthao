@@ -1,14 +1,16 @@
-/* Two sprays frame the reply card, one high and one low. */
-.bouquet {
-  top: -2%;
-  right: -20%;
-  width: 40%;
+/* The callas, one group to each side of the reply card. The left group is
+   mirrored so both lean in towards the card rather than away from it. */
+.callaLeft {
+  top: 55%;
+  left: -8%;
+  width: 28%;
+  scale: -1 1;
 }
 
-.roses {
-  bottom: -4%;
-  left: -18%;
-  width: 42%;
+.callaRight {
+  top: 25%;
+  right: -10%;
+  width: 30%;
 }
 
 .rsvp {
@@ -24,22 +26,16 @@
 
 /* --- Form ---------------------------------------------------------------- */
 
-/* The fields sit on their own panel, as on a reply card. */
+/* The ground and the shadow come from `.paper-card` in globals; this is only
+   its size and the fields' rhythm. */
 .form {
   display: grid;
   gap: var(--sp-4);
   width: 100%;
   max-width: 26rem;
   margin-inline: auto;
-  padding: var(--sp-5) var(--sp-5) var(--sp-6);
-  border: 1px solid var(--tone-rule);
-  border-radius: 0.5rem;
-  background: var(--panel-bg);
-  backdrop-filter: blur(0.75rem) saturate(1.15);
-  -webkit-backdrop-filter: blur(0.75rem) saturate(1.15);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 1rem 2.5rem -1rem rgba(0, 0, 0, 0.45);
+  padding: var(--sp-7) var(--sp-5) var(--sp-8);
+  box-shadow: none;
 }
 
 .field {
@@ -108,7 +104,11 @@
   resize: vertical;
 }
 
-/* Attendance is a two-up choice built from real radios. */
+/* Attendance is a two-up choice built from real radios. These carry no glass
+   class: on an opaque card the frosting has nothing to sit over, and the glass
+   rules are keyed to the section's dark tone, which would set ivory type on
+   cream paper. The states are drawn flat instead — a green hairline unchosen,
+   the green itself once chosen. */
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -119,8 +119,11 @@
   position: relative;
   min-height: 3rem;
   padding: 0.7rem 0.5rem;
+  border-color: var(--field-border);
+  background: var(--field-bg);
   font-size: 0.688rem;
   letter-spacing: 0.08em;
+  color: var(--c-green);
 }
 
 .choice input {
@@ -131,12 +134,10 @@
 }
 
 .choice:has(input:checked) {
-  border-color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.78);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 0.4rem 1rem -0.4rem rgba(0, 0, 0, 0.35);
-  color: var(--c-green-deep);
+  border-color: var(--c-green-deep);
+  background: var(--c-green-deep);
+  box-shadow: 0 0.4rem 1rem -0.4rem rgba(19, 60, 43, 0.5);
+  color: var(--c-ivory);
 }
 
 .choice:has(input:focus-visible) {
@@ -144,9 +145,19 @@
   outline-offset: 3px;
 }
 
+/* The one solid mark on the card, so the action is unmistakable against all
+   the hairline rules around it. */
 .submit {
   margin-top: var(--sp-2);
   min-height: 3.1rem;
+  border-color: var(--c-green-deep);
+  background: var(--c-green-deep);
+  box-shadow: 0 0.5rem 1.25rem -0.5rem rgba(19, 60, 43, 0.55);
+  color: var(--c-ivory);
+}
+
+.submit:hover {
+  background: var(--c-green);
 }
 
 .error {
@@ -165,8 +176,6 @@
   max-width: 26rem;
   margin-inline: auto;
   padding: var(--sp-6) var(--sp-5);
-  border: 1px solid var(--tone-rule);
-  background: var(--panel-bg);
   text-align: center;
 }
 

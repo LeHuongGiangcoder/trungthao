@@ -86,6 +86,21 @@ export const piece = {
   /** A loose strand of pearls, for threading between the other pieces. */
   pearls: { src: '/img/piece-21.webp', w: 722, h: 629 },
 
+  /* The second batch of art, supplied named rather than numbered.
+     Sources live in art/piece2; regenerate with `node scripts/optimize-piece2.cjs`. */
+  /** Scalloped oval mat with an eyelet border — the hero's portrait sits on it. */
+  ovalDoily: { src: '/img/hero-oval-doily.webp', w: 957, h: 1119 },
+  /** Embossed "Save the Date" card, engraved border and all. */
+  saveTheDateCard: { src: '/img/hero-save-the-date.webp', w: 881, h: 1131 },
+  /** Lace heart mat — the date is set on it. */
+  heartMat: { src: '/img/hero-heart-doily.webp', w: 904, h: 834 },
+  /** Fine double rule with gilt corner sprigs — the gallery's main print. */
+  galleryFrame: { src: '/img/gallery-frame.webp', w: 1111, h: 1971 },
+  /** Calla lilies and craspedia on tall stems, with trailing amaranthus. */
+  callaTall: { src: '/img/calla-tall.webp', w: 503, h: 1497 },
+  /** A shorter cluster of the same callas and craspedia. */
+  callaCluster: { src: '/img/calla-cluster.webp', w: 515, h: 1000 },
+
   /** One strip of the lace sheet, cut out by scripts/crop-lace.cjs. */
   laceStrip: { src: '/img/lace-strip.webp', w: 114, h: 1400 },
   /** The same strip on its side, for a frame's top and bottom edges. */
@@ -105,4 +120,10 @@ export const couplePhoto = {
   studioVeil: { src: '/cp6.jpg', w: 1707, h: 2560 },
   /** Studio portrait that reads at small sizes — the one for the oval. */
   portrait: { src: '/cp7.jpg', w: 1707, h: 2560 },
+} as const;
+
+/** The couple's interlocking monogram, re-inked in the palette's deep green.
+ *  Regenerate with `node scripts/monogram.cjs`. */
+export const monogram = {
+  green: { src: '/img/monogram-green.webp', w: 600, h: 596 },
 } as const;
