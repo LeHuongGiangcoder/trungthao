@@ -21,17 +21,17 @@ export function Rsvp() {
           instead. */}
       <Image
         className={`ornament ${styles.callaLeft}`}
-        src={piece.callaCluster.src}
+        src="/lily_left.png"
         alt=""
-        width={piece.callaCluster.w}
-        height={piece.callaCluster.h}
+        width={3375}
+        height={6000}
       />
       <Image
         className={`ornament ${styles.callaRight}`}
-        src={piece.callaTall.src}
+        src="/lily_right.png"
         alt=""
-        width={piece.callaTall.w}
-        height={piece.callaTall.h}
+        width={3375}
+        height={6000}
       />
 
       <SectionHead eyebrow={rsvp.eyebrow} title="R.S.V.P" titleId="rsvp-title">
