@@ -11,9 +11,8 @@
   color: var(--tone-body);
 }
 
-/* A corner spray, matching the callas on the reply card. */
 .callas {
-  top: 6%;
+  top: -2%;
   right: -16%;
   width: 40%;
 }
