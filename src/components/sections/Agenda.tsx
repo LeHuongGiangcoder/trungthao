@@ -17,13 +17,7 @@ export function Agenda() {
       labelledBy="agenda-title"
       className={styles.agenda}
     >
-      <Image
-        className={`ornament ${styles.callas}`}
-        src={piece.spraySide.src}
-        alt=""
-        width={piece.spraySide.w}
-        height={piece.spraySide.h}
-      />
+
 
       <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title">
         <span className="rule-diamond" aria-hidden="true">

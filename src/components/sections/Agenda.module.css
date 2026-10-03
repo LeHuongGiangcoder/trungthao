@@ -11,11 +11,7 @@
   color: var(--tone-body);
 }
 
-.callas {
-  top: -2%;
-  right: -16%;
-  width: 40%;
-}
+
 
 /* The ground and the shadow come from `.paper-card` in globals. */
 .list {
