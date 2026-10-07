@@ -77,6 +77,11 @@
   top: 26.8%;
   left: -3%;
   width: 106%;
+  /* `max-width: none` is load-bearing: the global `img { max-width: 100% }`
+     otherwise clamps this back to the collage's width while `left` still
+     shifts it by the full overhang, leaving the card off-centre and its
+     right-hand lobe cut inside the stage. */
+  max-width: none;
 }
 
 /* The invitation's lines sit on this, laid over the card's dome. It is drawn
