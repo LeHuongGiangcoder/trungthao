@@ -1,90 +1,103 @@
- /* The opening view, and the only section pinned to the viewport: it carries
-    the scroll hint, so it has to be the whole first screen. */
+/* The opening view, and the only section pinned to the viewport: it carries
+   the scroll hint, so it has to be the whole first screen. */
 .hero {
-  gap: var(--sp-4);
+  gap: var(--sp-5);
   min-height: 100svh;
-  align-content: center;
+  /* The envelope's pocket is flush with the screen's bottom edge, as on the
+     printed card, so the stack is anchored down and the green band above it
+     takes up whatever is left. */
+  align-content: end;
+  padding: var(--section-top) 0 0;
 }
 
-/* Warms the silk toward the palette so the collage sits on something quiet. */
-.wash {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: radial-gradient(
-    115% 62% at 50% 42%,
-    rgba(251, 247, 240, 0.72) 0%,
-    rgba(251, 247, 240, 0.14) 62%,
-    rgba(251, 247, 240, 0) 100%
-  );
-}
-
-.cardWrap {
-  position: relative;
+.headingWrap {
   width: 100%;
-  margin-inline: auto;
+  padding-inline: var(--gutter);
+  margin-bottom: var(--sp-8);
 }
 
-.logoWrap {
+.heading {
   display: grid;
   justify-items: center;
-  margin-bottom: 1.5rem;
+  font-size: 0; /* the heading is drawn art; nothing is set in type */
 }
 
-/* --- Announced under the envelope, as on the printed card ----------------- */
-.announce {
+.headingArt {
+  width: min(100%, 22rem);
+  height: auto;
+}
+
+/* --- The card, the doily and the pocket, laid up as one object -----------
+   Every piece is placed in percentages of this box and the box keeps a fixed
+   aspect ratio, so the arrangement holds at any width. */
+.collage {
+  position: relative;
+  justify-self: stretch;
+  margin-inline: -8%;
+  max-width: 34rem;
+  aspect-ratio: 404 / 520;
+}
+
+.collage img {
+  height: auto;
+}
+
+/* The lace card, rising out of the pocket: its crown clears the envelope and
+   its straight sides run down behind the flaps, as on the printed card. */
+.card {
+  position: absolute;
+  top: 2%;
+  left: 5%;
+  width: 90%;
+}
+
+/* The invitation's lines sit on this, centred on the card's face. */
+.oval {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+}
+
+.oval img {
+  width: 100%;
+}
+
+/* Inside the oval's clear field, clear of the lace border all round. */
+.lines {
+  position: absolute;
+  inset: 16% 14%;
   display: grid;
+  align-content: center;
   justify-items: center;
-  gap: var(--sp-2);
+  gap: 1.2em;
   text-align: center;
-  margin-top: 1.5rem;
 }
 
-/* The couple's mark, opening the announcement under the envelope. */
-.monogram {
-  width: auto;
-  height: 2.6rem;
-  opacity: 0.9;
-}
-
-.eyebrow {
+.invite {
   font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
+  font-size: clamp(0.875rem, 3.9vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.75;
   color: var(--c-green);
 }
 
-/* Stacked, with the ampersand on its own line: the two Vietnamese names are
-   too long to set side by side at this size on a phone. */
-.names {
-  display: grid;
-  justify-items: center;
-  gap: 0.04em;
-  font-family: var(--font-script);
-  font-size: var(--fs-2xl);
-  font-weight: 400;
-  line-height: 1.05;
-  color: var(--c-green-deep);
+.date {
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 3.2vw, 0.938rem);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  color: var(--c-clay);
 }
 
-.and {
-  font-family: var(--font-display);
-  font-size: 0.32em;
-  letter-spacing: 0.1em;
-  font-style: italic;
-  color: var(--c-green-mid);
-}
-
-.lead {
-  max-width: 24rem;
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  text-wrap: balance;
-  color: var(--c-ink-soft);
+/* The envelope's front pocket, anchored to the bottom of the box — the card
+   disappears behind it. */
+.pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  filter: drop-shadow(0 -0.75rem 1.5rem rgba(0, 0, 0, 0.18));
 }
 
 .scrollHint {
@@ -99,13 +112,14 @@
   font-size: 0.625rem;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--c-ink-faint);
+  /* It lands on the envelope's cream pocket, so it is inked in green. */
+  color: rgba(43, 89, 65, 0.6);
 }
 
 .scrollLine {
   width: 1px;
   height: 1.5rem;
-  background: linear-gradient(to bottom, rgba(43, 89, 65, 0.45), transparent);
+  background: linear-gradient(to bottom, rgba(43, 89, 65, 0.5), transparent);
   animation: drop 2.4s var(--ease-in-out) infinite;
   transform-origin: top;
 }

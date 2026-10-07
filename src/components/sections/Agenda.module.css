@@ -55,14 +55,13 @@
 .time {
   font-family: var(--font-display);
   font-size: var(--fs-lg);
-  font-weight: 400;
+  font-weight: 700;
   font-variant-numeric: lining-nums tabular-nums;
   line-height: 1.05;
   letter-spacing: 0.04em;
   text-align: right;
-  /* Gilt, as on the green ground — but the deeper clay, which is the shade of
-     it that holds against cream paper. */
-  color: var(--c-clay);
+  /* Đổi sang màu vàng cát tự nhiên, sáng đủ nhưng không bị chói */
+  color: var(--c-sand);
 }
 
 /* --- The spine ------------------------------------------------------------ */

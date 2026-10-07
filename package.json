@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "assets": "node scripts/optimize-assets.cjs && node scripts/optimize-pieces.cjs && node scripts/optimize-piece2.cjs && node scripts/monogram.cjs && node scripts/clean-elements.cjs && node scripts/cut-white-ground.cjs && node scripts/crop-lace.cjs"
+    "assets": "node scripts/optimize-assets.cjs && node scripts/optimize-pieces.cjs && node scripts/optimize-piece2.cjs && node scripts/monogram.cjs && node scripts/clean-elements.cjs && node scripts/cut-white-ground.cjs && node scripts/crop-lace.cjs && node scripts/optimize-intro.cjs"
   },
   "dependencies": {
     "next": "16.3.7",

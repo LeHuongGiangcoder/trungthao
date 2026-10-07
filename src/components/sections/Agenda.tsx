@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
-import { backdrop, piece } from '@/lib/assets';
+import { backdrop } from '@/lib/assets';
 import { agenda } from '@/lib/wedding';
 import styles from './Agenda.module.css';
 
@@ -17,8 +16,6 @@ export function Agenda() {
       labelledBy="agenda-title"
       className={styles.agenda}
     >
-
-
       <SectionHead eyebrow="Trình tự buổi lễ" title="Chương Trình" titleId="agenda-title">
         <span className="rule-diamond" aria-hidden="true">
           <span />

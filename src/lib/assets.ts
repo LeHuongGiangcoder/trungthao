@@ -107,6 +107,27 @@ export const piece = {
   laceStripH: { src: '/img/lace-strip-h.webp', w: 1400, h: 114 },
 } as const;
 
+/** The intro's two screens — the sealed envelope and the save-the-date card.
+ *  Sources live in art/intro; regenerate with `node scripts/optimize-intro.cjs`. */
+export const intro = {
+  /** The sealed envelope, flap folded down — screen one. */
+  envelopeBack: { src: '/img/intro-envelope-back.webp', w: 1200, h: 879 },
+  /** The envelope's front pocket, lace-scalloped — it overlaps the card. */
+  envelopeFront: { src: '/img/intro-envelope-front.webp', w: 1200, h: 790 },
+  /** The card rising out of the envelope, lace scallops along its top. */
+  laceCard: { src: '/img/intro-lace-card.webp', w: 1200, h: 1350 },
+  /** The lace oval the invitation's lines are set on. */
+  ovalDoily: { src: '/img/intro-oval-doily.webp', w: 1000, h: 1307 },
+  /** "Save the Date", drawn in gilt — the card's heading. */
+  saveTheDate: { src: '/img/intro-save-the-date.webp', w: 1100, h: 209 },
+  /** Green wax blob, stamped on the envelope's flap. */
+  waxSeal: { src: '/img/intro-wax-seal.webp', w: 500, h: 480 },
+  /** The gilt T&T mark pressed into the wax. */
+  monogram: { src: '/img/intro-monogram.webp', w: 500, h: 501 },
+  /** The gilt ampersand set between the two names. */
+  ampersand: { src: '/img/intro-ampersand.webp', w: 400, h: 400 },
+} as const;
+
 /** The couple's pre-wedding photographs, all shot portrait at 1707x2560. */
 export const couplePhoto = {
   /** Walking in the garden — soft, atmospheric. */

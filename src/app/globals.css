@@ -22,6 +22,11 @@
   --c-green-mid: #4a7358;
   --c-green-soft: #8aa392;
 
+  /* The gilt the intro's lettering and ornaments are drawn in — sampled from
+     the art itself, so type set beside it matches rather than merely rhymes. */
+  --c-gilt: #d0be92;
+  --c-gilt-bright: #edd9ad;
+
   /* --- Semantic ---------------------------------------------------------- */
   --bg-page: var(--c-green-deep);
   --bg-stage: var(--c-paper);
