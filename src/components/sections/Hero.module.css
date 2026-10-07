@@ -75,8 +75,8 @@
 .card {
   position: absolute;
   top: 26.8%;
-  left: -3%;
-  width: 106%;
+  left: -7%;
+  width: 114%;
   /* `max-width: none` is load-bearing: the global `img { max-width: 100% }`
      otherwise clamps this back to the collage's width while `left` still
      shifts it by the full overhang, leaving the card off-centre and its
@@ -88,9 +88,9 @@
    narrower than the card so the dome's lace shows to either side of it. */
 .oval {
   position: absolute;
-  top: 11.7%;
-  left: 10%;
-  width: 80%;
+  top: 10.5%;
+  left: 6%;
+  width: 88%;
 }
 
 .oval img {
@@ -102,7 +102,7 @@
    lower third. */
 .lines {
   position: absolute;
-  inset: 14% 15% 24%;
+  inset: 13% 12% 23%;
   display: grid;
   align-content: center;
   justify-items: center;
@@ -112,7 +112,7 @@
 
 .invite {
   font-family: var(--font-hand);
-  font-size: clamp(1.125rem, 5vw, 1.5rem);
+  font-size: clamp(1.25rem, 5.9vw, 1.75rem);
   font-weight: 500;
   line-height: 1.6;
   color: var(--c-green);
@@ -120,7 +120,7 @@
 
 .date {
   font-family: var(--font-display);
-  font-size: clamp(0.813rem, 3.4vw, 1rem);
+  font-size: clamp(0.875rem, 3.9vw, 1.125rem);
   font-weight: 600;
   letter-spacing: var(--ls-wide);
   color: var(--c-clay);
