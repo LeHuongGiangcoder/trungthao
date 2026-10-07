@@ -64,14 +64,19 @@
   height: auto;
 }
 
-/* The dome clears the envelope; the body below it does not, and is not meant
-   to. Its edge sits at 54.8% + 0.289/1.532 = 73.7% of the box, against the
-   envelope's opaque line at 76.3%. */
+/* The back of the envelope, and the ground the oval is laid on. Its scalloped
+   dome IS its top edge: the lobes curve outward and only reach the card's full
+   width at 32% of its height, so there is no flat edge to hide — as long as
+   the piece is never cropped horizontally. Cropping it (an `object-fit: cover`
+   at the collage's width) cuts the lobes off and leaves the body's flat top
+   ruled across the green, which is what went wrong before. So it is placed at
+   its natural size, drawn a few percent wider than the collage so the last of
+   the lobe curve falls outside the stage, and nothing else is done to it. */
 .card {
   position: absolute;
-  top: 54.8%;
-  left: 4%;
-  width: 92%;
+  top: 26.8%;
+  left: -3%;
+  width: 106%;
 }
 
 /* The invitation's lines sit on this, laid over the card's dome. It is drawn
