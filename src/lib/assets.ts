@@ -128,6 +128,55 @@ export const intro = {
   ampersand: { src: '/img/intro-ampersand.webp', w: 400, h: 400 },
 } as const;
 
+/** The story, info and closing screens. Every piece is drawn on the same 9:16
+ *  frame with its placement already in it, so a screen stacks these at
+ *  `inset: 0` and the composition comes from the art rather than from CSS.
+ *  Sources live in art/story; regenerate with `node scripts/optimize-story.cjs`. */
+export const story = {
+  /** Cream card with an embossed oval moulding — the welcome screen's ground. */
+  ovalCard: { src: '/img/story-oval-card.webp', w: 1000, h: 1778 },
+  /** The full-length studio portrait that fills that oval. */
+  ovalPhoto: { src: '/img/story-oval-photo.webp', w: 1100, h: 1650 },
+  /** "Welcome to our", in gilt caps and green italic. */
+  welcome: { src: '/img/story-welcome.webp', w: 800, h: 1422 },
+  /** "Wedding", in green script. */
+  wedding: { src: '/img/story-wedding.webp', w: 800, h: 1422 },
+
+  /** The couple under the veil, studio ground and all. */
+  veil: { src: '/img/story-veil.webp', w: 1100, h: 1956 },
+  /** The same frame cut out of its ground — kept for laying on another screen. */
+  veilCutout: { src: '/img/story-veil-cutout.webp', w: 1100, h: 1956 },
+  /** "Trung / Thu Thao", in white handwriting. */
+  veilNames: { src: '/img/story-veil-names.webp', w: 800, h: 1422 },
+
+  /** Travertine, warm and close-grained — the polaroid screen's ground. */
+  stone: { src: '/img/story-stone.webp', w: 900, h: 1600 },
+  /** Two snapshots, one laid across the other. */
+  polaroids: { src: '/img/story-polaroids.webp', w: 1100, h: 1956 },
+  /** "Two souls, one promise.", in green script. */
+  twoSouls: { src: '/img/story-two-souls.webp', w: 800, h: 1422 },
+
+  /** The couple in a fine double-ruled frame. */
+  framed: { src: '/img/story-framed.webp', w: 1100, h: 1956 },
+  /** "Bao Trung & Thu Thao" and the date, set under that frame. */
+  framedCaption: { src: '/img/story-framed-caption.webp', w: 800, h: 1422 },
+
+  /** White embossed damask — the invitation card's ground. */
+  infoDamask: { src: '/img/story-info-damask.webp', w: 1000, h: 1778 },
+  /** The card itself: a fine double rule with cut corners. */
+  infoFrame: { src: '/img/story-info-frame.webp', w: 800, h: 1422 },
+  /** Everything engraved on that card, drawn as one block. */
+  infoText: { src: '/img/story-info-text.webp', w: 800, h: 1422 },
+
+  /** Line-drawn blossom, falling in from two opposite corners. */
+  thanksFlorals: { src: '/img/story-thanks-florals.webp', w: 800, h: 1422 },
+
+  /** The closing photograph — the two of them, close. */
+  closingPhoto: { src: '/img/story-closing-photo.webp', w: 1100, h: 1956 },
+  /** "Bao Trung and Thu Thao", in white handwriting, laid over it. */
+  closingNames: { src: '/img/story-closing-names.webp', w: 800, h: 1422 },
+} as const;
+
 /** The couple's pre-wedding photographs, all shot portrait at 1707x2560. */
 export const couplePhoto = {
   /** Walking in the garden — soft, atmospheric. */

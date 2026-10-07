@@ -1,15 +1,19 @@
-/* The callas, one group to each side of the reply card. The left group is
-   mirrored so both lean in towards the card rather than away from it. */
-.callaLeft {
-  top: 55%;
-  left: -8%;
-  width: 28%;
+/* One cluster to each corner, at full strength: the panel below them is
+   see-through, so there is nothing for a faded floral to sit against. The
+   left one opens the section at the top; the right one closes it at the
+   bottom, clear of the heading either way. */
+.clusterLeft {
+  top: -4%;
+  left: -14%;
+  width: 48%;
+  rotate: 6deg;
 }
 
-.callaRight {
-  top: 25%;
-  right: -10%;
-  width: 30%;
+.clusterRight {
+  bottom: -3%;
+  right: -14%;
+  width: 44%;
+  rotate: -8deg;
 }
 
 .rsvp {
@@ -25,16 +29,26 @@
 
 /* --- Form ---------------------------------------------------------------- */
 
-/* The ground and the shadow come from `.paper-card` in globals; this is only
-   its size and the fields' rhythm. */
-.form {
-  display: grid;
-  gap: var(--sp-4);
+/* Not a card laid on the ground but a pane of it: the damask reads straight
+   through, and only a hairline and a breath of light mark the panel's edge.
+   It keeps the section's dark tone, so the type, fields and rules inside all
+   read the ivory-on-green set rather than the cream-paper one. */
+.panel {
   width: 100%;
   max-width: 26rem;
   margin-inline: auto;
   padding: var(--sp-7) var(--sp-5) var(--sp-8);
-  box-shadow: none;
+  border: 1px solid var(--tone-rule);
+  border-radius: 0.25rem;
+  background: var(--panel-bg);
+  backdrop-filter: blur(0.25rem);
+  -webkit-backdrop-filter: blur(0.25rem);
+}
+
+.form {
+  composes: panel;
+  display: grid;
+  gap: var(--sp-4);
 }
 
 .field {
@@ -103,11 +117,10 @@
   resize: vertical;
 }
 
-/* Attendance is a two-up choice built from real radios. These carry no glass
-   class: on an opaque card the frosting has nothing to sit over, and the glass
-   rules are keyed to the section's dark tone, which would set ivory type on
-   cream paper. The states are drawn flat instead — a green hairline unchosen,
-   the green itself once chosen. */
+/* Attendance is a two-up choice built from real radios. The states are drawn
+   flat — a hairline unchosen, a solid once chosen. On the see-through panel
+   the solid is the ivory, not the green: a dark green fill on a green ground
+   would barely show. */
 .choices {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -122,7 +135,7 @@
   background: var(--field-bg);
   font-size: 0.688rem;
   letter-spacing: 0.08em;
-  color: var(--c-green);
+  color: var(--tone-fg);
 }
 
 .choice input {
@@ -133,10 +146,10 @@
 }
 
 .choice:has(input:checked) {
-  border-color: var(--c-green-deep);
-  background: var(--c-green-deep);
-  box-shadow: 0 0.4rem 1rem -0.4rem rgba(19, 60, 43, 0.5);
-  color: var(--c-ivory);
+  border-color: var(--c-ivory);
+  background: var(--c-ivory);
+  box-shadow: 0 0.4rem 1rem -0.4rem rgba(0, 0, 0, 0.35);
+  color: var(--c-green-deep);
 }
 
 .choice:has(input:focus-visible) {
@@ -144,37 +157,34 @@
   outline-offset: 3px;
 }
 
-/* The one solid mark on the card, so the action is unmistakable against all
+/* The one solid mark on the panel, so the action is unmistakable against all
    the hairline rules around it. */
 .submit {
   margin-top: var(--sp-2);
   min-height: 3.1rem;
-  border-color: var(--c-green-deep);
-  background: var(--c-green-deep);
-  box-shadow: 0 0.5rem 1.25rem -0.5rem rgba(19, 60, 43, 0.55);
-  color: var(--c-ivory);
+  border-color: var(--c-ivory);
+  background: var(--c-ivory);
+  box-shadow: 0 0.5rem 1.25rem -0.5rem rgba(0, 0, 0, 0.45);
+  color: var(--c-green-deep);
 }
 
 .submit:hover {
-  background: var(--c-green);
+  background: #fff;
 }
 
 .error {
   font-family: var(--font-display);
   font-size: var(--fs-sm);
   text-align: center;
-  color: #a8442f;
+  color: #ffb4a2;
 }
 
 /* --- Confirmation --------------------------------------------------------- */
 .done {
+  composes: panel;
   display: grid;
   justify-items: center;
   gap: var(--sp-3);
-  width: 100%;
-  max-width: 26rem;
-  margin-inline: auto;
-  padding: var(--sp-6) var(--sp-5);
   text-align: center;
 }
 

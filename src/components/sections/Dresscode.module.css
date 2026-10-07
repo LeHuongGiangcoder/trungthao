@@ -61,7 +61,7 @@
   justify-content: center;
   width: 100%;
   /* The outer chips are drawn past their columns, so the row needs room. */
-  padding-inline: 4cqw;
+  padding-inline: 7cqw;
   list-style: none;
 }
 
@@ -74,15 +74,17 @@
   gap: 2cqw;
 }
 
-/* Wider than its column, so each chip laps over the one before it. */
+/* Wider than its column, so each chip laps over the one before it. The
+   palette runs from black to white, so the ring is what keeps the pale end
+   off the paper. */
 .chip {
-  width: 128%;
+  width: 132%;
   aspect-ratio: 1;
-  margin-inline: -14%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  margin-inline: -16%;
+  border: 1px solid rgba(60, 46, 28, 0.28);
   border-radius: 50%;
   background: var(--chip);
-  box-shadow: 0 0.2rem 0.5rem -0.15rem rgba(60, 46, 28, 0.45);
+  box-shadow: 0 0.2rem 0.5rem -0.15rem rgba(60, 46, 28, 0.35);
 }
 
 .chipName {

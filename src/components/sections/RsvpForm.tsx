@@ -46,7 +46,7 @@ export function RsvpForm() {
 
   if (status === 'done') {
     return (
-      <div className={`paper-card ${styles.done}`} data-tone="light" role="status">
+      <div className={styles.done} role="status">
         <p className={styles.doneTitle}>Cảm ơn quý khách</p>
         <span className="rule-diamond" aria-hidden="true">
           <span />
@@ -59,7 +59,7 @@ export function RsvpForm() {
   }
 
   return (
-    <form className={`paper-card ${styles.form}`} data-tone="light" onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
         <label className={styles.label} htmlFor="rsvp-name">
           Họ và tên

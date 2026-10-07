@@ -37,6 +37,10 @@
   position: relative;
   display: grid;
   grid-template-rows: 1fr auto 1fr;
+  /* An explicit column: against an auto-sized one the envelope resolves its
+     width from its own art rather than from the frame, and comes out both
+     oversized and off-centre. */
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   align-items: center;
   width: 100%;
@@ -82,11 +86,15 @@
 }
 
 /* --- The envelope -------------------------------------------------------- */
+/* Drawn wider than the frame's gutter so it reads as a real envelope laid on
+   the silk. `justify-self: center` is load-bearing: stretched, the box aligns
+   to the start of its area once `max-width` bites, and the envelope slides
+   off centre on anything wider than a phone. */
 .envelope {
   position: relative;
-  justify-self: stretch;
-  margin-inline: -8%;
-  max-width: 28rem;
+  justify-self: center;
+  width: calc(100% + 16%);
+  max-width: 26rem;
 }
 
 .paper {

@@ -1,13 +1,18 @@
 /* The opening view, and the only section pinned to the viewport: it carries
    the scroll hint, so it has to be the whole first screen. */
 .hero {
-  gap: var(--sp-5);
+  gap: var(--sp-4);
   min-height: 100svh;
   /* The envelope's pocket is flush with the screen's bottom edge, as on the
      printed card, so the stack is anchored down and the green band above it
      takes up whatever is left. */
   align-content: end;
-  padding: var(--section-top) 0 0;
+  /* An explicit column: the collage holds its shape with `aspect-ratio` and
+     has no in-flow content, so against an auto-sized column it would resolve
+     its width from its height and spill out of the stage. */
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+  padding: var(--sp-7) 0 0;
 }
 
 .headingWrap {
@@ -32,31 +37,43 @@
    aspect ratio, so the arrangement holds at any width. */
 .collage {
   position: relative;
-  justify-self: stretch;
-  margin-inline: -8%;
-  max-width: 34rem;
-  aspect-ratio: 404 / 520;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--stage-w);
+  aspect-ratio: 404 / 540;
 }
 
 .collage img {
   height: auto;
 }
 
+/* `.collage img` above sets `height: auto` for the pieces sized by their art;
+   the card is sized by its box instead, so it keeps the height set below. */
+.collage img.card {
+  height: 98%;
+}
+
 /* The lace card, rising out of the pocket: its crown clears the envelope and
-   its straight sides run down behind the flaps, as on the printed card. */
+   its straight sides run down behind the flaps, as on the printed card.
+   It is run to the bottom of the box and cropped there rather than sized by
+   its own art, so its cut bottom edge never shows as a seam across the
+   envelope — what is lost to the crop is blank card. */
 .card {
   position: absolute;
   top: 2%;
   left: 5%;
   width: 90%;
+  height: 98%;
+  object-fit: cover;
+  object-position: top center;
 }
 
 /* The invitation's lines sit on this, centred on the card's face. */
 .oval {
   position: absolute;
-  top: 0;
-  left: 15%;
-  width: 70%;
+  top: 2%;
+  left: 16%;
+  width: 68%;
 }
 
 .oval img {

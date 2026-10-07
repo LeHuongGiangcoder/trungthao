@@ -47,13 +47,12 @@ export const dresscode = {
   note:
     'Để khung hình ngày cưới thật hoà hợp, kính mời quý khách lựa chọn trang phục theo bảng màu dưới đây.',
   swatches: [
-    { name: 'Kem ngà', hex: '#F4EBDD' },
-    { name: 'Be cát', hex: '#E0CFB4' },
-    { name: 'Nâu đất', hex: '#9D8A6C' },
-    { name: 'Xanh rêu', hex: '#4A7358' },
-    { name: 'Rêu đậm', hex: '#133C2B' },
+    { name: 'Đen', hex: '#111111' },
+    { name: 'Be phấn', hex: '#F4DCC5' },
+    { name: 'Hồng phấn', hex: '#F7DEE0' },
+    { name: 'Trắng', hex: '#FFFFFF' },
   ],
-  avoid: 'Xin hạn chế sắc trắng tinh và đỏ rực.',
+  avoid: 'Xin hạn chế sắc đỏ rực và các gam màu quá nổi.',
 } as const;
 
 export const rsvp = {
@@ -66,7 +65,8 @@ export const rsvp = {
 export const thanks = {
   lines: [
     'Cảm ơn quý khách đã dành thời gian',
-    'đồng hành cùng chúng tôi trong ngày trọng đại.',
+    'đồng hành cùng chúng tôi',
+    'trong ngày trọng đại.',
   ],
   sign: 'Rất hân hạnh được đón tiếp!',
 } as const;

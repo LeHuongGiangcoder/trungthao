@@ -1,72 +1,54 @@
-import Image from 'next/image';
-import { Reveal } from '@/components/Reveal';
-import { Section, SectionHead } from '@/components/Section';
-import { backdrop, piece } from '@/lib/assets';
-import { ceremony } from '@/lib/wedding';
+import { Layer, Screen } from '@/components/Screen';
+import { story } from '@/lib/assets';
+import { ceremony, couple, families } from '@/lib/wedding';
 import styles from './WeddingInfo.module.css';
 
-/** When and where, both engraved on the swan plaque — one card rather than
- *  two objects competing for the screen. */
+/**
+ * The invitation proper: one engraved card on embossed damask.
+ *
+ * The lettering is part of the art, so the same words are repeated here for
+ * screen readers and for anyone searching the page — the card itself carries
+ * no selectable text.
+ */
 export function WeddingInfo() {
   return (
-    <Section
+    <Screen
       id="thoi-gian"
       tone="light"
-      backdrop={backdrop.damask}
+      ground={story.infoDamask}
       labelledBy="info-title"
       className={styles.info}
     >
-      <Image
-        className={`ornament ${styles.bouquet}`}
-        src={piece.bouquetTall.src}
-        alt=""
-        width={piece.bouquetTall.w}
-        height={piece.bouquetTall.h}
-      />
-      <Image
-        className={`ornament ${styles.roses}`}
-        src={piece.roseCluster.src}
-        alt=""
-        width={piece.roseCluster.w}
-        height={piece.roseCluster.h}
-      />
+      <Layer art={story.infoFrame} />
+      <Layer art={story.infoText} />
 
-      <SectionHead eyebrow="Thời gian & Địa điểm" title="Ngày Cưới" titleId="info-title" />
+      <div className="sr-only">
+        <h2 id="info-title">Thiệp mời</h2>
+        <p>Trân trọng kính mời đến dự tiệc mừng lễ thành hôn cùng gia đình chúng tôi</p>
+        <p>
+          {couple.groom.name} và {couple.bride.name}
+        </p>
+        <p>
+          Vào hồi {ceremony.time}, {ceremony.weekday} {ceremony.dateLine} ({ceremony.lunar})
+        </p>
+        <p>
+          Tại {ceremony.hall}, {ceremony.venue}, {ceremony.address}
+        </p>
+        {families.map((family) => (
+          <p key={family.side}>
+            {family.side}: {family.father}, {family.mother}
+          </p>
+        ))}
+      </div>
 
-      <Reveal className={styles.plaque}>
-        <Image
-          className={styles.plaqueArt}
-          src={piece.swanPlaque.src}
-          alt=""
-          width={piece.swanPlaque.w}
-          height={piece.swanPlaque.h}
-          sizes="(min-width: 40rem) 29rem, 96vw"
-        />
-
-        <div className={styles.plaqueFace}>
-          <p className={styles.weekday}>{ceremony.weekday}</p>
-          <p className={styles.date}>{ceremony.dateLine}</p>
-          <p className={styles.time}>{ceremony.time}</p>
-          <p className={styles.lunar}>{ceremony.lunar}</p>
-
-          <span className={styles.rule} />
-
-          <p className={styles.hall}>{ceremony.hall}</p>
-          <p className={styles.venue}>{ceremony.venue}</p>
-          <p className={styles.address}>{ceremony.address}</p>
-        </div>
-      </Reveal>
-
-      <Reveal delay={200}>
-        <a
-          className={`btn btn-outline ${styles.mapLink}`}
-          href={ceremony.mapUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Xem bản đồ
-        </a>
-      </Reveal>
-    </Section>
+      <a
+        className={styles.mapLink}
+        href={ceremony.mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Xem bản đồ
+      </a>
+    </Screen>
   );
 }

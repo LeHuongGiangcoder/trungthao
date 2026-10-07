@@ -1,0 +1,53 @@
+/* The four story screens. Each one is a stack of full-frame art; what is left
+   here is the ground behind it and the few pieces the art cannot carry. */
+
+.welcome {
+  background: var(--c-ivory);
+}
+
+/* The opening the card's moulding draws, in percentages of the sheet. */
+.oval {
+  position: absolute;
+  top: 23.5%;
+  left: 22%;
+  width: 56%;
+  height: 53%;
+  clip-path: ellipse(50% 50% at 50% 50%);
+}
+
+.oval img {
+  object-fit: cover;
+}
+
+.veil {
+  background: var(--c-cream);
+}
+
+/* Lifted up and out to the open ground at the top right: written where the
+   art places it, the couple's cut-out would swallow it whole instead of just
+   catching its edges. */
+.veilNames {
+  translate: 3% -21%;
+}
+
+.twoSouls {
+  background: var(--c-sand);
+}
+
+.polaroids {
+  translate: 0 4%;
+}
+
+.twoSoulsLine {
+  translate: 0 -27%;
+}
+
+.portrait {
+  background: var(--c-ivory);
+}
+
+/* The signature is drawn across the middle of its frame; it belongs under the
+   picture. */
+.caption {
+  translate: 0 35%;
+}
