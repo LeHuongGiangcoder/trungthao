@@ -40,7 +40,7 @@
   justify-self: center;
   width: 100%;
   max-width: var(--stage-w);
-  aspect-ratio: 404 / 540;
+  aspect-ratio: 404 / 619;
 }
 
 .collage img {
@@ -61,8 +61,8 @@
 .card {
   position: absolute;
   top: 2%;
-  left: 5%;
-  width: 90%;
+  left: 1%;
+  width: 98%;
   height: 98%;
   object-fit: cover;
   object-position: top center;
@@ -72,8 +72,8 @@
 .oval {
   position: absolute;
   top: 2%;
-  left: 16%;
-  width: 68%;
+  left: 9%;
+  width: 82%;
 }
 
 .oval img {
@@ -92,16 +92,16 @@
 }
 
 .invite {
-  font-family: var(--font-display);
-  font-size: clamp(0.875rem, 3.9vw, 1.125rem);
+  font-family: var(--font-hand);
+  font-size: clamp(1.125rem, 5vw, 1.5rem);
   font-weight: 500;
-  line-height: 1.75;
+  line-height: 1.6;
   color: var(--c-green);
 }
 
 .date {
   font-family: var(--font-display);
-  font-size: clamp(0.75rem, 3.2vw, 0.938rem);
+  font-size: clamp(0.813rem, 3.4vw, 1rem);
   font-weight: 600;
   letter-spacing: var(--ls-wide);
   color: var(--c-clay);

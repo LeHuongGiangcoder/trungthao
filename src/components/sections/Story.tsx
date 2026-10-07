@@ -46,7 +46,27 @@ export function Veil() {
   return (
     <Screen tone="light" labelledBy="veil-title" className={styles.veil}>
       <Layer art={story.veil} alt={`${couple.groom.name} và ${couple.bride.name}`} />
-      <Layer art={story.veilNames} className={styles.veilNames} />
+
+      {/* The two lines are placed separately rather than as one frame: written
+          together they sit too far apart to fall in the open ground beside the
+          couple, and only one of them ever reads. */}
+      <Image
+        className={styles.nameTrung}
+        src={story.nameTrung.src}
+        alt=""
+        width={story.nameTrung.w}
+        height={story.nameTrung.h}
+        sizes="(min-width: 40rem) 15rem, 48vw"
+      />
+      <Image
+        className={styles.nameThao}
+        src={story.nameThao.src}
+        alt=""
+        width={story.nameThao.w}
+        height={story.nameThao.h}
+        sizes="(min-width: 40rem) 13rem, 42vw"
+      />
+
       <Layer art={story.veilCutout} />
 
       <h2 id="veil-title" className="sr-only">

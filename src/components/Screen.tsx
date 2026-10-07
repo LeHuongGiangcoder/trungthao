@@ -22,6 +22,7 @@ export function Screen({
   tone,
   ground,
   groundAlt = '',
+  tall,
   labelledBy,
   className,
   children,
@@ -30,6 +31,9 @@ export function Screen({
   tone: Tone;
   ground?: Art;
   groundAlt?: string;
+  /** Let the screen run to the full viewport instead of holding 9:16. Only
+   *  for screens whose art is a ground, with no layers to keep in register. */
+  tall?: boolean;
   labelledBy?: string;
   className?: string;
   children: ReactNode;
@@ -38,7 +42,7 @@ export function Screen({
     <section
       id={id}
       data-tone={tone}
-      className={className ? `${styles.screen} ${className}` : styles.screen}
+      className={[styles.screen, tall ? styles.tall : '', className ?? ''].filter(Boolean).join(' ')}
       aria-labelledby={labelledBy}
     >
       {ground ? (

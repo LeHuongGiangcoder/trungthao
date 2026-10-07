@@ -8,10 +8,10 @@
 /* The opening the card's moulding draws, in percentages of the sheet. */
 .oval {
   position: absolute;
-  top: 23.5%;
-  left: 22%;
-  width: 56%;
-  height: 53%;
+  top: 21.9%;
+  left: 18.6%;
+  width: 62.8%;
+  height: 56.2%;
   clip-path: ellipse(50% 50% at 50% 50%);
 }
 
@@ -23,14 +23,27 @@
   background: var(--c-cream);
 }
 
-/* Drawn smaller and carried up into the open ground at the top right. Written
-   where the art places it, the couple's cut-out swallows it whole; the two
-   lines also sit far enough apart that only closing them up keeps the second
-   one off the dress. Scaling from the top right does both at once. */
-.veilNames {
-  scale: 0.58;
-  transform-origin: 100% 0%;
-  translate: 1% -3%;
+/* The two lines, laid over the open ground at the top right and overlapping
+   one another the way a signature does. Both sit between the photograph and
+   the couple's cut-out, so the writing passes behind them. */
+.nameTrung,
+.nameThao {
+  position: absolute;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.nameTrung {
+  top: 1%;
+  left: 31%;
+  width: 50%;
+}
+
+.nameThao {
+  top: 11%;
+  left: 55%;
+  width: 42%;
 }
 
 .twoSouls {
@@ -38,11 +51,11 @@
 }
 
 .polaroids {
-  translate: 0 4%;
+  translate: 0 0%;
 }
 
 .twoSoulsLine {
-  translate: 0 -27%;
+  translate: 0 -23%;
 }
 
 .portrait {

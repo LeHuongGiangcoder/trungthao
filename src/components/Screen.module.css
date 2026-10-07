@@ -13,6 +13,15 @@
   color: var(--tone-fg);
 }
 
+/* Taller than the frame, for a screen whose art is only a ground: the border
+   then covers the screen and crops, which both fills the viewport and widens
+   the clear band the text sits in. Never for a screen with layers to hold in
+   register, since the crop would move them against one another. */
+.tall {
+  aspect-ratio: auto;
+  min-height: 100svh;
+}
+
 /* Painted under everything else, filling the same frame. */
 .ground {
   position: absolute;

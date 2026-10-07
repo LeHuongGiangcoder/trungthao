@@ -146,8 +146,12 @@ export const story = {
   veil: { src: '/img/story-veil.webp', w: 1100, h: 1956 },
   /** The same frame cut out of its ground — kept for laying on another screen. */
   veilCutout: { src: '/img/story-veil-cutout.webp', w: 1100, h: 1956 },
-  /** "Trung / Thu Thao", in white handwriting. */
+  /** "Trung / Thu Thao", in white handwriting, on the shared frame. */
   veilNames: { src: '/img/story-veil-names.webp', w: 800, h: 1422 },
+  /** The same two lines cut apart and trimmed, so the veil screen can lay
+   *  each one over the couple on its own. */
+  nameTrung: { src: '/img/story-name-trung.webp', w: 700, h: 512 },
+  nameThao: { src: '/img/story-name-thao.webp', w: 700, h: 401 },
 
   /** Travertine, warm and close-grained — the polaroid screen's ground. */
   stone: { src: '/img/story-stone.webp', w: 900, h: 1600 },

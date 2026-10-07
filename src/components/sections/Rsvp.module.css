@@ -127,14 +127,22 @@
   gap: var(--sp-3);
 }
 
+/* `display: grid` rather than the button's own flex: as a flex container the
+   label's text shrinks to its longest word and breaks after every one, which
+   turns the chosen side into a four-line blob. */
 .choice {
   position: relative;
-  min-height: 3rem;
-  padding: 0.7rem 0.5rem;
+  display: grid;
+  place-items: center;
+  min-height: 3.25rem;
+  padding: 0.7rem 0.4rem;
   border-color: var(--field-border);
+  border-radius: 1.75rem;
   background: var(--field-bg);
-  font-size: 0.688rem;
-  letter-spacing: 0.08em;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-wrap: balance;
   color: var(--tone-fg);
 }
 

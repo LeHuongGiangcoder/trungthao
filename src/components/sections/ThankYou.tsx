@@ -9,6 +9,7 @@ export function ThankYou() {
     <Screen
       tone="light"
       ground={story.thanksFlorals}
+      tall
       labelledBy="thanks-title"
       className={styles.thanks}
     >

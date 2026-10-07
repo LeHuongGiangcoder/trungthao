@@ -47,4 +47,41 @@ async function run() {
   }
 }
 
-run().catch((e) => { console.error(e); process.exit(1); });
+/* The couple's names are drawn as one piece, the two lines far apart on the
+   frame. The veil screen has to tuck each one behind the couple separately, so
+   they are cut apart here — at the clear row between them — and trimmed to
+   their own ink. */
+const NAME_LINES = {
+  'name-trung': [0.17, 0.46],
+  'name-thao': [0.46, 0.78],
+};
+
+async function splitNames() {
+  const src = 'art/story/veil-names.png';
+  const { width, height } = await sharp(src).metadata();
+
+  for (const [name, [y0, y1]] of Object.entries(NAME_LINES)) {
+    const top = Math.round(height * y0);
+    const out = path.join(OUT, `story-${name}.webp`);
+
+    /* Two passes: sharp will not trim and extract in one pipeline. */
+    const cut = await sharp(src)
+      .extract({ left: 0, top, width, height: Math.round(height * y1) - top })
+      .png()
+      .toBuffer();
+
+    await sharp(cut)
+      /* A higher threshold than the other batches use: these strokes are
+         drawn with a soft halo that a threshold of 1 counts as ink, leaving
+         the piece padded and impossible to place by its own box. */
+      .trim({ threshold: 14 })
+      .resize({ width: 700, withoutEnlargement: true })
+      .webp({ quality: 86, alphaQuality: 92 })
+      .toFile(out);
+
+    const meta = await sharp(out).metadata();
+    console.log(`story-${name}`, `${meta.width}x${meta.height}`, (fs.statSync(out).size / 1024).toFixed(0) + 'kb');
+  }
+}
+
+run().then(splitNames).catch((e) => { console.error(e); process.exit(1); });
