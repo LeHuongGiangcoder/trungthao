@@ -44,6 +44,8 @@
 
   /* --- Typography -------------------------------------------------------- */
   --font-script: var(--font-pinyon), "Apple Chancery", cursive;
+  /* The softer hand, for the one passage that is addressed to the guest. */
+  --font-hand: var(--font-dancing), "Snell Roundhand", cursive;
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-body: var(--font-sans), system-ui, -apple-system, sans-serif;
 

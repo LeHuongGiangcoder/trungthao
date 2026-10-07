@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Be_Vietnam_Pro, Cormorant_Garamond, Pinyon_Script } from "next/font/google";
+import { Be_Vietnam_Pro, Cormorant_Garamond, Dancing_Script, Pinyon_Script } from "next/font/google";
 import { ceremony, couple } from "@/lib/wedding";
 import "./globals.css";
 
-/* All three carry the `vietnamese` subset, so diacritics never fall back. */
+/* All four carry the `vietnamese` subset, so diacritics never fall back. */
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin", "vietnamese"],
@@ -18,6 +18,15 @@ const pinyon = Pinyon_Script({
   variable: "--font-pinyon",
   subsets: ["latin", "vietnamese"],
   weight: "400",
+  display: "swap",
+});
+
+/* Softer and rounder than Pinyon, and legible at paragraph length — the hand
+   the thanks are written in. */
+const dancing = Dancing_Script({
+  variable: "--font-dancing",
+  subsets: ["latin", "vietnamese"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -43,7 +52,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${cormorant.variable} ${pinyon.variable} ${sans.variable}`}>
+    <html lang="vi" className={`${cormorant.variable} ${pinyon.variable} ${dancing.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -12,12 +12,17 @@
   display: grid;
   align-content: center;
   justify-items: center;
+  /* A touch below centre, where the blossom has drawn back furthest on both
+     sides and the longest line clears it. */
+  translate: 0 5%;
   gap: 0.15em;
-  padding-inline: var(--gutter);
-  font-family: var(--font-display);
-  font-size: var(--fs-md);
-  font-style: italic;
-  line-height: 1.5;
+  /* Held well inside the frame: the blossom closes in from both corners, and
+     the longest line runs into it at the full column width. */
+  padding-inline: 12%;
+  font-family: var(--font-hand);
+  font-size: clamp(1.25rem, 5.1vw, 1.5rem);
+  font-weight: 500;
+  line-height: 1.45;
   text-align: center;
   text-wrap: balance;
   color: var(--c-green);
@@ -28,9 +33,10 @@
 }
 
 .date {
-  margin-top: 1.6em;
-  font-size: 0.78em;
-  font-style: normal;
+  margin-top: 1.5em;
+  font-family: var(--font-display);
+  font-size: 0.62em;
+  font-weight: 500;
   letter-spacing: var(--ls-wide);
   color: var(--c-clay);
 }

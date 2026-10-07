@@ -38,7 +38,7 @@ export function Closing() {
     >
       <Layer art={story.closingNames} className={styles.closingNames} />
 
-      <p className={styles.closingDate}>{ceremony.dateLine}</p>
+      <p className={styles.closingDate}>{ceremony.dateLine.replaceAll(' . ', '.')}</p>
 
       <h2 id="closing-title" className="sr-only">
         {couple.groom.name} and {couple.bride.name}

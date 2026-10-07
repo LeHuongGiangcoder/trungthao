@@ -3,6 +3,21 @@
   background: var(--c-ivory);
 }
 
+/* Set on the damask above the card, in the clear band the engraving leaves. */
+.title {
+  position: absolute;
+  top: 7%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  font-family: var(--font-script);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  color: var(--c-green);
+}
+
 /* Set on the damask below the card, drawn as the same fine rule the card's
    own border is engraved in rather than as one of the glass buttons. */
 .mapLink {

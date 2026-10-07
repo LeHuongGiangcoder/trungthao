@@ -78,9 +78,9 @@
    palette runs from black to white, so the ring is what keeps the pale end
    off the paper. */
 .chip {
-  width: 132%;
+  width: 114%;
   aspect-ratio: 1;
-  margin-inline: -16%;
+  margin-inline: -8%;
   border: 1px solid rgba(60, 46, 28, 0.28);
   border-radius: 50%;
   background: var(--chip);

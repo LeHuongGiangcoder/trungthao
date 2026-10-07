@@ -44,7 +44,7 @@ export function Welcome() {
  */
 export function Veil() {
   return (
-    <Screen tone="light" fit="cover" labelledBy="veil-title" className={styles.veil}>
+    <Screen tone="light" labelledBy="veil-title" className={styles.veil}>
       <Layer art={story.veil} alt={`${couple.groom.name} và ${couple.bride.name}`} />
       <Layer art={story.veilNames} className={styles.veilNames} />
       <Layer art={story.veilCutout} />

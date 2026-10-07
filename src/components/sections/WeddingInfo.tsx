@@ -22,8 +22,11 @@ export function WeddingInfo() {
       <Layer art={story.infoFrame} />
       <Layer art={story.infoText} />
 
+      <h2 id="info-title" className={styles.title}>
+        Thông tin đám cưới
+      </h2>
+
       <div className="sr-only">
-        <h2 id="info-title">Thiệp mời</h2>
         <p>Trân trọng kính mời đến dự tiệc mừng lễ thành hôn cùng gia đình chúng tôi</p>
         <p>
           {couple.groom.name} và {couple.bride.name}
