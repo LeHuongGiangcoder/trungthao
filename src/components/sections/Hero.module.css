@@ -71,9 +71,9 @@
 /* The invitation's lines sit on this, centred on the card's face. */
 .oval {
   position: absolute;
-  top: 2%;
-  left: 9%;
-  width: 82%;
+  top: 0;
+  left: 11%;
+  width: 78%;
 }
 
 .oval img {
@@ -108,12 +108,14 @@
 }
 
 /* The envelope's front pocket, anchored to the bottom of the box — the card
-   disappears behind it. */
+   disappears behind it. Drawn a little wider than the stage and clipped, so
+   its mouth closes high enough to take in the bottom of the oval — at exactly
+   the stage's width the oval's lower lobe shows through the opening. */
 .pocket {
   position: absolute;
   bottom: 0;
-  left: 0;
-  width: 100%;
+  left: -6%;
+  width: 112%;
   filter: drop-shadow(0 -0.75rem 1.5rem rgba(0, 0, 0, 0.18));
 }
 

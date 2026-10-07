@@ -21,6 +21,28 @@ const WIDTH = {
   'intro-ampersand': 400,
 };
 
+/* The card and the envelope's front pocket arrive at about 65% opacity, so
+   everything laid behind them reads straight through the paper and the stack
+   stops looking like an envelope at all. Their alpha is pushed back to solid
+   where there is paper, keeping the feathered rim that the lower end of the
+   ramp covers. The lettering, the seal and the monogram are ink and are left
+   exactly as drawn. */
+const SOLID = new Set(['lace-card', 'envelope-front']);
+const SOLID_FROM = 150; // alpha at and above this becomes fully opaque
+
+async function harden(buf) {
+  const { data, info } = await sharp(buf).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+
+  for (let i = 3; i < data.length; i += info.channels) {
+    const a = data[i];
+    data[i] = a < 30 ? 0 : Math.min(255, Math.round((a * 255) / SOLID_FROM));
+  }
+
+  return sharp(data, { raw: { width: info.width, height: info.height, channels: info.channels } })
+    .png()
+    .toBuffer();
+}
+
 async function run() {
   const names = fs
     .readdirSync('art/intro')
@@ -32,7 +54,8 @@ async function run() {
     const out = `intro-${name}`;
     /* Trim first: these are 9:16 export frames, so each piece sits in a sea
        of transparency that would otherwise eat the resize budget. */
-    const buf = await sharp(`art/intro/${name}.png`).trim({ threshold: 1 }).png().toBuffer();
+    let buf = await sharp(`art/intro/${name}.png`).trim({ threshold: 1 }).png().toBuffer();
+    if (SOLID.has(name)) buf = await harden(buf);
 
     const file = path.join(OUT, `${out}.webp`);
     await sharp(buf)
