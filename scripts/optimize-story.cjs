@@ -48,34 +48,42 @@ async function run() {
 }
 
 /* The couple's names are drawn as one piece, the two lines far apart on the
-   frame. The veil screen has to tuck each one behind the couple separately, so
-   they are cut apart here — at the clear row between them — and trimmed to
-   their own ink. */
+   frame, and the second line carries "Thu" as well. The veil screen wants one
+   word per line — Trung, Thảo — each tucked behind the couple on its own.
+   So each line is cut out as a band and "Thu" is cleared from the second.
+   The bands keep the FULL frame width rather than being trimmed to their ink:
+   laid out at `width: 100%` they then share one horizontal scale, so the two
+   words are the same size by construction rather than by matching numbers. */
 const NAME_LINES = {
-  'name-trung': [0.17, 0.46],
-  'name-thao': [0.46, 0.78],
+  'name-trung': { y: [0.233, 0.42], from: 0 },
+  'name-thao': { y: [0.505, 0.715], from: 0.465 },
 };
 
 async function splitNames() {
   const src = 'art/story/veil-names.png';
   const { width, height } = await sharp(src).metadata();
 
-  for (const [name, [y0, y1]] of Object.entries(NAME_LINES)) {
-    const top = Math.round(height * y0);
-    const out = path.join(OUT, `story-${name}.webp`);
+  for (const [name, { y, from }] of Object.entries(NAME_LINES)) {
+    const top = Math.round(height * y[0]);
+    const left = Math.round(width * from);
 
-    /* Two passes: sharp will not trim and extract in one pipeline. */
-    const cut = await sharp(src)
-      .extract({ left: 0, top, width, height: Math.round(height * y1) - top })
+    let buf = await sharp(src)
+      .extract({ left, top, width: width - left, height: Math.round(height * y[1]) - top })
       .png()
       .toBuffer();
 
-    await sharp(cut)
-      /* A higher threshold than the other batches use: these strokes are
-         drawn with a soft halo that a threshold of 1 counts as ink, leaving
-         the piece padded and impossible to place by its own box. */
-      .trim({ threshold: 14 })
-      .resize({ width: 700, withoutEnlargement: true })
+    /* Padded back out to the frame's width, so both bands stay in the same
+       coordinate system as one another. */
+    if (left > 0) {
+      buf = await sharp(buf)
+        .extend({ left, background: { r: 0, g: 0, b: 0, alpha: 0 } })
+        .png()
+        .toBuffer();
+    }
+
+    const out = path.join(OUT, `story-${name}.webp`);
+    await sharp(buf)
+      .resize({ width: 1000, withoutEnlargement: true })
       .webp({ quality: 86, alphaQuality: 92 })
       .toFile(out);
 

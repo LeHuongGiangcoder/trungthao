@@ -148,10 +148,11 @@ export const story = {
   veilCutout: { src: '/img/story-veil-cutout.webp', w: 1100, h: 1956 },
   /** "Trung / Thu Thao", in white handwriting, on the shared frame. */
   veilNames: { src: '/img/story-veil-names.webp', w: 800, h: 1422 },
-  /** The same two lines cut apart and trimmed, so the veil screen can lay
-   *  each one over the couple on its own. */
-  nameTrung: { src: '/img/story-name-trung.webp', w: 700, h: 512 },
-  nameThao: { src: '/img/story-name-thao.webp', w: 700, h: 401 },
+  /** The two words cut out as separate bands, each still the full width of
+   *  the frame — laid out at `width: 100%` they share one scale, so Trung and
+   *  Thảo are the same size without having to be matched by hand. */
+  nameTrung: { src: '/img/story-name-trung.webp', w: 1000, h: 332 },
+  nameThao: { src: '/img/story-name-thao.webp', w: 1000, h: 373 },
 
   /** Travertine, warm and close-grained — the polaroid screen's ground. */
   stone: { src: '/img/story-stone.webp', w: 900, h: 1600 },

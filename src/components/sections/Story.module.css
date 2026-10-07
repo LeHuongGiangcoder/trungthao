@@ -23,27 +23,41 @@
   background: var(--c-cream);
 }
 
-/* The two lines, laid over the open ground at the top right and overlapping
+/* The two words, laid over the open ground at the top right and overlapping
    one another the way a signature does. Both sit between the photograph and
-   the couple's cut-out, so the writing passes behind them. */
+   the couple's cut-out, so the writing passes behind them.
+
+   Each band is the full width of the frame it was drawn on, so one shared
+   `scale` renders both words at the same size; `transform-origin: 0 0` then
+   makes the placement arithmetic simple — a word's ink lands at
+   `scale * (its place on the frame) + translate`. */
 .nameTrung,
 .nameThao {
   position: absolute;
+  left: 0;
+  width: 100%;
   height: auto;
+  transform-origin: 0 0;
+  /* One value for both: this is what makes the two words the same size.
+     Change it and they stay matched; change only one and they stop being
+     the same hand. */
+  scale: 1.05;
   pointer-events: none;
   user-select: none;
 }
 
+/* Ink sits at 0.297–0.715 across its own band, so it lands at
+   1.05 x 0.297 + 0.018 = 0.33 of the screen. */
 .nameTrung {
-  top: 3.5%;
-  left: 29%;
-  width: 50%;
+  top: 3.3%;
+  translate: 1.8%;
 }
 
+/* Ink sits at 0.482–0.794, landing at 0.62 — set down and to the right of
+   Trung, the two crossing the way a signature does. */
 .nameThao {
-  top: 13.5%;
-  left: 52%;
-  width: 42%;
+  top: 16.2%;
+  translate: 11.4%;
 }
 
 .twoSouls {

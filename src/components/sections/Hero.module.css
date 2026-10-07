@@ -32,9 +32,26 @@
   height: auto;
 }
 
-/* --- The card, the doily and the pocket, laid up as one object -----------
-   Every piece is placed in percentages of this box and the box keeps a fixed
-   aspect ratio, so the arrangement holds at any width. */
+/* --- The card, the doily and the envelope, laid up as one object ---------
+
+   Placed from the three pieces' own silhouettes rather than by eye, because
+   one of them constrains everything else:
+
+   - the envelope front is two flap wedges over an open middle, going fully
+     opaque across its whole width at 45% of its own height;
+   - the lace card is a scalloped dome for its top 30%, and below that a plain
+     solid rectangle the full width of the art;
+   - the doily is the lace oval, at its widest across its own middle.
+
+   The card's body therefore has a straight top edge running its whole width,
+   and the only thing that can hide it is the envelope. So the card is set low
+   enough that the edge lands below the envelope's opaque line, leaving just
+   its dome above — which is the lace that shows at the oval's shoulders. The
+   card is NOT cropped, masked or object-fitted; it is simply placed where its
+   edge cannot be seen, and the overflow is clipped by the section.
+
+   Horizontal percentages are fractions of the collage's width, vertical ones
+   of its height, which is 1.532x the width. */
 .collage {
   position: relative;
   justify-self: center;
@@ -47,47 +64,39 @@
   height: auto;
 }
 
-/* `.collage img` above sets `height: auto` for the pieces sized by their art;
-   the card is sized by its box instead, so it keeps the height set below. */
-.collage img.card {
-  height: 98%;
-}
-
-/* The lace card, rising out of the pocket: its crown clears the envelope and
-   its straight sides run down behind the flaps, as on the printed card.
-   It is run to the bottom of the box and cropped there rather than sized by
-   its own art, so its cut bottom edge never shows as a seam across the
-   envelope — what is lost to the crop is blank card. */
+/* The dome clears the envelope; the body below it does not, and is not meant
+   to. Its edge sits at 54.8% + 0.289/1.532 = 73.7% of the box, against the
+   envelope's opaque line at 76.3%. */
 .card {
   position: absolute;
-  top: 2%;
-  left: 1%;
-  width: 98%;
-  height: 98%;
-  object-fit: cover;
-  object-position: top center;
+  top: 54.8%;
+  left: 4%;
+  width: 92%;
 }
 
-/* The invitation's lines sit on this, centred on the card's face. */
+/* The invitation's lines sit on this, laid over the card's dome. It is drawn
+   narrower than the card so the dome's lace shows to either side of it. */
 .oval {
   position: absolute;
-  top: 0;
-  left: 11%;
-  width: 78%;
+  top: 11.7%;
+  left: 10%;
+  width: 80%;
 }
 
 .oval img {
   width: 100%;
 }
 
-/* Inside the oval's clear field, clear of the lace border all round. */
+/* Inside the oval's clear field, clear of the lace border all round, and set
+   a little high: the envelope's scalloped arch closes in across the oval's
+   lower third. */
 .lines {
   position: absolute;
-  inset: 16% 14%;
+  inset: 14% 15% 24%;
   display: grid;
   align-content: center;
   justify-items: center;
-  gap: 1.2em;
+  gap: 1.1em;
   text-align: center;
 }
 
@@ -107,16 +116,13 @@
   color: var(--c-clay);
 }
 
-/* The envelope's front pocket, anchored to the bottom of the box — the card
-   disappears behind it. Drawn a little wider than the stage and clipped, so
-   its mouth closes high enough to take in the bottom of the oval — at exactly
-   the stage's width the oval's lower lobe shows through the opening. */
+/* The envelope's front, anchored to the bottom of the box. Painted last, so
+   it takes in the bottom of both the card and the oval. */
 .pocket {
   position: absolute;
   bottom: 0;
-  left: -6%;
-  width: 112%;
-  filter: drop-shadow(0 -0.75rem 1.5rem rgba(0, 0, 0, 0.18));
+  left: 0;
+  width: 100%;
 }
 
 .scrollHint {
