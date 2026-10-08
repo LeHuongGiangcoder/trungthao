@@ -2,7 +2,7 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop, gilt, piece } from '@/lib/assets';
+import { backdrop, gilt } from '@/lib/assets';
 import { dresscode } from '@/lib/wedding';
 import styles from './Dresscode.module.css';
 
@@ -17,13 +17,7 @@ export function Dresscode() {
       labelledBy="dresscode-title"
       className={styles.dresscode}
     >
-      <Image
-        className={`ornament ${styles.spray}`}
-        src={piece.spraySide.src}
-        alt=""
-        width={piece.spraySide.w}
-        height={piece.spraySide.h}
-      />
+
 
       {/* The gilt butterfly opens this section the way the crest opens the
           others, so every section is headed by the same gold mark. */}

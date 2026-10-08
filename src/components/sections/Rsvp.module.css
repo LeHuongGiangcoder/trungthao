@@ -111,20 +111,22 @@
 
 /* `display: grid` rather than the button's own flex: as a flex container the
    label's text shrinks to its longest word and breaks after every one, which
-   turns the chosen side into a four-line blob. */
+   turns the chosen side into a four-line blob. Kept on one line outright —
+   at the panel's width the label only just fits, so any font that renders a
+   hair wider used to tip it into a stack of single words. */
 .choice {
   position: relative;
   display: grid;
   place-items: center;
   min-height: 3.25rem;
-  padding: 0.7rem 0.4rem;
+  padding: 0.7rem 0.3rem;
   border-color: var(--field-border);
   border-radius: 1.75rem;
   background: var(--field-bg);
-  font-size: 0.625rem;
-  letter-spacing: 0.06em;
+  font-size: clamp(0.5rem, 2.4vw, 0.625rem);
+  letter-spacing: 0.04em;
   line-height: 1.4;
-  text-wrap: balance;
+  white-space: nowrap;
   color: var(--tone-fg);
 }
 
