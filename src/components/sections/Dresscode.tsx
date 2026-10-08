@@ -24,13 +24,6 @@ export function Dresscode() {
         width={piece.spraySide.w}
         height={piece.spraySide.h}
       />
-      <Image
-        className={`ornament ${styles.roses}`}
-        src={piece.roseCluster.src}
-        alt=""
-        width={piece.roseCluster.w}
-        height={piece.roseCluster.h}
-      />
 
       {/* The gilt butterfly opens this section the way the crest opens the
           others, so every section is headed by the same gold mark. */}

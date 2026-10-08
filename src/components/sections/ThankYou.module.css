@@ -19,7 +19,7 @@
   /* Held well inside the frame: the blossom closes in from both corners, and
      the longest line runs into it at the full column width. */
   padding-inline: 15%;
-  font-family: var(--font-hand);
+  font-family: var(--font-belle);
   font-size: clamp(1.125rem, 4.6vw, 1.375rem);
   font-weight: 500;
   line-height: 1.45;

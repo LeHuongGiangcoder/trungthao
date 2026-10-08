@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Be_Vietnam_Pro, Cormorant_Garamond, Dancing_Script, Pinyon_Script } from "next/font/google";
+import localFont from "next/font/local";
 import { ceremony, couple } from "@/lib/wedding";
 import "./globals.css";
 
@@ -30,6 +31,16 @@ const dancing = Dancing_Script({
   display: "swap",
 });
 
+/* The couple's own hand: SFU Belle, supplied as a file. Its character set
+   covers the full Vietnamese range, so the diacritics hold. */
+const belle = localFont({
+  src: "./fonts/sfu-belle-regular.ttf",
+  variable: "--font-belle-local",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+});
+
 const sans = Be_Vietnam_Pro({
   variable: "--font-sans",
   subsets: ["latin", "vietnamese"],
@@ -52,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${cormorant.variable} ${pinyon.variable} ${dancing.variable} ${sans.variable}`}>
+    <html lang="vi" className={`${cormorant.variable} ${pinyon.variable} ${dancing.variable} ${belle.variable} ${sans.variable}`}>
       <body>{children}</body>
     </html>
   );

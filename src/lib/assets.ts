@@ -157,7 +157,7 @@ export const story = {
   /** Travertine, warm and close-grained — the polaroid screen's ground. */
   stone: { src: '/img/story-stone.webp', w: 900, h: 1600 },
   /** Two snapshots, one laid across the other. */
-  polaroids: { src: '/img/story-polaroids.webp', w: 1100, h: 1956 },
+  polaroids: { src: '/img/story-polaroids.webp', w: 1100, h: 1650 },
   /** "Two souls, one promise.", in green script. */
   twoSouls: { src: '/img/story-two-souls.webp', w: 800, h: 1422 },
 

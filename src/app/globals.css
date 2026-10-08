@@ -46,6 +46,8 @@
   --font-script: var(--font-pinyon), "Apple Chancery", cursive;
   /* The softer hand, for the one passage that is addressed to the guest. */
   --font-hand: var(--font-dancing), "Snell Roundhand", cursive;
+  /* The invitation lines and the thanks, in the couple's own hand. */
+  --font-belle: var(--font-belle-local), var(--font-dancing), cursive;
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-body: var(--font-sans), system-ui, -apple-system, sans-serif;
 
