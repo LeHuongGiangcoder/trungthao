@@ -7,7 +7,7 @@
   display: grid;
   place-items: stretch center;
   overflow: hidden;
-  background: var(--c-green-deep);
+  background: var(--c-ivory);
   transform-origin: 50% 46%;
   transition:
     opacity var(--dur-curtain) var(--ease-in-out),
@@ -29,27 +29,39 @@
   display: none;
 }
 
-/* Matches the invitation's column so the reveal lands on the same footprint.
-   The three blocks are set out by the row track rather than by absolute
-   percentages: the envelope keeps its own aspect ratio, and the space above
-   and below it absorbs whatever the screen is. */
+/* The ground is a landscape photograph and the screen is a tall phone, so the
+   frame runs the full viewport and lets the picture crop — the envelope is
+   held to the invitation's own column inside it. */
 .frame {
   position: relative;
   display: grid;
-  grid-template-rows: 1fr auto 1fr;
-  /* An explicit column: against an auto-sized one the envelope resolves its
-     width from its own art rather than from the frame, and comes out both
-     oversized and off-centre. */
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  align-items: center;
+  place-items: center;
   width: 100%;
-  max-width: var(--stage-w);
   height: 100%;
   padding: calc(var(--sp-6) + env(safe-area-inset-top)) var(--gutter)
     calc(var(--sp-6) + env(safe-area-inset-bottom));
   overflow: hidden;
   isolation: isolate;
+}
+
+/* The ground is a 16:9 photograph and the phone is a tall rectangle, so a
+   portrait screen only ever sees its pale middle — the drapery — and loses
+   the stone columns that give the letter something to stand against. A soft
+   vignette puts that fall-off back, so the envelope reads as lit rather than
+   as cream on cream. */
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    118% 72% at 50% 46%,
+    rgba(120, 100, 74, 0) 38%,
+    rgba(120, 100, 74, 0.14) 72%,
+    rgba(96, 78, 56, 0.3) 100%
+  );
+  animation: ground-in 1400ms var(--ease-out) both;
 }
 
 .ground {
@@ -59,166 +71,155 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* The photograph settles in before the letter arrives on it. */
+  animation: ground-in 1400ms var(--ease-out) both;
 }
 
-/* --- The couple, announced in gilt above the envelope -------------------- */
-.names {
-  display: grid;
-  justify-items: center;
-  gap: 0.1em;
-  font-family: var(--font-display);
-  font-size: clamp(1.875rem, 8vw, 2.625rem);
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: var(--ls-wide);
-  text-align: center;
-  text-transform: uppercase;
-  color: var(--c-gilt-bright);
-}
-
-/* The ampersand is drawn art, not a glyph, so it is sized against the names
-   rather than set in them — and it overlaps both lines slightly, the way it
-   does on the printed card. */
-.amp {
-  width: auto;
-  height: 1.45em;
-  margin-block: -0.24em;
-}
-
-/* --- The envelope -------------------------------------------------------- */
-/* Drawn wider than the frame's gutter so it reads as a real envelope laid on
-   the silk. `justify-self: center` is load-bearing: stretched, the box aligns
-   to the start of its area once `max-width` bites, and the envelope slides
-   off centre on anything wider than a phone. */
+/* --- The envelope --------------------------------------------------------
+   One box of the envelope's own proportions. Everything printed on it — the
+   lettering, the wax, the line that opens it — is placed in fractions of this
+   box, measured off the art in scripts/optimize-update.cjs, so the whole
+   thing scales as a single printed object. */
 .envelope {
   position: relative;
-  justify-self: center;
-  width: calc(100% + 16%);
-  max-width: 26rem;
+  width: min(100%, 27rem);
+  aspect-ratio: 1.4511;
+  filter:
+    drop-shadow(0 1.75rem 2.25rem rgba(74, 58, 38, 0.3))
+    drop-shadow(0 0.125rem 0.375rem rgba(74, 58, 38, 0.22));
+  animation: letter-in 1500ms var(--ease-out) 500ms both;
 }
 
 .paper {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* "A Love Letter from Thảo & Trung", drawn in gilt across the flap. */
+.letterhead {
+  position: absolute;
+  left: 30.09%;
+  top: 7.98%;
+  width: 40.93%;
+  margin: 0;
+  animation: ink-in 1100ms var(--ease-out) 1400ms both;
+}
+
+.letterhead img {
+  width: 100%;
   height: auto;
-  filter: drop-shadow(0 1.5rem 2.5rem rgba(0, 0, 0, 0.35));
 }
 
-/* Printed across the flap's clear band, above the fold. */
-.caption {
-  position: absolute;
-  top: 6%;
-  left: 12%;
-  right: 12%;
-  font-family: var(--font-display);
-  font-size: clamp(0.563rem, 2.4vw, 0.75rem);
-  font-weight: 600;
-  letter-spacing: var(--ls-wider);
-  text-align: center;
-  text-transform: uppercase;
-  color: var(--c-green-mid);
-}
-
-/* The wax sits where the flap's point lands, with the gilt mark pressed into
-   it — the monogram is centred on the blob, slightly high, as a real stamp is. */
-.seal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  width: 23%;
-  filter: drop-shadow(0 0.35rem 0.6rem rgba(0, 0, 0, 0.3));
-}
-
+/* The wax, stamped where the two flaps meet. */
 .wax {
-  width: 100%;
-  height: auto;
-}
-
-/* Pressed into the wax, so it is sized and centred against the blob. */
-.monogram {
   position: absolute;
-  top: 47%;
-  left: 50%;
-  translate: -50% -50%;
-  width: 40%;
+  left: 41.21%;
+  top: 40.54%;
+  width: 18.29%;
   height: auto;
+  filter: drop-shadow(0 0.25rem 0.5rem rgba(86, 70, 48, 0.22));
+  animation: seal-in 900ms var(--ease-out) 1700ms both;
 }
 
-/* --- The glass button --------------------------------------------------- */
-.actions {
-  display: grid;
-  justify-items: center;
-  align-self: center;
-  width: 100%;
+/* The one line that opens the letter. The art sets it at 83.8% down and 10.9%
+   wide; the button is centred on that mark and padded out to a real tap
+   target, which the printed line alone would not be. */
+.open {
+  position: absolute;
+  left: 50%;
+  top: 83.81%;
+  translate: -50% -50%;
+
+  min-width: 44%;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.5rem;
+  border: 0;
+  background: none;
+
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 3.1vw, 0.875rem);
+  font-weight: 500;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--c-clay);
+  cursor: pointer;
+
+  animation: ink-in 1000ms var(--ease-out) 2000ms both;
+  transition: color var(--dur-fast) var(--ease-out);
 }
 
-.button {
-  position: relative;
-  max-width: 17rem;
-  letter-spacing: 0.2em;
-  color: var(--c-green-deep);
-}
-
-/* A slow breathing halo so the button reads as the one thing to touch. */
-.button::after {
+/* The rule under it is drawn rather than borrowed from text-decoration, so it
+   sits clear of the diacritics in "Mở thiệp". */
+.open::after {
   content: '';
   position: absolute;
-  inset: -0.35rem;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: inherit;
-  animation: halo 3.2s var(--ease-in-out) infinite;
+  left: 50%;
+  bottom: calc(50% - 1.05em);
+  translate: -50% 0;
+  width: 5.5em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.8;
 }
 
-@keyframes halo {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0;
-    transform: scale(1.04);
-  }
+.open:hover {
+  color: var(--c-green);
 }
 
-/* --- The invitation underneath ------------------------------------------- */
+.open:active {
+  scale: 0.985;
+}
+
+/* --- The invitation behind it -------------------------------------------- */
 .content {
-  filter: blur(1.5rem);
-  transform: scale(1.06);
-  transform-origin: 50% 20%;
+  opacity: 0;
+  transform: scale(0.985);
   transition:
-    filter var(--dur-curtain) var(--ease-in-out),
+    opacity var(--dur-curtain) var(--ease-in-out),
     transform var(--dur-curtain) var(--ease-in-out);
-  will-change: filter, transform;
 }
 
 .content[data-open='true'] {
-  filter: none;
+  opacity: 1;
   transform: none;
 }
 
-/* Once settled, drop the filter entirely — a lingering `filter` on a tall
-   scroller creates a containing block and wrecks scroll performance. */
-.content[data-settled='true'] {
-  filter: none;
-  transform: none;
-  transition: none;
-  will-change: auto;
+/* --- The load timeline ---------------------------------------------------- */
+@keyframes ground-in {
+  from {
+    opacity: 0;
+    scale: 1.06;
+  }
+}
+
+@keyframes letter-in {
+  from {
+    opacity: 0;
+    translate: 0 2.5rem;
+    scale: 0.96;
+  }
+}
+
+@keyframes ink-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes seal-in {
+  from {
+    opacity: 0;
+    scale: 0.7;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .gate,
-  .content {
-    transition: opacity var(--dur-base) linear;
-  }
-
-  .gate[data-open='true'] {
-    filter: none;
-    transform: none;
-  }
-
-  .content {
-    filter: none;
-    transform: none;
+  .ground,
+  .envelope,
+  .letterhead,
+  .wax,
+  .open {
+    animation: none;
   }
 }

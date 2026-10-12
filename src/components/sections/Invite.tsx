@@ -3,17 +3,17 @@ import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
 import { backdrop, intro } from '@/lib/assets';
 import { ceremony } from '@/lib/wedding';
-import styles from './Hero.module.css';
+import styles from './Invite.module.css';
 
 /** The card drawn out of its envelope: "Save the Date" in gilt across the
  *  green, the lace card rising behind, and the invitation's own lines set on
  *  the oval doily laid over it. The envelope's front pocket overlaps the
  *  bottom, so the card reads as held rather than floating. */
-export function Hero() {
+export function Invite() {
   return (
-    <Section id="thiep" tone="dark" backdrop={backdrop.damaskGreen} labelledBy="hero-title" className={styles.hero}>
+    <Section id="loi-moi" tone="dark" backdrop={backdrop.damaskGreen} labelledBy="invite-title" className={styles.screen}>
       <Reveal className={styles.headingWrap}>
-        <h1 id="hero-title" className={styles.heading}>
+        <h2 id="invite-title" className={styles.heading}>
           <span className="sr-only">Save the Date</span>
           <Image
             className={styles.headingArt}
@@ -24,7 +24,7 @@ export function Hero() {
             sizes="(min-width: 40rem) 27rem, 90vw"
             preload
           />
-        </h1>
+        </h2>
       </Reveal>
 
       <Reveal className={styles.collage} delay={160}>

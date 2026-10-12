@@ -2,19 +2,22 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useState, type ReactNode } from 'react';
-import { backdrop, intro } from '@/lib/assets';
+import { MusicToggle } from '@/components/MusicToggle';
+import { composition, loose } from '@/lib/composition';
 import { couple } from '@/lib/wedding';
 import styles from './InvitationGate.module.css';
 
 const SETTLE_MS = 1700; // just past --dur-curtain
 
+const { envSealed, envWax, envLetterhead } = composition.envelope;
+
 /**
- * Holds the page behind a sealed envelope until the guest opens it, then
- * blurs the envelope away to reveal the invitation underneath.
+ * Holds the page behind a sealed envelope until the guest opens it.
  *
- * The screen is the printed object and nothing else: the couple announced in
- * gilt on the green ground, the envelope laid under them with the wax seal
- * stamped across its flap, and the one button to open it.
+ * The screen is one photograph — a draped table in a stone hall — with the
+ * letter standing on it. Everything on the envelope is placed inside a box
+ * of the envelope's own proportions, in fractions measured off the art, so
+ * the wax lands on the fold and the lettering on the flap at any width.
  */
 export function InvitationGate({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -51,71 +54,64 @@ export function InvitationGate({ children }: { children: ReactNode }) {
         <div className={styles.frame}>
           <Image
             className={styles.ground}
-            src={backdrop.damaskGreen}
+            src={loose.envGround.src}
             alt=""
             fill
-            sizes="(min-width: 40rem) 30rem, 100vw"
+            sizes="100vw"
             preload
           />
 
-          <h1 className={styles.names}>
-            <span>{couple.groom.name}</span>
-            <Image
-              className={styles.amp}
-              src={intro.ampersand.src}
-              alt="và"
-              width={intro.ampersand.w}
-              height={intro.ampersand.h}
-            />
-            <span>{couple.bride.name}</span>
-          </h1>
-
-          {/* The envelope, with its caption printed on the flap and the wax
-              laid over the point where the flap closes. */}
           <div className={styles.envelope}>
             <Image
               className={styles.paper}
-              src={intro.envelopeBack.src}
+              src={envSealed.src}
               alt=""
-              width={intro.envelopeBack.w}
-              height={intro.envelopeBack.h}
-              sizes="(min-width: 40rem) 27rem, 90vw"
+              width={envSealed.w}
+              height={envSealed.h}
+              sizes="(min-width: 40rem) 27rem, 88vw"
               preload
             />
-            <p className={styles.caption}>&ldquo;A love letter from us&rdquo;</p>
-            <div className={styles.seal}>
-              <Image
-                className={styles.wax}
-                src={intro.waxSeal.src}
-                alt=""
-                width={intro.waxSeal.w}
-                height={intro.waxSeal.h}
-              />
-              <Image
-                className={styles.monogram}
-                src={intro.monogram.src}
-                alt=""
-                width={intro.monogram.w}
-                height={intro.monogram.h}
-              />
-            </div>
-          </div>
 
-          <div className={styles.actions}>
-            <button
-              type="button"
-              className={`btn btn-glass ${styles.button}`}
-              onClick={openInvitation}
-            >
+            <h1 className={styles.letterhead}>
+              <span className="sr-only">
+                A love letter from {couple.bride.name} &amp; {couple.groom.name}
+              </span>
+              <Image
+                src={envLetterhead.src}
+                alt=""
+                width={envLetterhead.w}
+                height={envLetterhead.h}
+                sizes="(min-width: 40rem) 11rem, 36vw"
+                preload
+              />
+            </h1>
+
+            <Image
+              className={styles.wax}
+              src={envWax.src}
+              alt=""
+              width={envWax.w}
+              height={envWax.h}
+              sizes="(min-width: 40rem) 5rem, 16vw"
+              preload
+            />
+
+            <button type="button" className={styles.open} onClick={openInvitation}>
               Mở thiệp
             </button>
           </div>
         </div>
       </div>
 
-      <div className={styles.content} data-open={open || undefined} data-settled={settled || undefined}>
+      <div
+        className={styles.content}
+        data-open={open || undefined}
+        data-settled={settled || undefined}
+      >
         {children}
       </div>
+
+      <MusicToggle active={open} />
     </>
   );
 }

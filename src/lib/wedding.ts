@@ -13,8 +13,8 @@ export const ceremony = {
   dateLine: '28 . 10 . 2026',
   isoDate: '2026-10-28T17:00:00+07:00',
   lunar: 'Tức ngày 19 tháng 09 năm Bính Ngọ',
-  hall: 'Crystal Ballroom — Tầng 6',
-  venue: 'Khách sạn Lotte Hà Nội',
+  hall: 'Crystal Ballroom, Tầng 6',
+  venue: 'Khách sạn Lotte, Hà Nội',
   address: '54 P. Liễu Giai, Giảng Võ, Hà Nội',
   mapUrl: 'https://maps.google.com/?q=Lotte+Hotel+Hanoi,+54+Lieu+Giai,+Ba+Dinh,+Ha+Noi',
 } as const;
@@ -57,9 +57,22 @@ export const dresscode = {
 
 export const rsvp = {
   eyebrow: 'Quý khách sẽ đến chứ?',
+  heading: 'Vui lòng phản hồi các thông tin sau',
   deadline: 'Vui lòng phản hồi trước ngày 10 . 10 . 2026',
   note: 'Sự hiện diện của quý khách là niềm vinh hạnh lớn của gia đình chúng tôi.',
+  /** The party sizes offered as buttons on the reply card. */
+  guestOptions: [1, 2, 3],
+  /** The ceiling the server validates against; the buttons are a subset. */
   maxGuests: 8,
+} as const;
+
+/** The closing screen: the couple's mark on the darkened hall, and the one
+ *  address a guest should write to with a question. */
+export const planner = {
+  eyebrow: 'With love',
+  note: 'Nếu có bất kỳ câu hỏi gì hãy liên hệ planner của chúng tôi thông qua email dưới đây:',
+  email: 'chanweddingplanner@gmail.com',
+  back: 'Quay lại',
 } as const;
 
 export const thanks = {

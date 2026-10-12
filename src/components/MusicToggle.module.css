@@ -1,0 +1,102 @@
+/* The music control. Fixed to the viewport, but pinned to the right edge of
+   the stage rather than of the screen, so on a wide window it rides the
+   invitation's own column instead of floating off in the dark. */
+.toggle {
+  position: fixed;
+  right: max(var(--sp-4), calc(50vw - var(--stage-w) / 2 + var(--sp-4)));
+  bottom: var(--sp-5);
+  z-index: 60;
+
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-pill);
+  background: rgba(251, 247, 240, 0.72);
+  backdrop-filter: blur(0.625rem) saturate(1.25);
+  -webkit-backdrop-filter: blur(0.625rem) saturate(1.25);
+  box-shadow: 0 0.5rem 1.25rem -0.5rem rgba(60, 46, 28, 0.45);
+  color: var(--c-green);
+  cursor: pointer;
+
+  /* Hidden until the envelope is opened — the first screen is silent. */
+  opacity: 0;
+  translate: 0 0.75rem;
+  pointer-events: none;
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    translate var(--dur-base) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.toggle[data-visible] {
+  opacity: 1;
+  translate: 0;
+  pointer-events: auto;
+  transition-delay: 600ms;
+}
+
+.toggle:hover {
+  background: rgba(251, 247, 240, 0.92);
+}
+
+.disc {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.3;
+}
+
+.rim {
+  stroke-dasharray: 2 5;
+}
+
+.rimInner {
+  stroke-dasharray: 1 4;
+  opacity: 0.7;
+}
+
+.hub {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.5;
+}
+
+.toggle[data-playing] .disc {
+  animation: spin 9s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+.mark {
+  position: relative;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Drawn a touch heavier than the note, so "off" reads at a glance. */
+.slash {
+  stroke-width: 1.4;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle[data-playing] .disc {
+    animation: none;
+  }
+}

@@ -1,0 +1,135 @@
+/* The letter, unpacked — the collage that opens the invitation. */
+
+.hero {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  min-height: 100svh;
+  padding: calc(var(--sp-6) + env(safe-area-inset-top)) var(--sp-3) var(--sp-8);
+  background: var(--c-shell);
+  isolation: isolate;
+}
+
+/* The scroll-reveal wrapper. It carries `data-shown` once the collage is on
+   screen, and every piece's motion hangs off that. */
+.frame {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+/* One box of the collage's own proportions, measured off the designer's
+   composite. Every piece is placed in fractions of it, so the composition
+   holds at any width. `container-type: size` is load-bearing: the contents
+   rise by a distance in `cqh`, which is the only way four layers of four
+   different heights can share one travel.
+   `aspect-ratio` and `--pocket-bottom` are set inline by the component, from
+   the same measured geometry. */
+.collage {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  container-type: size;
+}
+
+/* next/image writes width and height attributes, so without `height: auto`
+   the intrinsic height overrides the width the layout sets. */
+.piece {
+  position: absolute;
+  height: auto;
+}
+
+/* The open envelope and its front pocket carry the collage's weight, so they
+   get the shadow; the pieces between them are already in it. */
+.envelopeBack,
+.envelopeFront {
+  filter: drop-shadow(0 1rem 2rem rgba(86, 70, 48, 0.18));
+}
+
+.bouquet {
+  filter: drop-shadow(0 0.75rem 1.5rem rgba(86, 70, 48, 0.14));
+}
+
+/* The pocket's lower edge: anything the contents have not risen past yet is
+   cut off here, so they come up out of the envelope rather than sliding in
+   from under the section. */
+.contents {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 var(--pocket-bottom) 0);
+}
+
+/* --- Before the screen is reached ----------------------------------------- */
+.rising {
+  opacity: 0;
+  /* Half the collage's height clears the pocket's mouth for all four pieces,
+     the tall save-the-date included. */
+  translate: 0 50cqh;
+}
+
+.envelopeBack,
+.envelopeFront,
+.bouquet {
+  opacity: 0;
+  translate: 0 1.25rem;
+}
+
+/* --- As it comes into view -------------------------------------------------- */
+.frame[data-shown] .rising {
+  animation: rise 1500ms var(--ease-out) both;
+}
+
+.frame[data-shown] .envelopeBack,
+.frame[data-shown] .envelopeFront,
+.frame[data-shown] .bouquet {
+  animation: settle 1200ms var(--ease-out) both;
+}
+
+.frame[data-shown] .envelopeFront {
+  animation-delay: 150ms;
+}
+
+/* Laid across the corner once everything else has come to rest. */
+.frame[data-shown] .bouquet {
+  animation-delay: 850ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 50cqh;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    translate: 0 1.25rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Nothing on an invitation may stay invisible: without motion the pieces are
+   simply in place. */
+@media (prefers-reduced-motion: reduce) {
+  .rising,
+  .envelopeBack,
+  .envelopeFront,
+  .bouquet,
+  .frame[data-shown] .rising,
+  .frame[data-shown] .envelopeBack,
+  .frame[data-shown] .envelopeFront,
+  .frame[data-shown] .bouquet {
+    opacity: 1;
+    translate: none;
+    animation: none;
+  }
+}

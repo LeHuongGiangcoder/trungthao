@@ -2,10 +2,12 @@ import { NextResponse } from 'next/server';
 
 export type RsvpPayload = {
   name: string;
-  contact: string;
+  email: string;
   attending: 'yes' | 'no';
   guests: number;
   dietary: string;
+  /** "Ghi chú" — a short practical remark, as distinct from the wishes. */
+  note: string;
   message: string;
 };
 
@@ -14,19 +16,24 @@ function parse(body: unknown): RsvpPayload | null {
   const raw = body as Record<string, unknown>;
 
   const name = typeof raw.name === 'string' ? raw.name.trim() : '';
-  const contact = typeof raw.contact === 'string' ? raw.contact.trim() : '';
+  // `contact` is the field's former name; accepted so an older client still
+  // reaches the sheet.
+  const emailRaw = raw.email ?? raw.contact;
+  const email = typeof emailRaw === 'string' ? emailRaw.trim() : '';
   const attending = raw.attending === 'no' ? 'no' : 'yes';
   const guests = Number(raw.guests);
   const dietary = typeof raw.dietary === 'string' ? raw.dietary.trim() : '';
+  const note = typeof raw.note === 'string' ? raw.note.trim() : '';
   const message = typeof raw.message === 'string' ? raw.message.trim() : '';
 
   if (name.length < 2 || name.length > 80) return null;
-  if (contact.length > 120) return null;
+  if (email.length > 120) return null;
   if (!Number.isInteger(guests) || guests < 0 || guests > 10) return null;
   if (dietary.length > 300) return null;
+  if (note.length > 300) return null;
   if (message.length > 600) return null;
 
-  return { name, contact, attending, guests, dietary, message };
+  return { name, email, attending, guests, dietary, note, message };
 }
 
 export async function POST(request: Request) {

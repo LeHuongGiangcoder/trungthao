@@ -27,6 +27,14 @@
   --c-gilt: #d0be92;
   --c-gilt-bright: #edd9ad;
 
+  /* The second pass of art brought its own three colours, all sampled from
+     the designer's exports: the shell the screens are printed on, the olive
+     gold every line of type is set in, and the mocha the one button is
+     filled with. */
+  --c-shell: #fffaf4;
+  --c-olive: #776837;
+  --c-mocha: #c6b098;
+
   /* --- Semantic ---------------------------------------------------------- */
   --bg-page: var(--c-green-deep);
   --bg-stage: var(--c-paper);

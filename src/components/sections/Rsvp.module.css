@@ -1,36 +1,56 @@
+/* The reply card. Shell ground, olive ink, white fields with a hairline —
+   a form printed on the same paper as the invitation, not a web form laid
+   over it. */
+
 .rsvp {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-7);
+  padding: var(--section-top) var(--gutter) var(--section-bottom);
+  background: var(--c-shell);
+  color: var(--c-olive);
+}
+
+.head {
+  display: grid;
+  justify-items: center;
   gap: var(--sp-4);
+  text-align: center;
+}
+
+.mark {
+  width: auto;
+  height: 7.5rem;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-md);
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: var(--lh-snug);
+  text-transform: uppercase;
 }
 
 .deadline {
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-style: italic;
-  color: var(--tone-body);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  opacity: 0.7;
 }
 
-/* --- Form ---------------------------------------------------------------- */
-
-/* Not a card laid on the ground but a pane of it: the damask reads straight
-   through, and only a hairline and a breath of light mark the panel's edge.
-   It keeps the section's dark tone, so the type, fields and rules inside all
-   read the ivory-on-green set rather than the cream-paper one. */
-.panel {
+/* --- The form -------------------------------------------------------------- */
+.formWrap {
   width: 100%;
-  max-width: 26rem;
-  margin-inline: auto;
-  padding: var(--sp-7) var(--sp-5) var(--sp-8);
-  border: 1px solid var(--tone-rule);
-  border-radius: 0.25rem;
-  background: var(--panel-bg);
-  backdrop-filter: blur(0.25rem);
-  -webkit-backdrop-filter: blur(0.25rem);
+  max-width: 24rem;
 }
 
 .form {
-  composes: panel;
   display: grid;
-  gap: var(--sp-4);
+  gap: var(--sp-5);
 }
 
 .field {
@@ -40,155 +60,156 @@
 
 .label {
   font-family: var(--font-display);
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  line-height: 1.3;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-align: center;
-  color: var(--tone-body);
+  color: var(--c-olive);
 }
 
 .input,
-.textarea,
-.select {
+.textarea {
   width: 100%;
-  padding: 0.7rem 1rem;
-  border: 1px solid var(--field-border);
-  border-radius: 0.3rem;
-  background: var(--field-bg);
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(119, 104, 55, 0.45);
+  border-radius: 0.375rem;
+  background: #fff;
   font-family: var(--font-display);
   font-size: var(--fs-base);
-  line-height: 1.45;
-  color: var(--tone-fg);
+  color: var(--c-ink);
   transition:
     border-color var(--dur-fast) var(--ease-out),
-    background var(--dur-fast) var(--ease-out);
-}
-
-.input::placeholder,
-.textarea::placeholder {
-  color: var(--field-placeholder);
-}
-
-.input:focus,
-.textarea:focus,
-.select:focus {
-  border-color: var(--tone-fg);
-  background: var(--field-bg);
-  outline: none;
-}
-
-.select {
-  appearance: none;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
-    linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position:
-    calc(100% - 1.1rem) 1.1rem,
-    calc(100% - 0.75rem) 1.1rem;
-  background-size: 0.35rem 0.35rem;
-  background-repeat: no-repeat;
-}
-
-.select option {
-  color: var(--c-green-deep);
+    box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .textarea {
-  min-height: 4.5rem;
+  min-height: 5.25rem;
   resize: vertical;
 }
 
-/* Attendance is a two-up choice built from real radios. The states are drawn
-   flat — a hairline unchosen, a solid once chosen. On the see-through panel
-   the solid is the ivory, not the green: a dark green fill on a green ground
-   would barely show. */
-.choices {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-3);
+.input:focus-visible,
+.textarea:focus-visible {
+  outline: none;
+  border-color: var(--c-olive);
+  box-shadow: 0 0 0 2px rgba(119, 104, 55, 0.16);
 }
 
-/* `display: grid` rather than the button's own flex: as a flex container the
-   label's text shrinks to its longest word and breaks after every one, which
-   turns the chosen side into a four-line blob. Kept on one line outright —
-   at the panel's width the label only just fits, so any font that renders a
-   hair wider used to tip it into a stack of single words. */
-.choice {
-  position: relative;
+/* --- Party size ------------------------------------------------------------ */
+.guests {
   display: grid;
-  place-items: center;
-  min-height: 3.25rem;
-  padding: 0.7rem 0.3rem;
-  border-color: var(--field-border);
-  border-radius: 1.75rem;
-  background: var(--field-bg);
-  font-size: clamp(0.5rem, 2.4vw, 0.625rem);
-  letter-spacing: 0.04em;
-  line-height: 1.4;
-  white-space: nowrap;
-  color: var(--tone-fg);
+  gap: var(--sp-2);
 }
 
-.choice input {
-  position: absolute;
-  opacity: 0;
-  inset: 0;
+/* A stack of bars rather than a row of chips: the numbers are the only thing
+   on them, so full-width rows stay an easy target one-handed. */
+.guest {
+  display: flex;
+  align-items: center;
+  min-height: 2.875rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background: #efe8dc;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: var(--c-ink-soft);
   cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
 }
 
-.choice:has(input:checked) {
-  border-color: var(--c-ivory);
-  background: var(--c-ivory);
-  box-shadow: 0 0.4rem 1rem -0.4rem rgba(0, 0, 0, 0.35);
-  color: var(--c-green-deep);
+.guest:hover {
+  background: #e7dece;
 }
 
-.choice:has(input:focus-visible) {
-  outline: 2px solid var(--tone-fg);
+.guest[data-chosen] {
+  border-color: var(--c-olive);
+  background: var(--c-mocha);
+  color: var(--c-shell);
+}
+
+/* The radio itself is visually hidden, so the ring has to be drawn on the
+   bar that stands in for it. */
+.guest:has(:focus-visible) {
+  outline: 2px solid var(--c-olive);
   outline-offset: 3px;
 }
 
-/* The one solid mark on the panel, so the action is unmistakable against all
-   the hairline rules around it. */
+/* --- Submit ----------------------------------------------------------------- */
 .submit {
+  width: 100%;
+  min-height: 3.25rem;
   margin-top: var(--sp-2);
-  min-height: 3.1rem;
-  border-color: var(--c-ivory);
-  background: var(--c-ivory);
-  box-shadow: 0 0.5rem 1.25rem -0.5rem rgba(0, 0, 0, 0.45);
-  color: var(--c-green-deep);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--c-mocha);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--c-shell);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
 }
 
-.submit:hover {
-  background: #fff;
+.submit:hover:not(:disabled) {
+  background: #b89d80;
+}
+
+.submit:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.submit:disabled {
+  opacity: 0.55;
+  cursor: progress;
 }
 
 .error {
   font-family: var(--font-display);
   font-size: var(--fs-sm);
-  text-align: center;
-  color: #ffb4a2;
+  color: #9a3b2d;
 }
 
-/* --- Confirmation --------------------------------------------------------- */
+/* --- Sent ------------------------------------------------------------------- */
 .done {
-  composes: panel;
   display: grid;
   justify-items: center;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
+  padding-block: var(--sp-6);
   text-align: center;
+  color: var(--c-olive);
 }
 
 .doneTitle {
   font-family: var(--font-script);
-  font-size: var(--fs-xl);
+  font-size: var(--fs-2xl);
   line-height: 1;
-  color: var(--tone-fg);
 }
 
 .doneNote {
+  max-width: 22rem;
   font-family: var(--font-display);
-  font-size: var(--fs-md);
-  color: var(--tone-body);
+  font-size: var(--fs-base);
+  color: var(--c-ink-soft);
+}
+
+/* --- Back -------------------------------------------------------------------- */
+.back {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  opacity: 0.8;
+}
+
+.back:hover {
+  opacity: 1;
 }

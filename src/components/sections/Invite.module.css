@@ -1,6 +1,6 @@
 /* The opening view, and the only section pinned to the viewport: it carries
    the scroll hint, so it has to be the whole first screen. */
-.hero {
+.screen {
   gap: var(--sp-4);
   min-height: 100svh;
   /* The envelope's pocket is flush with the screen's bottom edge, as on the

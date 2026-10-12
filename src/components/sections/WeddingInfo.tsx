@@ -1,42 +1,72 @@
-import { Layer, Screen } from '@/components/Screen';
-import { story } from '@/lib/assets';
+import { Countdown } from '@/components/Countdown';
+import { Reveal } from '@/components/Reveal';
 import { ceremony, couple, families } from '@/lib/wedding';
 import styles from './WeddingInfo.module.css';
 
+/* "28 . 10 . 2026" is the form the date takes everywhere else on the card;
+   here it is read out in words, the way it is on the printed invitation. */
+const [day, month, year] = ceremony.dateLine.split(' . ');
+
 /**
- * The invitation proper: one engraved card on embossed damask.
+ * The invitation proper: where, when, how long to go, and the one line that
+ * asks for an answer.
  *
- * The lettering is part of the art, so the same words are repeated here for
- * screen readers and for anyone searching the page — the card itself carries
- * no selectable text.
+ * It is a block rather than a screen of its own — on the printed card these
+ * lines sit under the collage, and the hero reads as one page because of it.
+ *
+ * Everything is live type rather than drawn art: it is the part a guest will
+ * read out to someone else, so it has to be selectable, searchable and
+ * reflowable.
  */
 export function WeddingInfo() {
   return (
-    <Screen
-      id="thoi-gian"
-      tone="light"
-      ground={story.infoDamask}
-      labelledBy="info-title"
-      className={styles.info}
-    >
-      <Layer art={story.infoFrame} />
-      <Layer art={story.infoText} />
+    <div id="thoi-gian" className={styles.info}>
+      <h2 className="sr-only">Thông tin lễ cưới</h2>
 
-      <h2 id="info-title" className={styles.title}>
-        Thông tin đám cưới
-      </h2>
+      <Reveal className={styles.place}>
+        <p className={styles.eyebrow}>Lễ cưới diễn ra tại</p>
+        <p className={styles.hall}>{ceremony.hall}</p>
+        <p className={styles.venue}>{ceremony.venue}</p>
+        <p className={styles.address}>{ceremony.address}</p>
+      </Reveal>
 
+      <Reveal className={styles.when} delay={120}>
+        <p>
+          Vào ngày {day} tháng {month} năm {year}
+        </p>
+        <p>
+          Hồi {ceremony.time}, {ceremony.weekday}
+        </p>
+      </Reveal>
+
+      <Reveal delay={200}>
+        <Countdown
+          target={ceremony.isoDate}
+          className={styles.countdown}
+          unitClassName={styles.unit}
+          valueClassName={styles.value}
+          labelClassName={styles.label}
+        />
+      </Reveal>
+
+      <Reveal delay={280} className={styles.ask}>
+        <a className={styles.askButton} href="#rsvp">
+          Quý khách sẽ đến chứ?
+        </a>
+      </Reveal>
+
+      <Reveal delay={360} className={styles.closing}>
+        <p>Trân trọng kính mời</p>
+        <p>đến dự tiệc mừng lễ thành hôn cùng gia đình chúng tôi!</p>
+      </Reveal>
+
+      {/* Not printed on the card, but a guest looking for the families or for
+          the lunar date should still find them on the page. */}
       <div className="sr-only">
-        <p>Trân trọng kính mời đến dự tiệc mừng lễ thành hôn cùng gia đình chúng tôi</p>
         <p>
           {couple.groom.name} và {couple.bride.name}
         </p>
-        <p>
-          Vào hồi {ceremony.time}, {ceremony.weekday} {ceremony.dateLine} ({ceremony.lunar})
-        </p>
-        <p>
-          Tại {ceremony.hall}, {ceremony.venue}, {ceremony.address}
-        </p>
+        <p>{ceremony.lunar}</p>
         {families.map((family) => (
           <p key={family.side}>
             {family.side}: {family.father}, {family.mother}
@@ -52,6 +82,6 @@ export function WeddingInfo() {
       >
         Xem bản đồ
       </a>
-    </Screen>
+    </div>
   );
 }

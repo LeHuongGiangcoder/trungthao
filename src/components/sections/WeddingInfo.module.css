@@ -1,54 +1,192 @@
-/* The engraved invitation card. Everything but the map link is art. */
+/* The invitation proper — where, when, and the ask. Live type in the one
+   olive gold the whole block is set in, laid under the hero's collage on the
+   shell ground they share. */
+
 .info {
-  background: var(--c-ivory);
-}
-
-/* Set on the damask above the card, in the clear band the engraving leaves. */
-.title {
-  position: absolute;
-  top: 7%;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  font-family: var(--font-script);
-  font-size: var(--fs-xl);
-  font-weight: 400;
-  line-height: 1;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-7);
+  width: 100%;
+  padding: var(--sp-7) var(--sp-3) var(--sp-6);
   text-align: center;
-  color: var(--c-green);
+  color: var(--c-olive);
 }
 
-/* Set on the damask below the card, drawn as the same fine rule the card's
-   own border is engraved in rather than as one of the glass buttons. */
-.mapLink {
+.place,
+.when,
+.closing {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-2);
+}
+
+/* --- Where ---------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  margin-bottom: var(--sp-2);
+}
+
+.hall {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+/* The one line on the screen that is drawn rather than set — the hotel's
+   name, in the couple's script, two sizes above everything around it. */
+.venue {
+  font-family: var(--font-script);
+  /* Set to fit "Khách sạn Lotte, Hà Nội" on one line at 360px, which is the
+     narrowest phone the invitation is built for — broken over two lines the
+     script loses the sweep it is here for. */
+  font-size: clamp(1.875rem, 7.6vw, 3rem);
+  text-wrap: nowrap;
+  font-weight: 400;
+  line-height: 1.1;
+  /* Pinyon's descenders are long and its ascenders tall; without this the
+     line sits visually low between the two caps lines that bracket it. */
+  margin-block: -0.1em 0.05em;
+}
+
+.address {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+/* --- When ----------------------------------------------------------------- */
+.when {
+  gap: var(--sp-1);
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+}
+
+/* --- How long ------------------------------------------------------------- */
+/* Four figures divided by colons, with the names of the units ruled off
+   underneath — a departures board, not four boxes. */
+.countdown {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: start;
+  gap: var(--sp-4);
+}
+
+.unit {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-2);
+  min-width: 2.5rem;
+}
+
+.unit + .unit::before {
+  content: ':';
   position: absolute;
-  bottom: 5%;
-  left: 50%;
+  left: calc(var(--sp-4) / -2);
+  top: 0;
   translate: -50% 0;
-  z-index: 1;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1;
+  opacity: 0.55;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.label {
+  padding-top: var(--sp-2);
+  border-top: 1px solid currentColor;
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* --- The ask -------------------------------------------------------------- */
+.ask {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+}
+
+.askButton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: min(16rem, 70vw);
-  min-height: 3rem;
-  padding: 0.8rem 2.25rem;
-  border: 1px solid rgba(43, 89, 65, 0.35);
+  width: 100%;
+  max-width: 20rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 2rem;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(0.5rem);
-  -webkit-backdrop-filter: blur(0.5rem);
+  background: var(--c-mocha);
   font-family: var(--font-display);
   font-size: var(--fs-sm);
   font-weight: 500;
-  letter-spacing: var(--ls-wider);
+  letter-spacing: var(--ls-wide);
   text-transform: uppercase;
-  color: var(--c-green);
+  color: var(--c-shell);
   transition:
     background var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.askButton:hover {
+  background: #b89d80;
+}
+
+.askButton:active {
+  transform: scale(0.985);
+}
+
+/* --- The closing line ------------------------------------------------------ */
+.closing {
+  gap: var(--sp-1);
+  max-width: 24rem;
+  font-family: var(--font-belle);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+}
+
+.closing p:first-child {
+  font-size: var(--fs-lg);
+}
+
+/* --- Map ------------------------------------------------------------------- */
+.mapLink {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  opacity: 0.8;
 }
 
 .mapLink:hover {
-  border-color: var(--c-green);
-  background: rgba(255, 255, 255, 0.8);
+  opacity: 1;
 }
