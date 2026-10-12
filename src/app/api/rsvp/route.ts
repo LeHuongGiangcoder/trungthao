@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server';
 
+/** What the reply card sends. */
+export type RsvpBody = {
+  name: FormDataEntryValue | null;
+  email: FormDataEntryValue | null;
+  attending: 'yes' | 'no';
+  guests: number;
+  dietary: FormDataEntryValue | null;
+  note: FormDataEntryValue | null;
+  message: FormDataEntryValue | null;
+};
+
 export type RsvpPayload = {
   name: string;
   email: string;
@@ -36,6 +47,18 @@ function parse(body: unknown): RsvpPayload | null {
   return { name, email, attending, guests, dietary, note, message };
 }
 
+/**
+ * The shape the couple's Apps Script reads.
+ *
+ * The address goes out under both names. The script in
+ * scripts/rsvp-apps-script.gs takes `email`; the one deployed before it took
+ * `contact`, and sending both means the sheet keeps filling whichever of the
+ * two is live. Drop `contact` once the new script has been deployed for good.
+ */
+function forSheet(rsvp: RsvpPayload) {
+  return { ...rsvp, contact: rsvp.email };
+}
+
 export async function POST(request: Request) {
   let body: unknown;
   try {
@@ -61,7 +84,7 @@ export async function POST(request: Request) {
     const res = await fetch(webhook, {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ ...rsvp, submittedAt: new Date().toISOString() }),
+      body: JSON.stringify({ ...forSheet(rsvp), submittedAt: new Date().toISOString() }),
     });
     if (!res.ok) throw new Error(`webhook responded ${res.status}`);
   } catch (error) {

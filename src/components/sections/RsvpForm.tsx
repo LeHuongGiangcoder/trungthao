@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import type { RsvpBody } from '@/app/api/rsvp/route';
 import { rsvp } from '@/lib/wedding';
 import styles from './Rsvp.module.css';
 
@@ -30,7 +31,7 @@ export function RsvpForm() {
           dietary: data.get('dietary'),
           note: data.get('note'),
           message: data.get('message'),
-        }),
+        } satisfies RsvpBody),
       });
 
       if (!res.ok) {
