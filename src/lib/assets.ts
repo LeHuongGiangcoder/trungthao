@@ -33,6 +33,15 @@ export const ornament = {
   silk: { src: '/img/v2/ornament-silk.webp', w: 1400, h: 459 },
 } as const;
 
+/** The invitation screen's own art. Regenerate with
+ *  `node scripts/optimize-invite.cjs`. */
+export const inviteArt = {
+  /** The lace mat the invitation's lines are set on, in warm cream for the
+   *  beige ground. Its plain field runs 13%-86% across and 8%-91% down, so
+   *  the lines are held well inside that. */
+  doily: { src: '/img/v2/invite-doily.webp', w: 1078, h: 1434 },
+} as const;
+
 export const element = {
   roseSpray: '/img/el-1.webp',
   candlestick: '/img/el-2.webp',

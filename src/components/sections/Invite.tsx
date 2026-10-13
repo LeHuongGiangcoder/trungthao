@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { intro } from '@/lib/assets';
+import { intro, inviteArt } from '@/lib/assets';
 import { ceremony } from '@/lib/wedding';
 import styles from './Invite.module.css';
 
 /** The card drawn out of its envelope: "Save the Date" across the top, the
- *  lace card rising behind, and the invitation's own lines set on the oval
- *  doily laid over it. The envelope's front pocket overlaps the bottom, so
- *  the card reads as held rather than floating.
+ *  lace card rising behind, and the invitation's own lines set on the lace
+ *  mat laid over it. The envelope's front pocket overlaps the bottom, so the
+ *  card reads as held rather than floating.
  *
- *  The ground used to be the green damask; it is the beige the rest of the
- *  invitation is printed on now, and the pieces are otherwise untouched. */
+ *  As the screen is reached the mat rises out of that pocket, which is where
+ *  the motion comes from: it starts low enough to be behind the envelope and
+ *  is lifted into place, lines and all. */
 export function Invite() {
   return (
     <Section id="loi-moi" tone="shell" labelledBy="invite-title" className={styles.screen}>
@@ -30,7 +31,7 @@ export function Invite() {
         </h2>
       </Reveal>
 
-      <Reveal className={styles.collage} delay={160}>
+      <Reveal className={styles.collage} fade={false}>
         {/* The card, back-most: only its lace crown shows above the doily. */}
         <Image
           className={styles.card}
@@ -44,10 +45,10 @@ export function Invite() {
 
         <div className={styles.oval}>
           <Image
-            src={intro.ovalDoily.src}
+            src={inviteArt.doily.src}
             alt=""
-            width={intro.ovalDoily.w}
-            height={intro.ovalDoily.h}
+            width={inviteArt.doily.w}
+            height={inviteArt.doily.h}
             sizes="(min-width: 40rem) 20rem, 70vw"
             preload
           />

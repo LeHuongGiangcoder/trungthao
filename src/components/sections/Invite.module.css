@@ -52,12 +52,15 @@
 
    Horizontal percentages are fractions of the collage's width, vertical ones
    of its height, which is 1.532x the width. */
+/* `container-type: size` is load-bearing: the mat is lifted by a distance in
+   `cqh`, so one number covers however tall the collage happens to be. */
 .collage {
   position: relative;
   justify-self: center;
   width: 100%;
   max-width: var(--stage-w);
   aspect-ratio: 404 / 619;
+  container-type: size;
 }
 
 .collage img {
@@ -93,6 +96,74 @@
   width: 88%;
 }
 
+/* --- Lifted out of the envelope --------------------------------------------
+   The mat starts far enough down that its top edge is below the pocket's,
+   so it is genuinely behind the envelope rather than merely low; then it is
+   drawn up into place. Everything on it — the lines, the date — rides with
+   it, because they are its children.
+
+   47cqh is measured, not guessed: the mat sits at 10.5% of the collage and
+   the pocket's top edge falls at 57%, so 47% of the collage's height is
+   exactly the distance that tucks it away. */
+.oval {
+  opacity: 0;
+  translate: 0 47cqh;
+}
+
+.collage[data-shown] .oval {
+  animation: lift 1600ms var(--ease-out) 240ms both;
+}
+
+@keyframes lift {
+  from {
+    opacity: 0;
+    translate: 0 47cqh;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* The card behind and the pocket in front simply arrive. */
+.card,
+.pocket {
+  opacity: 0;
+}
+
+.collage[data-shown] .card,
+.collage[data-shown] .pocket {
+  animation: settle 1100ms var(--ease-out) both;
+}
+
+.collage[data-shown] .pocket {
+  animation-delay: 120ms;
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oval,
+  .card,
+  .pocket,
+  .collage[data-shown] .oval,
+  .collage[data-shown] .card,
+  .collage[data-shown] .pocket {
+    opacity: 1;
+    translate: none;
+    animation: none;
+  }
+}
+
 .oval img {
   width: 100%;
 }
@@ -115,7 +186,10 @@
   font-size: clamp(1.0625rem, 5vw, 1.5rem);
   font-weight: 500;
   line-height: 1.6;
-  color: var(--c-green);
+  /* Was the deep green of the old ground. The mat is warm cream now and the
+     screen is beige, so the lines take the olive the rest of the invitation
+     is set in. */
+  color: var(--tone-fg);
 }
 
 .date {
@@ -123,7 +197,9 @@
   font-size: clamp(0.75rem, 3.3vw, 1rem);
   font-weight: 600;
   letter-spacing: var(--ls-wide);
-  color: var(--c-clay);
+  /* The same ink, stepped back — clay measured about 2.5:1 on the cream. */
+  color: var(--tone-fg);
+  opacity: 0.72;
 }
 
 /* The envelope's front, anchored to the bottom of the box. Painted last, so
@@ -147,14 +223,15 @@
   font-size: 0.625rem;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  /* It lands on the envelope's cream pocket, so it is inked in green. */
-  color: rgba(43, 89, 65, 0.6);
+  /* It lands on the envelope's cream pocket. */
+  color: var(--tone-fg);
+  opacity: 0.55;
 }
 
 .scrollLine {
   width: 1px;
   height: 1.5rem;
-  background: linear-gradient(to bottom, rgba(43, 89, 65, 0.5), transparent);
+  background: linear-gradient(to bottom, currentColor, transparent);
   animation: drop 2.4s var(--ease-in-out) infinite;
   transform-origin: top;
 }
