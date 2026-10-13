@@ -1,6 +1,5 @@
 import { Reveal } from '@/components/Reveal';
 import { Section, SectionHead } from '@/components/Section';
-import { backdrop } from '@/lib/assets';
 import { agenda } from '@/lib/wedding';
 import styles from './Agenda.module.css';
 
@@ -11,8 +10,7 @@ export function Agenda() {
   return (
     <Section
       id="chuong-trinh"
-      tone="dark"
-      backdrop={backdrop.damaskGreen}
+      tone="shell"
       labelledBy="agenda-title"
       className={styles.agenda}
     >

@@ -63,7 +63,7 @@ export function RsvpForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="rsvp-name">
+        <label className={`caps ${styles.label}`} htmlFor="rsvp-name">
           Họ và tên
         </label>
         <input
@@ -79,7 +79,7 @@ export function RsvpForm() {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="rsvp-email">
+        <label className={`caps ${styles.label}`} htmlFor="rsvp-email">
           Email
         </label>
         <input
@@ -93,7 +93,7 @@ export function RsvpForm() {
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="rsvp-dietary">
+        <label className={`caps ${styles.label}`} htmlFor="rsvp-dietary">
           Yêu cầu về đồ ăn (nếu có)
         </label>
         <textarea
@@ -108,7 +108,7 @@ export function RsvpForm() {
       {/* Party size. Radios rather than a select: there are three of them, and
           on the card they are three bars you tap. */}
       <fieldset className={styles.field}>
-        <legend className={styles.label}>Số lượng tham gia</legend>
+        <legend className={`caps ${styles.label}`}>Số lượng tham gia</legend>
         <div className={styles.guests}>
           {rsvp.guestOptions.map((n) => (
             <label key={n} className={styles.guest} data-chosen={guests === n || undefined}>
@@ -127,14 +127,14 @@ export function RsvpForm() {
       </fieldset>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="rsvp-note">
+        <label className={`caps ${styles.label}`} htmlFor="rsvp-note">
           Ghi chú
         </label>
         <input className={styles.input} id="rsvp-note" name="note" type="text" maxLength={300} />
       </div>
 
       <div className={styles.field}>
-        <label className={styles.label} htmlFor="rsvp-message">
+        <label className={`caps ${styles.label}`} htmlFor="rsvp-message">
           Lời nhắn gửi
         </label>
         <textarea
@@ -152,7 +152,7 @@ export function RsvpForm() {
         </p>
       )}
 
-      <button className={styles.submit} type="submit" disabled={status === 'sending'}>
+      <button className={`btn btn-mocha ${styles.submit}`} type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Đang gửi…' : 'Gửi'}
       </button>
     </form>

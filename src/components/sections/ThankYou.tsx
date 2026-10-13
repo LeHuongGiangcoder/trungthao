@@ -7,7 +7,7 @@ import styles from './ThankYou.module.css';
 export function ThankYou() {
   return (
     <Screen
-      tone="light"
+      tone="shell"
       ground={story.thanksFlorals}
       tall
       labelledBy="thanks-title"

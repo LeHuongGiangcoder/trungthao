@@ -6,6 +6,9 @@ import styles from './MusicToggle.module.css';
 /**
  * The invitation's music, and the one control for it.
  *
+ * The clip is the first 15 seconds of the source, faded at both ends so the
+ * loop seam does not click — see scripts/optimize-audio.cjs.
+ *
  * Playback starts the moment the guest opens the envelope — that tap is the
  * gesture every browser wants before it will let a page make a sound, so it
  * is the only moment autoplay is allowed to work. If it is refused anyway
@@ -42,7 +45,7 @@ export function MusicToggle({ active }: { active: boolean }) {
 
   return (
     <>
-      <audio ref={ref} src="/audio.mp4" loop preload="auto" />
+      <audio ref={ref} src="/audio.m4a" loop preload="auto" />
 
       <button
         type="button"

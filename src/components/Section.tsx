@@ -1,16 +1,18 @@
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import { Reveal } from '@/components/Reveal';
-import { gilt } from '@/lib/assets';
+import { ornament } from '@/lib/assets';
 
-export type Tone = 'light' | 'dark';
+export type Tone = 'light' | 'dark' | 'shell';
 
 type SectionProps = {
   id?: string;
-  /** Picks the colour set the whole subtree reads from. */
+  /** Picks the colour set the whole subtree reads from — and, since
+   *  `.section` paints `--bg-ground`, the section's ground with it. */
   tone: Tone;
-  /** Full-bleed backdrop; sections below the hero alternate cream and green. */
-  backdrop: string;
+  /** Full-bleed texture over that ground. Only for the screens that still
+   *  want one; the beige screens are flat. */
+  backdrop?: string;
   labelledBy?: string;
   className?: string;
   children: ReactNode;
@@ -28,13 +30,15 @@ export function Section({ id, tone, backdrop, labelledBy, className, children }:
       className={className ? `section ${className}` : 'section'}
       aria-labelledby={labelledBy}
     >
-      <Image
-        className="backdrop"
-        src={backdrop}
-        alt=""
-        fill
-        sizes="(min-width: 40rem) 30rem, 100vw"
-      />
+      {backdrop ? (
+        <Image
+          className="backdrop"
+          src={backdrop}
+          alt=""
+          fill
+          sizes="(min-width: 40rem) 30rem, 100vw"
+        />
+      ) : null}
       {children}
     </section>
   );
@@ -54,7 +58,13 @@ export function SectionHead({
 }) {
   return (
     <Reveal className="section-head">
-      <Image className="section-icon" src={gilt.crest} alt="" width={560} height={635} />
+      <Image
+        className="section-icon"
+        src={ornament.flower.src}
+        alt=""
+        width={ornament.flower.w}
+        height={ornament.flower.h}
+      />
       <p className="eyebrow">{eyebrow}</p>
       <h2 id={titleId} className="section-title">
         {title}

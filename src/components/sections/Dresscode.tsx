@@ -2,7 +2,7 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop, gilt } from '@/lib/assets';
+import { gilt, ornament } from '@/lib/assets';
 import { dresscode } from '@/lib/wedding';
 import styles from './Dresscode.module.css';
 
@@ -12,17 +12,22 @@ export function Dresscode() {
   return (
     <Section
       id="dresscode"
-      tone="light"
-      backdrop={backdrop.damask}
+      tone="shell"
       labelledBy="dresscode-title"
       className={styles.dresscode}
     >
 
 
-      {/* The gilt butterfly opens this section the way the crest opens the
-          others, so every section is headed by the same gold mark. */}
+      {/* The cherub opens this section the way the flower opens the others —
+          one section with a mark of its own. */}
       <Reveal className={styles.head}>
-        <Image className="section-icon" src={gilt.butterfly} alt="" width={640} height={466} />
+        <Image
+          className="section-icon"
+          src={ornament.cherub.src}
+          alt=""
+          width={ornament.cherub.w}
+          height={ornament.cherub.h}
+        />
         <p className="eyebrow">Trang phục</p>
         <h2 id="dresscode-title" className="section-title">
           Dress Code

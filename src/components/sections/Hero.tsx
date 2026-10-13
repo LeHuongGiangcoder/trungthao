@@ -65,7 +65,7 @@ function Piece({
  */
 export function Hero() {
   return (
-    <section id="thiep" data-tone="light" className={styles.hero} aria-labelledby="hero-title">
+    <section id="thiep" data-tone="shell" className={styles.hero} aria-labelledby="hero-title">
       <h1 id="hero-title" className="sr-only">
         {couple.groom.name} &amp; {couple.bride.name} — {ceremony.dateLine}
       </h1>

@@ -8,7 +8,7 @@ import styles from './Story.module.css';
  *  oval, with the greeting above it and "Wedding" below. */
 export function Welcome() {
   return (
-    <Screen id="gallery" tone="light" labelledBy="welcome-title" className={styles.welcome}>
+    <Screen id="gallery" tone="shell" labelledBy="welcome-title" className={styles.welcome}>
       <Layer art={story.ovalCard} preload />
 
       {/* The moulding has no window cut in it, so the photograph is laid on
@@ -44,7 +44,7 @@ export function Welcome() {
  */
 export function Veil() {
   return (
-    <Screen tone="light" labelledBy="veil-title" className={styles.veil}>
+    <Screen tone="shell" labelledBy="veil-title" className={styles.veil}>
       <Layer art={story.veil} alt={`${couple.groom.name} và ${couple.bride.name}`} />
 
       {/* The two lines are placed separately rather than as one frame: written
@@ -79,7 +79,7 @@ export function Veil() {
 /** Two snapshots laid on stone, under a line of script. */
 export function TwoSouls() {
   return (
-    <Screen tone="light" ground={story.stone} labelledBy="two-souls-title" className={styles.twoSouls}>
+    <Screen tone="shell" ground={story.stone} labelledBy="two-souls-title" className={styles.twoSouls}>
       {/* The snapshots are drawn high enough on the frame to run over the
           script, so they are nudged down and the line is lifted clear and
           laid on top of them. */}
@@ -96,7 +96,7 @@ export function TwoSouls() {
 /** The framed portrait, signed underneath. */
 export function Portrait() {
   return (
-    <Screen tone="light" labelledBy="portrait-title" className={styles.portrait}>
+    <Screen tone="shell" labelledBy="portrait-title" className={styles.portrait}>
       <Layer art={story.framed} alt={`${couple.groom.name} và ${couple.bride.name}`} />
       <Layer art={story.framedCaption} className={styles.caption} />
 

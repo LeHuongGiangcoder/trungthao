@@ -23,7 +23,7 @@ export function Planner() {
   }, []);
 
   return (
-    <section className={styles.planner} aria-labelledby="planner-title">
+    <section data-tone="dark" className={styles.planner} aria-labelledby="planner-title">
       <Image
         className={styles.ground}
         src={loose.envGround.src}
@@ -33,7 +33,7 @@ export function Planner() {
       />
 
       <Reveal className={styles.body}>
-        <p className={styles.eyebrow}>{planner.eyebrow}</p>
+        <p className={`caps caps-sm ${styles.eyebrow}`}>{planner.eyebrow}</p>
 
         <Image
           className={styles.mark}
@@ -48,12 +48,12 @@ export function Planner() {
           Liên hệ
         </h2>
 
-        <p className={styles.note}>{planner.note}</p>
-        <a className={styles.email} href={`mailto:${planner.email}`}>
+        <p className={`caps caps-sm ${styles.note}`}>{planner.note}</p>
+        <a className={`caps caps-sm ${styles.email}`} href={`mailto:${planner.email}`}>
           {planner.email}
         </a>
 
-        <button type="button" className={styles.back} onClick={toTop}>
+        <button type="button" className={`link-quiet ${styles.back}`} onClick={toTop}>
           {planner.back}
         </button>
       </Reveal>

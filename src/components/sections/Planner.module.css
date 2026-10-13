@@ -8,8 +8,9 @@
   padding: var(--sp-8) var(--gutter);
   overflow: clip;
   isolation: isolate;
+  background: var(--bg-ground);
   text-align: center;
-  color: var(--c-ivory);
+  color: var(--tone-fg);
 }
 
 .ground {
@@ -44,12 +45,9 @@
   max-width: 24rem;
 }
 
+/* The one warm note on an otherwise dimmed screen. */
 .eyebrow {
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 500;
   letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
   color: var(--c-gilt-bright);
 }
 
@@ -61,41 +59,26 @@
 
 .note,
 .email {
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  letter-spacing: 0.06em;
   line-height: var(--lh-snug);
-  text-transform: uppercase;
-  color: rgba(251, 247, 240, 0.86);
+  color: var(--tone-body);
 }
 
+/* An address is read character by character, so it keeps its own line and
+   never breaks mid-word. */
 .email {
-  /* An address is read character by character, so it keeps its own line and
-     never breaks mid-word. */
   text-wrap: nowrap;
-  font-size: var(--fs-xs);
 }
 
 .email:hover {
-  color: var(--c-ivory);
+  color: var(--tone-fg);
 }
 
+/* `.link-quiet` carries the type; a button needs its chrome removed and a
+   real tap target around it. */
 .back {
   margin-top: var(--sp-5);
   padding: 0.5rem 1rem;
   border: 0;
   background: none;
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 0.35em;
-  color: rgba(251, 247, 240, 0.9);
   cursor: pointer;
-  transition: color var(--dur-fast) var(--ease-out);
-}
-
-.back:hover {
-  color: var(--c-ivory);
 }

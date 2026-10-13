@@ -1,7 +1,9 @@
 /* The blossom border is the whole decoration; the thanks sit in the clear
    band it leaves across the middle. */
+/* The blossom border is drawn on near-transparent ground, so the beige
+   behind it is most of what this screen is. */
 .thanks {
-  background: var(--c-ivory);
+  background: var(--c-shell);
 }
 
 /* Centred in the sheet, which is the frame the border was drawn on, so the

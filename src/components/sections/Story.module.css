@@ -2,7 +2,7 @@
    here is the ground behind it and the few pieces the art cannot carry. */
 
 .welcome {
-  background: var(--c-ivory);
+  background: var(--c-shell);
 }
 
 /* The opening the card's moulding draws, in percentages of the sheet. */
@@ -19,8 +19,9 @@
   object-fit: cover;
 }
 
+/* The veil photograph fills its frame, so this only shows at the seams. */
 .veil {
-  background: var(--c-cream);
+  background: var(--c-shell);
 }
 
 /* The two words, laid over the open ground at the top right and overlapping
@@ -61,7 +62,7 @@
 }
 
 .twoSouls {
-  background: var(--c-sand);
+  background: var(--c-shell);
 }
 
 .polaroids {
@@ -72,8 +73,9 @@
   translate: 0 -23%;
 }
 
+/* The framed print is 44% transparent, so this ground genuinely shows. */
 .portrait {
-  background: var(--c-ivory);
+  background: var(--c-shell);
 }
 
 /* The signature is drawn across the middle of its frame; it belongs under the

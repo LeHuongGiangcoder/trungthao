@@ -13,7 +13,8 @@
 
 
 
-/* The ground and the shadow come from `.paper-card` in globals. */
+/* No card behind it any more: the list sits straight on the beige, and the
+   spine does the holding. */
 .list {
   display: grid;
   width: 100%;
@@ -60,8 +61,12 @@
   line-height: 1.05;
   letter-spacing: 0.04em;
   text-align: right;
-  /* Đổi sang màu vàng cát tự nhiên, sáng đủ nhưng không bị chói */
-  color: var(--c-sand);
+  /* Was --c-sand, a pale gold picked to glow on the green ground. Measured on
+     beige it came out at 1.6:1, and mocha only reached 2.0:1 — under the floor
+     even for text this large. The hour is the one thing a guest scans for, so
+     it takes the full olive (5.3:1); the diamond on the spine keeps the warm
+     accent instead. */
+  color: var(--tone-fg);
 }
 
 /* --- The spine ------------------------------------------------------------ */
@@ -91,7 +96,7 @@
   width: 0.45rem;
   height: 0.45rem;
   rotate: 45deg;
-  background: var(--c-clay);
+  background: var(--c-mocha);
 }
 
 /* --- The stop ------------------------------------------------------------- */

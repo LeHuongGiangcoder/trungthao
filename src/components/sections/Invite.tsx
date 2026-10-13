@@ -1,77 +1,41 @@
-import Image from 'next/image';
-import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { backdrop, intro } from '@/lib/assets';
-import { ceremony } from '@/lib/wedding';
+import { Reveal } from '@/components/Reveal';
+import { ceremony, couple } from '@/lib/wedding';
 import styles from './Invite.module.css';
 
-/** The card drawn out of its envelope: "Save the Date" in gilt across the
- *  green, the lace card rising behind, and the invitation's own lines set on
- *  the oval doily laid over it. The envelope's front pocket overlaps the
- *  bottom, so the card reads as held rather than floating. */
+/**
+ * The line that invites, set on the beige ground.
+ *
+ * This screen used to be a collage — a gilt "Save the Date", a lace card and
+ * an oval doily, all drawn for a deep green ground. Measured against the
+ * shell the rest of the invitation is now printed on, that art fell from
+ * about 7:1 contrast to under 2:1, which is to say it disappeared. So the
+ * screen is set in live type instead: the same words, in the couple's own
+ * hand, with nothing behind them.
+ */
 export function Invite() {
   return (
-    <Section id="loi-moi" tone="dark" backdrop={backdrop.damaskGreen} labelledBy="invite-title" className={styles.screen}>
-      <Reveal className={styles.headingWrap}>
-        <h2 id="invite-title" className={styles.heading}>
-          <span className="sr-only">Save the Date</span>
-          <Image
-            className={styles.headingArt}
-            src={intro.saveTheDate.src}
-            alt=""
-            width={intro.saveTheDate.w}
-            height={intro.saveTheDate.h}
-            sizes="(min-width: 40rem) 27rem, 90vw"
-            preload
-          />
+    <Section id="loi-moi" tone="shell" labelledBy="invite-title" className={styles.screen}>
+      <Reveal className={styles.block}>
+        <p className="caps caps-sm">Save the Date</p>
+
+        <h2 id="invite-title" className={styles.names}>
+          {couple.groom.name} <span className={styles.amp}>&amp;</span> {couple.bride.name}
         </h2>
-      </Reveal>
 
-      <Reveal className={styles.collage} delay={160}>
-        {/* The card, back-most: only its lace crown shows above the doily. */}
-        <Image
-          className={styles.card}
-          src={intro.laceCard.src}
-          alt=""
-          width={intro.laceCard.w}
-          height={intro.laceCard.h}
-          sizes="(min-width: 40rem) 27rem, 92vw"
-          preload
-        />
+        <span className="rule-diamond" aria-hidden="true">
+          <span />
+        </span>
 
-        <div className={styles.oval}>
-          <Image
-            src={intro.ovalDoily.src}
-            alt=""
-            width={intro.ovalDoily.w}
-            height={intro.ovalDoily.h}
-            sizes="(min-width: 40rem) 20rem, 70vw"
-            preload
-          />
-          <div className={styles.lines}>
-            <p className={styles.invite}>
-              Trân trọng kính mời
-              <br />
-              đến tham dự tiệc mừng
-              <br />
-              lễ thành hôn cùng
-              <br />
-              gia đình chúng tôi!
-            </p>
-            <p className={styles.date}>{ceremony.dateLine}</p>
-          </div>
-        </div>
+        <p className={styles.invite}>
+          Trân trọng kính mời
+          <br />
+          đến tham dự tiệc mừng lễ thành hôn
+          <br />
+          cùng gia đình chúng tôi!
+        </p>
 
-        {/* The envelope's front pocket, laid over everything. */}
-        <Image
-          className={styles.pocket}
-          src={intro.envelopeFront.src}
-          alt=""
-          width={intro.envelopeFront.w}
-          height={intro.envelopeFront.h}
-          sizes="(min-width: 40rem) 30rem, 100vw"
-          preload
-        />
+        <p className={styles.date}>{ceremony.dateLine}</p>
       </Reveal>
 
       <p className={styles.scrollHint} aria-hidden="true">

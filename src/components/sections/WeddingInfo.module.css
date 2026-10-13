@@ -10,34 +10,22 @@
   width: 100%;
   padding: var(--sp-7) var(--sp-3) var(--sp-6);
   text-align: center;
-  color: var(--c-olive);
+  color: var(--tone-fg);
 }
 
 .place,
-.when,
-.closing {
+.when {
   display: grid;
   justify-items: center;
   gap: var(--sp-2);
 }
 
 /* --- Where ---------------------------------------------------------------- */
-.eyebrow {
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
+/* `.caps` carries the face, tracking and colour; these add only what is
+   particular to this screen. */
+.place > :first-child {
   font-style: italic;
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
   margin-bottom: var(--sp-2);
-}
-
-.hall {
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
 }
 
 /* The one line on the screen that is drawn rather than set — the hotel's
@@ -57,21 +45,13 @@
 }
 
 .address {
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-weight: 400;
   opacity: 0.9;
 }
 
 /* --- When ----------------------------------------------------------------- */
 .when {
   gap: var(--sp-1);
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
 }
 
 /* --- How long ------------------------------------------------------------- */
@@ -114,79 +94,24 @@
   line-height: 1;
 }
 
+/* Ruled off from the figure above it, as on a departures board. */
 .label {
+  width: 100%;
   padding-top: var(--sp-2);
   border-top: 1px solid currentColor;
-  width: 100%;
-  font-family: var(--font-display);
-  font-size: 0.625rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   opacity: 0.75;
 }
 
 /* --- The ask -------------------------------------------------------------- */
 .ask {
-  width: 100%;
   display: grid;
   justify-items: center;
+  width: 100%;
 }
 
-.askButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+/* `.btn` is sized for a form; the one on this screen stands a little taller
+   and narrower, as it does on the printed card. */
+.ask > a {
   max-width: 20rem;
   min-height: 3.25rem;
-  padding: 0.85rem 2rem;
-  border-radius: var(--radius-pill);
-  background: var(--c-mocha);
-  font-family: var(--font-display);
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--c-shell);
-  transition:
-    background var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
-}
-
-.askButton:hover {
-  background: #b89d80;
-}
-
-.askButton:active {
-  transform: scale(0.985);
-}
-
-/* --- The closing line ------------------------------------------------------ */
-.closing {
-  gap: var(--sp-1);
-  max-width: 24rem;
-  font-family: var(--font-belle);
-  font-size: var(--fs-md);
-  line-height: 1.5;
-}
-
-.closing p:first-child {
-  font-size: var(--fs-lg);
-}
-
-/* --- Map ------------------------------------------------------------------- */
-.mapLink {
-  font-family: var(--font-display);
-  font-size: var(--fs-xs);
-  font-weight: 500;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  text-decoration: underline;
-  text-underline-offset: 0.35em;
-  opacity: 0.8;
-}
-
-.mapLink:hover {
-  opacity: 1;
 }

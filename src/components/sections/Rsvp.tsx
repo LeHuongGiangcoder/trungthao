@@ -8,7 +8,7 @@ import styles from './Rsvp.module.css';
 /** The reply card: the couple's mark, one instruction, and the form. */
 export function Rsvp() {
   return (
-    <section id="rsvp" data-tone="light" className={styles.rsvp} aria-labelledby="rsvp-title">
+    <section id="rsvp" data-tone="shell" className={styles.rsvp} aria-labelledby="rsvp-title">
       <Reveal className={styles.head}>
         <Image
           className={styles.mark}
@@ -21,14 +21,14 @@ export function Rsvp() {
         <h2 id="rsvp-title" className={styles.heading}>
           {rsvp.heading}
         </h2>
-        <p className={styles.deadline}>{rsvp.deadline}</p>
+        <p className={`caps caps-sm ${styles.deadline}`}>{rsvp.deadline}</p>
       </Reveal>
 
       <Reveal delay={120} className={styles.formWrap}>
         <RsvpForm />
       </Reveal>
 
-      <a className={styles.back} href="#thiep">
+      <a className="link-quiet" href="#thiep">
         Quay lại
       </a>
     </section>

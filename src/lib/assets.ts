@@ -14,12 +14,20 @@ export const backdrop = {
 
 /** Gilt pieces, supplied ready for the web. */
 export const gilt = {
-  /** The small crest that opens every section. */
-  crest: '/crest.webp',
-  butterfly: '/butterfly.webp',
-  flower: '/flower.webp',
   /** A gloved hand holding a blank card — the dress code is set on it. */
   dressHand: '/dress-hand.png',
+} as const;
+
+/** The two marks that head the sections, in place of the gilt crest and
+ *  butterfly they replaced. Both are photographed objects rather than line
+ *  work, so they hold up on the beige ground where flat gilt would not.
+ *  Sources live in art/ornament; regenerate with
+ *  `node scripts/optimize-ornaments.cjs`. */
+export const ornament = {
+  /** Pearl flower — the mark that opens every section. */
+  flower: { src: '/img/v2/ornament-flower.webp', w: 640, h: 579 },
+  /** Marble cherub — the dress code's own mark. */
+  cherub: { src: '/img/v2/ornament-cherub.webp', w: 640, h: 628 },
 } as const;
 
 export const element = {

@@ -34,6 +34,9 @@
   --c-shell: #fffaf4;
   --c-olive: #776837;
   --c-mocha: #c6b098;
+  --c-mocha-deep: #b89d80; /* the mocha button, pressed */
+  --c-olive-soft: #efe8dc; /* an unchosen option on the shell ground */
+  --c-error: #9a3b2d;
 
   /* --- Semantic ---------------------------------------------------------- */
   --bg-page: var(--c-green-deep);
@@ -48,7 +51,6 @@
   --tone-body: var(--c-ink-soft);
   --tone-accent: var(--c-green);
   --tone-rule: rgba(43, 89, 65, 0.3);
-  --tone-ornament: 0.5;
 
   /* --- Typography -------------------------------------------------------- */
   --font-script: var(--font-pinyon), "Apple Chancery", cursive;
@@ -59,6 +61,7 @@
   --font-display: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-body: var(--font-sans), system-ui, -apple-system, sans-serif;
 
+  --fs-2xs: 0.625rem; /* 10px — unit labels under the countdown, scroll hint */
   --fs-xs: 0.813rem; /* 13px — eyebrow / label */
   --fs-sm: 0.938rem; /* 15px */
   --fs-base: 1.125rem; /* 18px */
@@ -201,6 +204,9 @@ a {
   }
 }
 
+/* A section's ground comes from its tone, so a flat-coloured screen needs
+   nothing but `data-tone`. The full-bleed `.backdrop` image is for the two
+   screens that still want a texture over it. */
 .section {
   position: relative;
   display: grid;
@@ -210,6 +216,7 @@ a {
   padding: var(--section-top) var(--gutter) var(--section-bottom);
   overflow: clip;
   isolation: isolate;
+  background: var(--bg-ground);
   color: var(--tone-fg);
 }
 
@@ -251,20 +258,22 @@ a {
   --tone-rule: rgba(213, 226, 216, 0.4);
 }
 
+/* The beige ground the whole invitation is printed on, and the olive gold
+   every line of type on it is set in. This is the default tone now: `light`
+   and `dark` remain for the two screens whose art still needs them. */
+[data-tone='shell'] {
+  --bg-ground: var(--c-shell);
+  --panel-bg: rgba(255, 255, 255, 0.55);
+  --field-bg: #fff;
+  --field-border: rgba(119, 104, 55, 0.45);
+  --field-placeholder: rgba(119, 104, 55, 0.5);
+  --tone-fg: var(--c-olive);
+  --tone-body: var(--c-olive);
+  --tone-accent: var(--c-olive);
+  --tone-rule: rgba(119, 104, 55, 0.35);
+}
+
 /* --- Type roles ----------------------------------------------------------- */
-.script {
-  font-family: var(--font-script);
-  font-weight: 400;
-  line-height: 1;
-  color: var(--accent);
-}
-
-.display {
-  font-family: var(--font-display);
-  font-weight: 500;
-  line-height: var(--lh-snug);
-}
-
 /* Small letterspaced caps — the workhorse label of the printed invitation. */
 .eyebrow {
   font-family: var(--font-display);
@@ -291,10 +300,12 @@ a {
   text-align: center;
 }
 
-/* The small gilt crest that opens every section. */
+/* The mark that opens every section. Sized by height so the two marks —
+   a pearl flower and a marble cherub, both roughly square — carry the same
+   optical weight as each other. */
 .section-icon {
   width: auto;
-  height: 3.25rem;
+  height: 2.75rem;
   margin-bottom: 0;
 }
 
@@ -322,69 +333,45 @@ a {
   background: currentColor;
 }
 
+/* Letterspaced small caps in the display face — the printed invitation's
+   workhorse label, and the role the beige screens lean on hardest. Its three
+   sizes are modifiers rather than three separate rules. */
 .caps {
   font-family: var(--font-display);
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: var(--ls-wide);
   text-transform: uppercase;
+  color: var(--tone-fg);
 }
 
-.prose {
+.caps-sm {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.caps-xs {
+  font-size: var(--fs-2xs);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+}
+
+/* Quiet, underlined small caps — "Xem bản đồ", "Quay lại", "Mở thiệp". */
+.link-quiet {
   font-family: var(--font-display);
-  font-size: var(--fs-md);
-  color: var(--fg-muted);
-  line-height: var(--lh-base);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  color: var(--tone-fg);
+  opacity: 0.8;
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 
-/* --- Ornaments ------------------------------------------------------------ */
-
-/* Dotted rule, as used between blocks on the printed card. */
-.rule-dotted {
-  width: min(14rem, 70%);
-  height: 0;
-  margin-inline: auto;
-  border-top: 1px dotted var(--rule);
-}
-
-.rule-fine {
-  width: 2.5rem;
-  height: 0;
-  margin-inline: auto;
-  border-top: 1px solid var(--tone-rule);
-}
-
-/* A decorative PNG laid behind content. Never interactive, never announced.
-   `height: auto` is load-bearing: next/image emits width/height attributes, so
-   without it the intrinsic height overrides whatever width the layout sets.
-   The art is never faded or blurred — it reads at full strength, like a real
-   object laid on the page. Placement does the work instead. */
-/* ==========================================================================
-   Paper card — a real sheet laid on one of the green grounds: the reply card
-   and the order of the evening. Pair it with `data-tone="light"` on the same
-   element, so the type, rules and fields inside read the cream-ground colours
-   rather than the section's.
-   ========================================================================== */
-.paper-card {
-  border-radius: 0.25rem;
-  background: var(--c-paper);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 1.25rem 3rem -1rem rgba(0, 0, 0, 0.5);
-}
-
-.ornament {
-  position: absolute;
-  z-index: -1;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  object-fit: contain;
-}
-
-/* Sits above the content, overlapping it — for the pieces that should look
-   laid on top of the card rather than behind the page. */
-.ornament-front {
-  z-index: 2;
+.link-quiet:hover {
+  opacity: 1;
 }
 
 /* ==========================================================================
@@ -424,67 +411,15 @@ a {
   cursor: progress;
 }
 
-/* Frosted, see-through — laid over photography and over the green grounds. */
-.btn-glass {
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(0.625rem) saturate(1.25);
-  -webkit-backdrop-filter: blur(0.625rem) saturate(1.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  color: var(--c-green-deep);
+/* The one filled button on the invitation: mocha, on the beige ground. */
+.btn-mocha {
+  border-color: transparent;
+  background: var(--c-mocha);
+  color: var(--c-shell);
 }
 
-.btn-glass:hover {
-  background: rgba(255, 255, 255, 0.42);
-}
-
-/* On the dark grounds the same glass has to carry light type, so the fill
-   stays low and the ink flips to ivory. */
-[data-tone='dark'] .btn-glass {
-  border-color: rgba(255, 255, 255, 0.38);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  color: var(--c-ivory);
-}
-
-[data-tone='dark'] .btn-glass:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* The chosen option / primary action: the same glass, pressed brighter. */
-.btn-glass-strong {
-  border-color: rgba(255, 255, 255, 0.75);
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(0.75rem) saturate(1.3);
-  -webkit-backdrop-filter: blur(0.75rem) saturate(1.3);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 0.5rem 1.25rem -0.5rem rgba(0, 0, 0, 0.35);
-  color: var(--c-green-deep);
-}
-
-.btn-glass-strong:hover {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.btn-solid {
-  border-color: var(--tone-fg);
-  background: var(--tone-fg);
-  color: var(--c-paper);
-}
-
-[data-tone='dark'] .btn-solid {
-  color: var(--c-green-deep);
-}
-
-.btn-outline {
-  border-color: var(--tone-rule);
-  background: transparent;
-  color: var(--tone-fg);
-}
-
-.btn-outline:hover {
-  border-color: var(--tone-fg);
+.btn-mocha:hover:not(:disabled) {
+  background: var(--c-mocha-deep);
 }
 
 /* ==========================================================================

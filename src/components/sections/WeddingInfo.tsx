@@ -17,6 +17,9 @@ const [day, month, year] = ceremony.dateLine.split(' . ');
  * Everything is live type rather than drawn art: it is the part a guest will
  * read out to someone else, so it has to be selectable, searchable and
  * reflowable.
+ *
+ * "Trân trọng kính mời …" is deliberately not repeated here — it opens the
+ * invitation one screen earlier, on `Invite`.
  */
 export function WeddingInfo() {
   return (
@@ -24,13 +27,13 @@ export function WeddingInfo() {
       <h2 className="sr-only">Thông tin lễ cưới</h2>
 
       <Reveal className={styles.place}>
-        <p className={styles.eyebrow}>Lễ cưới diễn ra tại</p>
-        <p className={styles.hall}>{ceremony.hall}</p>
+        <p className="caps caps-sm">Lễ cưới diễn ra tại</p>
+        <p className="caps">{ceremony.hall}</p>
         <p className={styles.venue}>{ceremony.venue}</p>
-        <p className={styles.address}>{ceremony.address}</p>
+        <p className={`caps caps-sm ${styles.address}`}>{ceremony.address}</p>
       </Reveal>
 
-      <Reveal className={styles.when} delay={120}>
+      <Reveal className={`caps ${styles.when}`} delay={120}>
         <p>
           Vào ngày {day} tháng {month} năm {year}
         </p>
@@ -45,19 +48,14 @@ export function WeddingInfo() {
           className={styles.countdown}
           unitClassName={styles.unit}
           valueClassName={styles.value}
-          labelClassName={styles.label}
+          labelClassName={`caps caps-xs ${styles.label}`}
         />
       </Reveal>
 
       <Reveal delay={280} className={styles.ask}>
-        <a className={styles.askButton} href="#rsvp">
+        <a className="btn btn-mocha" href="#rsvp">
           Quý khách sẽ đến chứ?
         </a>
-      </Reveal>
-
-      <Reveal delay={360} className={styles.closing}>
-        <p>Trân trọng kính mời</p>
-        <p>đến dự tiệc mừng lễ thành hôn cùng gia đình chúng tôi!</p>
       </Reveal>
 
       {/* Not printed on the card, but a guest looking for the families or for
@@ -75,7 +73,7 @@ export function WeddingInfo() {
       </div>
 
       <a
-        className={styles.mapLink}
+        className="link-quiet"
         href={ceremony.mapUrl}
         target="_blank"
         rel="noopener noreferrer"
