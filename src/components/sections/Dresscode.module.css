@@ -1,10 +1,12 @@
 .dresscode {
   gap: var(--sp-4);
-  /* The band of ground below the gloved hand's lower edge. The silk is hung
-     from the section's floor and is about twice this tall, so this is what
-     decides how much of the sash falls clear of the hand — and it is why the
-     sash is shown whole rather than cut off by the section's edge. */
-  --silk-drop: 5.5rem;
+  /* How far the gloved hand's lower edge sits above the section's floor. The
+     silk hangs from that floor and stands about 13rem tall, so this number
+     decides how deep into the sash the hand's cut edge falls. It is small on
+     purpose: with nothing fading the arm out, the only thing hiding that
+     straight edge is the cloth itself, and at 5.5rem the edge surfaced above
+     the silk's thinner left end. */
+  --silk-drop: 2rem;
   padding-bottom: var(--silk-drop) !important;
   overflow: clip;
   z-index: 2;
