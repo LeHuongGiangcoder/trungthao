@@ -20,6 +20,70 @@
   gap: var(--sp-2);
 }
 
+/* --- The two families ------------------------------------------------------
+   Side by side with a hairline between them, as the card sets them. They go
+   to one column under about 340px, where two columns of Vietnamese names
+   start breaking mid-word. */
+.families {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+  width: 100%;
+  max-width: 24rem;
+}
+
+.families::before {
+  content: '';
+  grid-column: 2;
+  grid-row: 1;
+  width: 1px;
+  height: 100%;
+  background: var(--tone-rule);
+}
+
+.family {
+  display: grid;
+  gap: var(--sp-1);
+}
+
+.family:first-of-type {
+  grid-column: 1;
+}
+
+.family:last-of-type {
+  grid-column: 3;
+}
+
+.side {
+  margin-bottom: var(--sp-1);
+  opacity: 0.75;
+}
+
+.parent {
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+  color: var(--tone-fg);
+}
+
+@media (max-width: 21.25rem) {
+  .families {
+    grid-template-columns: 1fr;
+    gap: var(--sp-5);
+  }
+
+  .families::before {
+    display: none;
+  }
+
+  .family:first-of-type,
+  .family:last-of-type {
+    grid-column: 1;
+  }
+}
+
 /* --- Where ---------------------------------------------------------------- */
 /* `.caps` carries the face, tracking and colour; these add only what is
    particular to this screen. */
@@ -110,8 +174,11 @@
 }
 
 /* `.btn` is sized for a form; the one on this screen stands a little taller
-   and narrower, as it does on the printed card. */
+   and narrower, as it does on the printed card. Its tracking comes back in
+   too: at `--ls-wider` the question breaks over two lines at 375px. */
 .ask > a {
   max-width: 20rem;
   min-height: 3.25rem;
+  padding-inline: var(--sp-5);
+  letter-spacing: var(--ls-wide);
 }

@@ -28,6 +28,9 @@ export const ornament = {
   flower: { src: '/img/v2/ornament-flower.webp', w: 640, h: 579 },
   /** Marble cherub — the dress code's own mark. */
   cherub: { src: '/img/v2/ornament-cherub.webp', w: 640, h: 628 },
+  /** A length of beige silk, laid across the foot of the dress code so the
+   *  gloved hand ends in cloth rather than in a cut. */
+  silk: { src: '/img/v2/ornament-silk.webp', w: 1400, h: 459 },
 } as const;
 
 export const element = {

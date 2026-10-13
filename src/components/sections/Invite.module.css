@@ -1,79 +1,160 @@
-/* The line that invites. The first screen past the envelope, and the only
-   one that is nothing but type — so it is given the whole viewport and a
-   deep band of air around it. */
+/* The opening view, and the only section pinned to the viewport: it carries
+   the scroll hint, so it has to be the whole first screen. */
 .screen {
-  gap: var(--sp-6);
+  gap: var(--sp-4);
   min-height: 100svh;
+  /* The envelope's pocket is flush with the screen's bottom edge, as on the
+     printed card, so the stack is anchored down and the band of ground above
+     it takes up whatever is left. */
+  align-content: end;
+  /* An explicit column: the collage holds its shape with `aspect-ratio` and
+     has no in-flow content, so against an auto-sized column it would resolve
+     its width from its height and spill out of the stage. */
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: stretch;
+  padding: var(--sp-7) 0 0;
 }
 
-.block {
+.headingWrap {
+  width: 100%;
+  padding-inline: var(--gutter);
+  margin-bottom: var(--sp-8);
+}
+
+.heading {
   display: grid;
   justify-items: center;
-  gap: var(--sp-5);
-  max-width: 24rem;
+  font-size: 0; /* the heading is drawn art; nothing is set in type */
+}
+
+.headingArt {
+  width: min(100%, 22rem);
+  height: auto;
+}
+
+/* --- The card, the doily and the envelope, laid up as one object ---------
+
+   Placed from the three pieces' own silhouettes rather than by eye, because
+   one of them constrains everything else:
+
+   - the envelope front is two flap wedges over an open middle, going fully
+     opaque across its whole width at 45% of its own height;
+   - the lace card is a scalloped dome for its top 30%, and below that a plain
+     solid rectangle the full width of the art;
+   - the doily is the lace oval, at its widest across its own middle.
+
+   The card's body therefore has a straight top edge running its whole width,
+   and the only thing that can hide it is the envelope. So the card is set low
+   enough that the edge lands below the envelope's opaque line, leaving just
+   its dome above — which is the lace that shows at the oval's shoulders. The
+   card is NOT cropped, masked or object-fitted; it is simply placed where its
+   edge cannot be seen, and the overflow is clipped by the section.
+
+   Horizontal percentages are fractions of the collage's width, vertical ones
+   of its height, which is 1.532x the width. */
+.collage {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: var(--stage-w);
+  aspect-ratio: 404 / 619;
+}
+
+.collage img {
+  height: auto;
+}
+
+/* The back of the envelope, and the ground the oval is laid on. Its scalloped
+   dome IS its top edge: the lobes curve outward and only reach the card's full
+   width at 32% of its height, so there is no flat edge to hide — as long as
+   the piece is never cropped horizontally. Cropping it (an `object-fit: cover`
+   at the collage's width) cuts the lobes off and leaves the body's flat top
+   ruled across the ground, which is what went wrong before. So it is placed at
+   its natural size, drawn a few percent wider than the collage so the last of
+   the lobe curve falls outside the stage, and nothing else is done to it. */
+.card {
+  position: absolute;
+  top: 26.8%;
+  left: -7%;
+  width: 114%;
+  /* `max-width: none` is load-bearing: the global `img { max-width: 100% }`
+     otherwise clamps this back to the collage's width while `left` still
+     shifts it by the full overhang, leaving the card off-centre and its
+     right-hand lobe cut inside the stage. */
+  max-width: none;
+}
+
+/* The invitation's lines sit on this, laid over the card's dome. It is drawn
+   narrower than the card so the dome's lace shows to either side of it. */
+.oval {
+  position: absolute;
+  top: 10.5%;
+  left: 6%;
+  width: 88%;
+}
+
+.oval img {
+  width: 100%;
+}
+
+/* Inside the oval's clear field, clear of the lace border all round, and set
+   a little high: the envelope's scalloped arch closes in across the oval's
+   lower third. */
+.lines {
+  position: absolute;
+  inset: 13% 12% 23%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.1em;
   text-align: center;
-}
-
-/* The two names, with the ampersand set smaller and in the script hand
-   between them, as on the printed card. */
-.names {
-  font-family: var(--font-display);
-  font-size: clamp(1.875rem, 8.5vw, 2.625rem);
-  font-weight: 400;
-  line-height: 1.15;
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: var(--tone-fg);
-}
-
-.amp {
-  font-family: var(--font-script);
-  font-size: 1.1em;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  vertical-align: -0.08em;
-  color: var(--c-mocha);
 }
 
 .invite {
   font-family: var(--font-belle);
-  font-size: clamp(1.0625rem, 5vw, 1.375rem);
+  font-size: clamp(1.0625rem, 5vw, 1.5rem);
   font-weight: 500;
-  line-height: 1.7;
-  text-wrap: balance;
-  color: var(--tone-fg);
+  line-height: 1.6;
+  color: var(--c-green);
 }
 
 .date {
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
+  font-size: clamp(0.75rem, 3.3vw, 1rem);
   font-weight: 600;
-  letter-spacing: var(--ls-wider);
-  color: var(--c-mocha);
+  letter-spacing: var(--ls-wide);
+  color: var(--c-clay);
 }
 
-/* --- The one hint that there is more below -------------------------------- */
+/* The envelope's front, anchored to the bottom of the box. Painted last, so
+   it takes in the bottom of both the card and the oval. */
+.pocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .scrollHint {
   position: absolute;
-  bottom: calc(var(--sp-5) + env(safe-area-inset-bottom));
+  bottom: calc(var(--sp-3) + env(safe-area-inset-bottom));
   left: 50%;
   translate: -50% 0;
   display: grid;
   justify-items: center;
   gap: var(--sp-2);
   font-family: var(--font-display);
-  font-size: var(--fs-2xs);
+  font-size: 0.625rem;
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  color: var(--tone-fg);
-  opacity: 0.6;
+  /* It lands on the envelope's cream pocket, so it is inked in green. */
+  color: rgba(43, 89, 65, 0.6);
 }
 
 .scrollLine {
   width: 1px;
   height: 1.5rem;
-  background: linear-gradient(to bottom, currentColor, transparent);
+  background: linear-gradient(to bottom, rgba(43, 89, 65, 0.5), transparent);
   animation: drop 2.4s var(--ease-in-out) infinite;
   transform-origin: top;
 }
@@ -87,11 +168,5 @@
   50% {
     scale: 1 1;
     opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scrollLine {
-    animation: none;
   }
 }

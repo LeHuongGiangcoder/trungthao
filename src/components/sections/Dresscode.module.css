@@ -1,7 +1,12 @@
 .dresscode {
   gap: var(--sp-4);
-  padding-bottom: 0 !important;
-  overflow: visible !important;
+  /* The band of ground below the gloved hand's lower edge. The silk is hung
+     from the section's floor and is about twice this tall, so this is what
+     decides how much of the sash falls clear of the hand — and it is why the
+     sash is shown whole rather than cut off by the section's edge. */
+  --silk-drop: 5.5rem;
+  padding-bottom: var(--silk-drop) !important;
+  overflow: clip;
   z-index: 2;
 }
 
@@ -128,3 +133,50 @@
   scale: -1 1;
 }
 
+
+/* --- The foot of the section ----------------------------------------------
+   The gloved hand is drawn to the foot of the content box and simply stops
+   there, which leaves a ruled line across the forearm. Two things cover it.
+
+   First a wash of the ground, rising to meet that line. This is what
+   actually does the hiding: it works whatever shape the silk is and wherever
+   the hand's edge happens to fall. */
+.dresscode::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--silk-drop);
+  z-index: 2;
+  height: 7rem;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 250, 244, 0) 0%,
+    rgba(255, 250, 244, 0.85) 55%,
+    var(--bg-ground) 88%
+  );
+}
+
+/* Then the silk, laid over the wash so the arm ends in cloth rather than in
+   a fade. It hangs from the section's floor, which puts its lower half in
+   the band of ground below the hand and leaves the whole sash visible — no
+   part of it is cut off by the section's edge.
+
+   It is still drawn past both sides of the stage, so the sash reads as
+   continuing rather than as an object with two ends. `max-width: none` is
+   load-bearing against the global `img { max-width: 100% }`, which would
+   otherwise pull it back to the stage's width while `left` still shifts it
+   by the full overhang. */
+.silk {
+  position: absolute;
+  bottom: 0;
+  left: 46%;
+  translate: -50% 0;
+  z-index: 3;
+  width: 165%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}

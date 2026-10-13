@@ -56,8 +56,20 @@ export function Dresscode() {
             ))}
           </ul>
         </div>
-
       </Reveal>
+
+      {/* The hand runs off the foot of the section, so a length of silk is
+          laid across the cut — the arm ends in cloth rather than in an edge.
+          It is drawn wider than the stage so neither end of the sash is
+          visible. */}
+      <Image
+        className={styles.silk}
+        src={ornament.silk.src}
+        alt=""
+        width={ornament.silk.w}
+        height={ornament.silk.h}
+        sizes="(min-width: 40rem) 36rem, 125vw"
+      />
     </Section>
   );
 }
