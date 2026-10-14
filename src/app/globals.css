@@ -39,7 +39,9 @@
   --c-error: #9a3b2d;
 
   /* --- Semantic ---------------------------------------------------------- */
-  --bg-page: var(--c-green-deep);
+  /* The surround the stage sits on, and what shows in the overscroll gap
+     above the first screen and below the last — shell, like the paper. */
+  --bg-page: var(--c-shell);
   --bg-stage: var(--c-paper);
   --fg: var(--c-ink);
   --fg-muted: var(--c-ink-soft);
