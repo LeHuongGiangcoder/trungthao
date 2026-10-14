@@ -1,13 +1,5 @@
 .dresscode {
   gap: var(--sp-4);
-  /* How far the gloved hand's lower edge sits above the section's floor. The
-     silk hangs from that floor and stands about 13rem tall, so this number
-     decides how deep into the sash the hand's cut edge falls. It is small on
-     purpose: with nothing fading the arm out, the only thing hiding that
-     straight edge is the cloth itself, and at 5.5rem the edge surfaced above
-     the silk's thinner left end. */
-  --silk-drop: 2rem;
-  padding-bottom: var(--silk-drop) !important;
   overflow: clip;
   z-index: 2;
 }
@@ -38,9 +30,13 @@
   margin-top: -10%;
 }
 
+/* With the silk gone, the arm ends in the art's own straight edge. The last
+   of the forearm is faded out so that cut dissolves into the paper instead of
+   ruling a line across it. */
 .handArt {
   width: 100%;
   height: auto;
+  mask-image: linear-gradient(to bottom, #000 86%, transparent 99%);
 }
 
 /* Inset to the blank face of the card the hand holds up, and set high on it
@@ -133,30 +129,4 @@
   left: -22%;
   width: 40%;
   scale: -1 1;
-}
-
-
-/* --- The foot of the section ----------------------------------------------
-   The silk covers where the gloved hand's lower edge falls, and nothing else
-   does: there is no wash of the ground under it. It hangs from the section's
-   floor, which puts its lower half in the band of ground below the hand and
-   leaves the whole sash visible — no part of it is cut off by the section's
-   edge.
-
-   It is drawn past both sides of the stage, so the sash reads as continuing
-   rather than as an object with two ends. `max-width: none` is load-bearing
-   against the global `img { max-width: 100% }`, which would otherwise pull
-   it back to the stage's width while `left` still shifts it by the full
-   overhang. */
-.silk {
-  position: absolute;
-  bottom: 0;
-  left: 46%;
-  translate: -50% 0;
-  z-index: 3;
-  width: 165%;
-  max-width: none;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
 }

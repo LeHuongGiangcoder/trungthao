@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { Layer, Screen } from '@/components/Screen';
-import { story } from '@/lib/assets';
+import { finalPhoto, story } from '@/lib/assets';
 import { couple } from '@/lib/wedding';
 import styles from './Story.module.css';
 
@@ -17,7 +17,7 @@ export function Welcome() {
           was drawn on. */}
       <div className={styles.oval}>
         <Image
-          src={story.ovalPhoto.src}
+          src={finalPhoto.welcome.src}
           alt={`${couple.groom.name} và ${couple.bride.name}`}
           fill
           sizes="(min-width: 40rem) 19rem, 62vw"
@@ -35,69 +35,26 @@ export function Welcome() {
   );
 }
 
-/**
- * The couple under the veil, their names written across it.
+/** The framed portrait, signed underneath.
  *
- * The names go between the photograph and a cut-out of the couple taken from
- * it, so the writing runs behind them and in front of the ground — the depth
- * the flat art cannot give on its own.
- */
-export function Veil() {
-  return (
-    <Screen tone="shell" labelledBy="veil-title" className={styles.veil}>
-      <Layer art={story.veil} alt={`${couple.groom.name} và ${couple.bride.name}`} />
-
-      {/* The two lines are placed separately rather than as one frame: written
-          together they sit too far apart to fall in the open ground beside the
-          couple, and only one of them ever reads. */}
-      <Image
-        className={styles.nameTrung}
-        src={story.nameTrung.src}
-        alt=""
-        width={story.nameTrung.w}
-        height={story.nameTrung.h}
-        sizes="(min-width: 40rem) 15rem, 48vw"
-      />
-      <Image
-        className={styles.nameThao}
-        src={story.nameThao.src}
-        alt=""
-        width={story.nameThao.w}
-        height={story.nameThao.h}
-        sizes="(min-width: 40rem) 13rem, 42vw"
-      />
-
-      <Layer art={story.veilCutout} />
-
-      <h2 id="veil-title" className="sr-only">
-        {couple.groom.name} &amp; {couple.bride.name}
-      </h2>
-    </Screen>
-  );
-}
-
-/** Two snapshots laid on stone, under a line of script. */
-export function TwoSouls() {
-  return (
-    <Screen tone="shell" ground={story.stone} labelledBy="two-souls-title" className={styles.twoSouls}>
-      {/* The snapshots are drawn high enough on the frame to run over the
-          script, so they are nudged down and the line is lifted clear and
-          laid on top of them. */}
-      <Layer art={story.polaroids} className={styles.polaroids} alt={`${couple.groom.name} và ${couple.bride.name}`} />
-      <Layer art={story.twoSouls} className={styles.twoSoulsLine} />
-
-      <h2 id="two-souls-title" className="sr-only">
-        Two souls, one promise
-      </h2>
-    </Screen>
-  );
-}
-
-/** The framed portrait, signed underneath. */
+ *  The ruled frame and the print it holds are one piece of art, so the
+ *  replacement photograph is laid over the print it supersedes, inset to the
+ *  opening the rule draws — measured off `story.framed` itself, in fractions
+ *  of the 9:16 sheet every layer shares. */
 export function Portrait() {
   return (
     <Screen tone="shell" labelledBy="portrait-title" className={styles.portrait}>
-      <Layer art={story.framed} alt={`${couple.groom.name} và ${couple.bride.name}`} />
+      <Layer art={story.framed} />
+
+      <div className={styles.framedPhoto}>
+        <Image
+          src={finalPhoto.portrait.src}
+          alt={`${couple.groom.name} và ${couple.bride.name}`}
+          fill
+          sizes="(min-width: 40rem) 22rem, 72vw"
+        />
+      </div>
+
       <Layer art={story.framedCaption} className={styles.caption} />
 
       <h2 id="portrait-title" className="sr-only">

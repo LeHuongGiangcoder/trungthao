@@ -18,6 +18,13 @@ export const gilt = {
   dressHand: '/dress-hand.png',
 } as const;
 
+/** The dress code's ground: a sheet of cream paper with an engraved rule
+ *  pressed into it, laid full-bleed behind the section. Source is
+ *  `public/layer paper.png`. */
+export const paper = {
+  dresscode: '/img/dresscode-paper.webp',
+} as const;
+
 /** The two marks that head the sections, in place of the gilt crest and
  *  butterfly they replaced. Both are photographed objects rather than line
  *  work, so they hold up on the beige ground where flat gilt would not.
@@ -200,6 +207,15 @@ export const story = {
   closingPhoto: { src: '/img/story-closing-photo.webp', w: 1100, h: 1956 },
   /** "Bao Trung and Thu Thao", in white handwriting, laid over it. */
   closingNames: { src: '/img/story-closing-names.webp', w: 800, h: 1422 },
+} as const;
+
+/** The couple's final selects, supplied full size and used straight — the
+ *  welcome oval and the framed print on the portrait screen. */
+export const finalPhoto = {
+  /** Standing together, full length — the welcome card's oval. */
+  welcome: { src: '/finalpic1.jpg', w: 1706, h: 2560 },
+  /** Closer, looking at one another — the print inside the ruled frame. */
+  portrait: { src: '/finalpic2.jpg', w: 1706, h: 2560 },
 } as const;
 
 /** The couple's pre-wedding photographs, all shot portrait at 1707x2560. */

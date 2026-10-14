@@ -1,4 +1,4 @@
-/* The four story screens. Each one is a stack of full-frame art; what is left
+/* The two story screens. Each one is a stack of full-frame art; what is left
    here is the ground behind it and the few pieces the art cannot carry. */
 
 .welcome {
@@ -19,63 +19,25 @@
   object-fit: cover;
 }
 
-/* The veil photograph fills its frame, so this only shows at the seams. */
-.veil {
-  background: var(--c-shell);
-}
-
-/* The two words, laid over the open ground at the top right and overlapping
-   one another the way a signature does. Both sit between the photograph and
-   the couple's cut-out, so the writing passes behind them.
-
-   Each band is the full width of the frame it was drawn on, so one shared
-   `scale` renders both words at the same size; `transform-origin: 0 0` then
-   makes the placement arithmetic simple — a word's ink lands at
-   `scale * (its place on the frame) + translate`. */
-.nameTrung,
-.nameThao {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: auto;
-  transform-origin: 0 0;
-  /* One value for both: this is what makes the two words the same size.
-     Change it and they stay matched; change only one and they stop being
-     the same hand. */
-  scale: 1.05;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Ink sits at 0.297–0.715 across its own band, so it lands at
-   1.05 x 0.297 + 0.018 = 0.33 of the screen. */
-.nameTrung {
-  top: 3.3%;
-  translate: 1.8%;
-}
-
-/* Ink sits at 0.482–0.794, landing at 0.62 — set down and to the right of
-   Trung, the two crossing the way a signature does. */
-.nameThao {
-  top: 16.2%;
-  translate: 11.4%;
-}
-
-.twoSouls {
-  background: var(--c-shell);
-}
-
-.polaroids {
-  translate: 0 0%;
-}
-
-.twoSoulsLine {
-  translate: 0 -23%;
-}
-
 /* The framed print is 44% transparent, so this ground genuinely shows. */
 .portrait {
   background: var(--c-shell);
+}
+
+/* The window the double rule draws, measured off story-framed.webp: the print
+   runs 154–945 across and 239–1448 down the 1100x1956 sheet. The replacement
+   photograph is laid in it, so the rule and the white margin inside it stay
+   the art's and only the picture changes. */
+.framedPhoto {
+  position: absolute;
+  top: 12.22%;
+  left: 14%;
+  width: 72%;
+  height: 61.86%;
+}
+
+.framedPhoto img {
+  object-fit: cover;
 }
 
 /* The signature is drawn across the middle of its frame; it belongs under the
