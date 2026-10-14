@@ -12,18 +12,16 @@ export const backdrop = {
   damaskGreen: '/img/bg-damask-green.webp',
 } as const;
 
-/** Gilt pieces, supplied ready for the web. */
-export const gilt = {
-  /** A gloved hand holding a blank card — the dress code is set on it. */
-  dressHand: '/dress-hand.png',
-} as const;
-
 /** A sheet of plain cream paper, laid full-bleed behind a section as its
  *  ground. Cropped past its own deckled border so it tiles edge to edge under
  *  `object-fit: cover` without ruling a line across the screen. Source is
  *  `art/paper-sheet.png`. */
 export const paper = {
   sheet: '/img/paper-sheet.webp',
+  /** The same sheet with its deckled edge left on and its transparency kept —
+   *  a piece of paper laid on a section rather than a ground under one. The
+   *  dress code's palette is set on it. */
+  card: '/img/paper-card.webp',
 } as const;
 
 /** The two marks that head the sections, in place of the gilt crest and

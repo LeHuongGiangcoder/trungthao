@@ -21,31 +21,29 @@
   color: var(--c-clay);
 }
 
-/* --- The held card -------------------------------------------------------- */
-.hand {
+/* --- The card ------------------------------------------------------------- */
+.card {
   container-type: inline-size;
   position: relative;
   width: 100%;
   margin-inline: auto;
-  margin-top: -10%;
 }
 
-/* With the silk gone, the arm ends in the art's own straight edge. The last
-   of the forearm is faded out so that cut dissolves into the paper instead of
-   ruling a line across it. */
-.handArt {
+/* The sheet carries its own deckled edge, so it needs no border — only the
+   shadow that lifts it off the ground it is laid on, which is the same paper. */
+.cardArt {
   width: 100%;
   height: auto;
-  mask-image: linear-gradient(to bottom, #000 86%, transparent 99%);
+  filter: drop-shadow(0 0.75rem 1.5rem rgba(86, 70, 48, 0.18));
 }
 
-/* Inset to the blank face of the card the hand holds up, and set high on it
-   rather than floating in the middle. */
+/* Inset to the face of the sheet, optically centred on it: the palette is all
+   that is printed there. */
 .onCard {
   position: absolute;
-  inset: 18% 8% 45%;
+  inset: 14% 9%;
   display: grid;
-  align-content: start;
+  align-content: center;
   justify-items: center;
   gap: 7cqw;
   text-align: center;

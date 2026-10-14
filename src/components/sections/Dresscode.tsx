@@ -2,18 +2,19 @@ import Image from 'next/image';
 import type { CSSProperties } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { Section } from '@/components/Section';
-import { gilt, ornament, paper } from '@/lib/assets';
+import { ornament, paper } from '@/lib/assets';
 import { dresscode } from '@/lib/wedding';
 import styles from './Dresscode.module.css';
 
-/** The palette, engraved on the card the gloved hand holds up. The hand is the
- *  last thing in the section, so its cuff lands on the bottom padding line. */
+/** The palette, set on a sheet of paper laid on the section — nothing holds
+ *  it up, so the card is the last thing on the screen. The ground stays the
+ *  flat shell the two screens above it use, so the sheet reads as a sheet and
+ *  the three run together. */
 export function Dresscode() {
   return (
     <Section
       id="dresscode"
       tone="shell"
-      backdrop={paper.sheet}
       labelledBy="dresscode-title"
       className={styles.dresscode}
     >
@@ -39,8 +40,8 @@ export function Dresscode() {
         <p className={styles.note}>{dresscode.avoid}</p>
       </Reveal>
 
-      <Reveal className={styles.hand} delay={100}>
-        <Image className={styles.handArt} src={gilt.dressHand} alt="" width={900} height={1557} />
+      <Reveal className={styles.card} delay={100}>
+        <Image className={styles.cardArt} src={paper.card} alt="" width={915} height={694} />
 
         <div className={styles.onCard}>
           <p className={styles.paletteTitle}>{dresscode.paletteTitle}</p>

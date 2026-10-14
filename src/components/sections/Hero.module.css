@@ -6,7 +6,7 @@
   justify-items: center;
   align-content: center;
   min-height: 100svh;
-  padding: calc(var(--sp-6) + env(safe-area-inset-top)) var(--sp-3) var(--sp-8);
+  padding: calc(var(--sp-8) + env(safe-area-inset-top)) var(--sp-3) var(--sp-8);
   background: var(--c-shell);
   isolation: isolate;
 }
@@ -73,11 +73,13 @@
 }
 
 /* --- Before the screen is reached ----------------------------------------- */
+/* A short lift, in `cqh` so one distance reads the same across four layers of
+   four different heights. Rising the full height of the pocket put the pieces
+   below the envelope before they came up, which drew the eye to the motion
+   rather than to the collage. */
 .rising {
   opacity: 0;
-  /* Half the collage's height clears the pocket's mouth for all four pieces,
-     the tall save-the-date included. */
-  translate: 0 50cqh;
+  translate: 0 6cqh;
 }
 
 .envelopeBack,
@@ -89,7 +91,7 @@
 
 /* --- As it comes into view -------------------------------------------------- */
 .frame[data-shown] .rising {
-  animation: rise 1500ms var(--ease-out) both;
+  animation: rise 1100ms var(--ease-out) both;
 }
 
 .frame[data-shown] .envelopeBack,
@@ -110,7 +112,7 @@
 @keyframes rise {
   from {
     opacity: 0;
-    translate: 0 50cqh;
+    translate: 0 6cqh;
   }
   to {
     opacity: 1;
