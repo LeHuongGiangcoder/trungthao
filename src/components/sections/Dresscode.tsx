@@ -13,7 +13,7 @@ export function Dresscode() {
     <Section
       id="dresscode"
       tone="shell"
-      backdrop={paper.dresscode}
+      backdrop={paper.sheet}
       labelledBy="dresscode-title"
       className={styles.dresscode}
     >

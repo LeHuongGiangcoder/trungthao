@@ -11,6 +11,18 @@
   isolation: isolate;
 }
 
+/* The sheet the whole page is laid on. It sits under everything in the
+   section's own stacking context, which `isolation: isolate` above closes off
+   from the rest of the page. */
+.ground {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* The scroll-reveal wrapper. It carries `data-shown` once the collage is on
    screen, and every piece's motion hangs off that. */
 .frame {

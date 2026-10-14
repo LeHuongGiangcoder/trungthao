@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Reveal } from '@/components/Reveal';
 import { WeddingInfo } from '@/components/sections/WeddingInfo';
+import { paper } from '@/lib/assets';
 import { composition, type Placed } from '@/lib/composition';
 import { ceremony, couple } from '@/lib/wedding';
 import styles from './Hero.module.css';
@@ -55,7 +56,9 @@ function Piece({
  * closes over the lot, and the bouquet is laid across the corner last.
  *
  * Under it, on the same ground, is the invitation's own text — the hero and
- * the details are one page, as they are on the card.
+ * the details are one page, as they are on the card. That ground is a sheet
+ * of paper rather than flat shell, so the collage is laid on something with a
+ * grain to it.
  *
  * As the screen is scrolled to, the four contents rise out of the pocket.
  * They start pushed half a collage-height down — in `cqh`, so one distance
@@ -66,14 +69,19 @@ function Piece({
 export function Hero() {
   return (
     <section id="thiep" data-tone="shell" className={styles.hero} aria-labelledby="hero-title">
+      <Image className={styles.ground} src={paper.sheet} alt="" fill sizes="(min-width: 40rem) 30rem, 100vw" />
+
       <h1 id="hero-title" className="sr-only">
         {couple.groom.name} &amp; {couple.bride.name} — {ceremony.dateLine}
       </h1>
 
       {/* The collage is not the first screen, so its motion has to wait for
-          the guest to scroll to it rather than run on load. `fade={false}`
-          keeps the shared reveal out of the way — the pieces do their own. */}
-      <Reveal className={styles.frame} fade={false}>
+          the guest to scroll to it rather than run on load. Its top edge
+          enters the screen a long way before they are looking at it — the
+          welcome above is one viewport, and the collage starts just under the
+          fold — so it holds until it is a third of the way up. `fade={false}`
+          keeps the shared reveal out of the way: the pieces do their own. */}
+      <Reveal className={styles.frame} fade={false} hold={0.35}>
         <div
           className={styles.collage}
           style={

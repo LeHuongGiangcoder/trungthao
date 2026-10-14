@@ -8,7 +8,9 @@
   justify-items: center;
   gap: var(--sp-7);
   width: 100%;
-  padding: var(--sp-7) var(--sp-3) var(--sp-6);
+  /* A deeper top than bottom: the collage needs air under it before the
+     reading matter starts. */
+  padding: var(--sp-9) var(--sp-3) var(--sp-6);
   text-align: center;
   color: var(--tone-fg);
 }

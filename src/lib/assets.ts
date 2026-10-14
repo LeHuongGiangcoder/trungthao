@@ -18,11 +18,12 @@ export const gilt = {
   dressHand: '/dress-hand.png',
 } as const;
 
-/** The dress code's ground: a sheet of plain cream paper with soft deckled
- *  edges, laid full-bleed behind the section. Source is
- *  `art/dresscode-paper.png`. */
+/** A sheet of plain cream paper, laid full-bleed behind a section as its
+ *  ground. Cropped past its own deckled border so it tiles edge to edge under
+ *  `object-fit: cover` without ruling a line across the screen. Source is
+ *  `art/paper-sheet.png`. */
 export const paper = {
-  dresscode: '/img/dresscode-paper.webp',
+  sheet: '/img/paper-sheet.webp',
 } as const;
 
 /** The two marks that head the sections, in place of the gilt crest and
