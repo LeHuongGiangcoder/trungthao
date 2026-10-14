@@ -13,6 +13,32 @@ const path = require('path');
 const OUT = 'public/img';
 fs.mkdirSync(OUT, { recursive: true });
 
+/* The lettering on the two story screens was drawn in a bottle green of its
+   own, #00724A, which belongs to no part of the palette the rest of the card
+   is set in. These pieces are recoloured to --c-olive on the way through, so
+   the drawn type matches the live type everywhere else. The glyphs are one
+   flat colour with their antialiasing carried in the alpha channel, so
+   swapping the RGB and leaving the alpha alone keeps the edges clean. The
+   gilt on `welcome` is a different hue and is left as drawn. */
+const OLIVE = { r: 0x77, g: 0x68, b: 0x37 };
+const RECOLOUR = new Set(['wedding', 'welcome', 'framed-caption']);
+
+async function olivePng(src) {
+  const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+
+  for (let i = 0; i < data.length; i += 4) {
+    // The drawn green, and nothing else on these sheets, is this much greener
+    // than it is red or blue.
+    if (data[i + 1] > data[i] + 30 && data[i + 1] > data[i + 2] + 20) {
+      data[i] = OLIVE.r;
+      data[i + 1] = OLIVE.g;
+      data[i + 2] = OLIVE.b;
+    }
+  }
+
+  return sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } }).png().toBuffer();
+}
+
 /* Photographs carry detail and are seen full-bleed; flat lettering and line
    art stay smaller, since they are mostly transparent ground. */
 const WIDTH = {
@@ -37,7 +63,9 @@ async function run() {
     const name = file.replace(/\.(png|jpg)$/, '');
     const out = path.join(OUT, `story-${name}.webp`);
 
-    await sharp(`art/story/${file}`)
+    const input = RECOLOUR.has(name) ? await olivePng(`art/story/${file}`) : `art/story/${file}`;
+
+    await sharp(input)
       .resize({ width: WIDTH[name] ?? 800, withoutEnlargement: true })
       .webp({ quality: 84, alphaQuality: 90 })
       .toFile(out);
