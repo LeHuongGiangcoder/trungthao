@@ -85,16 +85,38 @@
 }
 
 /* --- The invitation's own line --------------------------------------------
-   Set like the parents' names above it, which it speaks for, and held to a
-   measure that keeps it to two lines on a phone. */
+   It is the families' voice, not a fourth line of their names, so it is set
+   below them rather than beside them: pulled up close enough to read as
+   theirs, kept a size under the names so the eye passes over it on the way
+   from who is inviting to where, and opened by a short rule that says the
+   names have ended. */
+.invitation {
+  display: grid;
+  justify-items: center;
+  gap: var(--sp-4);
+  /* Closes the gap to the families above to `--sp-5` while leaving the
+     block's full `--sp-7` standing before the venue below. */
+  margin-top: calc(var(--sp-5) - var(--sp-7));
+}
+
+.invitation::before {
+  content: '';
+  width: 2.5rem;
+  height: 1px;
+  background: var(--tone-rule);
+}
+
+/* Held to a narrower measure than anything around it, so it falls into two
+   short centred lines and reads as an aside rather than a heading. */
 .invitation > p {
-  max-width: 22rem;
+  max-width: 17rem;
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
   font-style: italic;
-  line-height: var(--lh-snug);
+  line-height: var(--lh-base);
+  letter-spacing: 0.01em;
   text-wrap: balance;
-  opacity: 0.9;
+  opacity: 0.72;
 }
 
 /* --- Where ---------------------------------------------------------------- */
