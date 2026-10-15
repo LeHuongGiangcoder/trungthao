@@ -21,7 +21,6 @@ export function Rsvp() {
         <h2 id="rsvp-title" className={styles.heading}>
           {rsvp.heading}
         </h2>
-        <p className={`caps caps-sm ${styles.deadline}`}>{rsvp.deadline}</p>
       </Reveal>
 
       <Reveal delay={120} className={styles.formWrap}>

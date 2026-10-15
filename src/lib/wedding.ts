@@ -58,7 +58,6 @@ export const dresscode = {
 export const rsvp = {
   eyebrow: 'Quý khách sẽ đến chứ?',
   heading: 'Vui lòng phản hồi các thông tin sau',
-  deadline: 'Vui lòng phản hồi trước ngày 10 . 10 . 2026',
   note: 'Sự hiện diện của quý khách là niềm vinh hạnh lớn của gia đình chúng tôi.',
   /** The party sizes offered as buttons on the reply card. */
   guestOptions: [1, 2, 3],
