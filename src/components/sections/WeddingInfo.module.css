@@ -84,6 +84,19 @@
   }
 }
 
+/* --- The invitation's own line --------------------------------------------
+   Set like the parents' names above it, which it speaks for, and held to a
+   measure that keeps it to two lines on a phone. */
+.invitation > p {
+  max-width: 22rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+  opacity: 0.9;
+}
+
 /* --- Where ---------------------------------------------------------------- */
 /* `.caps` carries the face, tracking and colour; these add only what is
    particular to this screen. */

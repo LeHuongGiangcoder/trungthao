@@ -1,6 +1,6 @@
 import { Countdown } from '@/components/Countdown';
 import { Reveal } from '@/components/Reveal';
-import { ceremony, families } from '@/lib/wedding';
+import { ceremony, families, invitationLine } from '@/lib/wedding';
 import styles from './WeddingInfo.module.css';
 
 /* "28 . 10 . 2026" is the form the date takes everywhere else on the card;
@@ -17,9 +17,6 @@ const [day, month, year] = ceremony.dateLine.split(' . ');
  * Everything is live type rather than drawn art: it is the part a guest will
  * read out to someone else, so it has to be selectable, searchable and
  * reflowable.
- *
- * "Trân trọng kính mời …" is deliberately not repeated here — it opens the
- * invitation one screen earlier, on `Invite`.
  */
 export function WeddingInfo() {
   return (
@@ -37,6 +34,11 @@ export function WeddingInfo() {
             <p className={styles.parent}>{family.mother}</p>
           </div>
         ))}
+      </Reveal>
+
+      {/* What the two families above say to the guest, before the address. */}
+      <Reveal className={styles.invitation} delay={40}>
+        <p>{invitationLine}</p>
       </Reveal>
 
       <Reveal className={styles.place} delay={80}>

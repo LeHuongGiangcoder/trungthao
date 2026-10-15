@@ -32,6 +32,11 @@ export const families = [
   { side: 'Nhà gái', father: 'Ông Nguyễn Đức Vinh', mother: 'Bà Nguyễn Thị Đôi' },
 ] as const;
 
+/** The line the two families say to the guest, between their names and the
+ *  address — the invitation's own sentence. */
+export const invitationLine =
+  'Trân trọng kính mời tham dự lễ thành hôn của gia đình chúng tôi';
+
 export const agenda = [
   { time: '17:00', title: 'Đón khách', note: 'Quý khách nhận chỗ và chụp ảnh lưu niệm' },
   { time: '18:00', title: 'Lễ cưới', note: 'Nghi thức thành hôn tại Crystal Ballroom' },
