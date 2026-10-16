@@ -85,11 +85,11 @@
 }
 
 /* --- The invitation's own line --------------------------------------------
-   It is the families' voice, not a fourth line of their names, so it is set
-   below them rather than beside them: pulled up close enough to read as
-   theirs, kept a size under the names so the eye passes over it on the way
-   from who is inviting to where, and opened by a short rule that says the
-   names have ended. */
+   It is the families' voice and the card's one announcement: the sentence
+   that actually invites. So it is set below the names rather than beside
+   them, pulled up close enough to still read as theirs, but given the size
+   and the full colour of a statement — a size above the names, upright, on
+   its own measure — with a short rule above it saying the names have ended. */
 .invitation {
   display: grid;
   justify-items: center;
@@ -101,26 +101,25 @@
 
 .invitation::before {
   content: '';
-  width: 2.5rem;
+  width: 3.5rem;
   height: 1px;
   background: var(--tone-rule);
 }
 
-/* Held to a narrower measure than anything around it, so it falls into two
-   short centred lines and reads as an aside rather than a heading. */
+/* Held to its own measure so it falls into two balanced centred lines —
+   short enough to be read as one statement rather than a paragraph. */
 .invitation > p {
-  max-width: 19rem;
+  max-width: 22rem;
   font-family: var(--font-display);
-  /* Between `--fs-xs` and `--fs-sm`, which is the point of it: at the label
-     size it was too faint to read comfortably, at the parents' size it goes
-     back to being a fourth line of their names. The rule above, the italic
-     and the narrower measure carry the rest of the demotion. */
-  font-size: 0.875rem;
-  font-style: italic;
-  line-height: var(--lh-base);
-  letter-spacing: 0.01em;
+  /* A step above the parents' `--fs-sm` and up to `--fs-md` on a wider
+     phone: this is the sentence a guest reads out, so it is the largest set
+     type in the block after the venue. Upright rather than italic — the
+     italic was most of what made it read as an aside. */
+  font-size: clamp(1.0625rem, 4.4vw, var(--fs-md));
+  font-weight: 500;
+  line-height: var(--lh-snug);
+  letter-spacing: 0.015em;
   text-wrap: balance;
-  opacity: 0.8;
 }
 
 /* --- Where ---------------------------------------------------------------- */
